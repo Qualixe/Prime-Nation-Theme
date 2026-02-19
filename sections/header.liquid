@@ -1,3 +1,4 @@
+{% assign s = section.settings %}
 <header>
   <!-- topbar-section start -->
 
@@ -376,9 +377,11 @@
         </div>
         <div class="navbar-middle">
           <div class="navbar-brand">
-            <a href="index.html" class="navbar-logo">
-              <img src="./assets/images/logo.png" alt="logo.png">
-            </a>
+            {% if s.logo %}
+              <a href="index.html" class="navbar-logo">
+                {{ s.logo | image_url: width: 1000 | image_tag: alt: 'logo' }}
+              </a>
+            {% endif %}
           </div>
         </div>
         <div class="navbar-right">
@@ -486,3 +489,105 @@
   </div>
   <!-- searchbar end -->
 </header>
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu",
+      "name": "Mega Menu",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "text",
+          "id": "link",
+          "label": "Menu Link Title",
+          "info": "Enter the exact menu item title where you want to show this mega menu (case sensitive)"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Mega Menu Content",
+          "default": "main-menu",
+          "info": "Select the menu that contains your categories (Occasion, Style, Fabric, etc.)"
+        },
+        {
+          "type": "header",
+          "content": "Featured Product 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Featured Image 1"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Featured Heading 1",
+          "default": "EXPLORE LATEST"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Featured Text 1",
+          "default": "Featured Collection"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Featured Link 1"
+        },
+        {
+          "type": "header",
+          "content": "Featured Product 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Featured Image 2"
+        },
+        {
+          "type": "text",
+          "id": "heading_2",
+          "label": "Featured Heading 2",
+          "default": "EXPLORE LATEST"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Featured Text 2",
+          "default": "Featured Collection"
+        },
+        {
+          "type": "url",
+          "id": "url_2",
+          "label": "Featured Link 2"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
