@@ -1,0 +1,125 @@
+<section class="hero-slider-section color-{{ section.settings.color_scheme }}">
+  {% for block in section.blocks %}
+    <div class="slider-hero-item slider-hero-item-{{ forloop.index }}">
+      <style>
+        .slider-hero-item-{{ forloop.index }} {
+          background-image: url('{{ block.settings.image | image_url: width: 1920 }}');
+          background-size: cover;
+          background-position: center;
+        }
+
+        @media only screen and (max-width: 575px) {
+          .slider-hero-item-{{ forloop.index }} {
+            background-image: url('{{ block.settings.image_2 | image_url: width: 800 }}');
+          }
+        }
+      </style>
+
+      <div class="slider-hero-overlay">
+        <div class="container">
+          <div class="hero-content-inner">
+            <div class="hero-content">
+              {% if block.settings.sub_heading != blank %}
+                <h5 class="hero-content-sub-heading">
+                  {{ block.settings.sub_heading }}
+                </h5>
+              {% endif %}
+
+              {% if block.settings.heading != blank %}
+                <h1 class="hero-content-heading">
+                  {{ block.settings.heading }}
+                </h1>
+              {% endif %}
+
+              <div class="hero-content-btn">
+                {% if block.settings.button_text != blank %}
+                  <a href="{{ block.settings.button_url }}" class="btn primary-btn">
+                    {{ block.settings.button_text -}}
+                    <span></span>
+                  </a>
+                {% endif %}
+
+                {% if block.settings.button_text_2 != blank %}
+                  <a href="{{ block.settings.button_url_2 }}" class="btn secondary-btn">
+                    {{ block.settings.button_text_2 -}}
+                    <span></span>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color Scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero",
+      "name": "Hero Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "text",
+          "id": "sub_heading",
+          "label": "Sub Heading"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Primary Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Primary Button URL"
+        },
+        {
+          "type": "text",
+          "id": "button_text_2",
+          "label": "Secondary Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_url_2",
+          "label": "Secondary Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "blocks": [
+        {
+          "type": "hero"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
