@@ -1,0 +1,101 @@
+/* sticky-add-to-cart section css start */
+.sticky-add-to-cart-section {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2100;
+    transition: all ease .3s;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    padding: 10px 20px;
+    background-color: var(--white);
+    box-shadow: 0 -3px 10px rgb(0 0 0 / 10%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    transform: translateY(101%);
+}
+
+.sticky-add-to-cart-section.fixed {
+    opacity: 1;
+    visibility: visible;
+    transition: all ease .3s;
+    transform: translateY(0);
+}
+
+.sticky-add-to-cart-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sticky-prduct-img {
+    max-width: 70px;
+}
+
+.sticky-add-to-cart-title {
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.sticky-prduct-price .card-price-wrap {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 8px 0 0 0;
+}
+
+.sticky-prduct-price .card-price-wrap .previous-price {
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.sticky-bar-btn-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* sticky-add-to-cart section css end */
+
+@media only screen and (max-width: 992px) {
+
+    /* sticky-add-to-cart section css start */
+
+
+    /* sticky-add-to-cart section css end */
+}
+
+@media only screen and (max-width: 575px) {
+
+    /* sticky-add-to-cart section css start */
+    .sticky-add-to-cart-section {
+        gap: 16px;
+    }
+
+    .sticky-add-to-cart-left {
+        gap: 8px;
+    }
+
+    .sticky-add-to-cart-title {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .sticky-prduct-price .card-price-wrap .latest-price,
+    .sticky-prduct-price .card-price-wrap .previous-price {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .sticky-bar-btn-wrap .btn {
+        padding: 11px 20px;
+    }
+
+    /* sticky-add-to-cart section css end */
+}

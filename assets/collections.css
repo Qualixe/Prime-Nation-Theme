@@ -1,0 +1,629 @@
+/* collection section css start */
+.section.collection-section {
+    padding-top: 0;
+}
+
+.collection-section .container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.collection-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 83px;
+}
+
+.collection-filter {
+    position: fixed;
+    z-index: 9999;
+    height: 100vh;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    transition: all ease .3s;
+}
+
+.collection-filter.active {
+    right: 0;
+}
+
+.collection-section.energy-collection-section .collection-wrapper .collection-filter {
+    top: 190px;
+}
+
+.collection-content {
+    width: 100%;
+}
+
+.collection-top {
+    align-items: center;
+    margin: 0 0 24px 0;
+    gap: 16px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    padding: 0 20px;
+}
+
+.filter-open-btn {
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-family: var(--paragraph-font);
+    font-weight: 400;
+    width: fit-content;
+    margin-left: auto;
+    cursor: pointer;
+    transition: all ease .3s;
+}
+
+.filter-open-btn:hover {
+    color: var(--paragraph-text-color);
+}
+
+.collection-tag-wrap {
+    padding: 0 0 24px 0;
+    margin: 0 0 24px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.collection-tag-wrap .container {
+    padding: 0 0 0 20px;
+}
+
+.collection-tags {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.collection-tags a {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 8px;
+    display: block;
+    border-bottom: 1px solid transparent;
+    transition: all ease .3s;
+    text-wrap-mode: nowrap;
+    user-select: none;
+}
+
+.collection-tags a.active {
+    border-color: var(--black);
+    color: var(--paragraph-text-color);
+}
+
+.collection-tags a:hover {
+    border-color: var(--black);
+    color: var(--paragraph-text-color);
+}
+
+/* collection filter css start */
+.collection-grid-varient {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.collection-grid-btn-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.collection-grid-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all ease .3s;
+}
+
+.collection-grid-btn.active {
+    background: var(--item-bg);
+}
+
+.collection-grid-btn:hover {
+    background: var(--item-bg);
+}
+
+.filter-select-field {
+    position: relative;
+    z-index: 1;
+}
+
+.filter-select-field select {
+    padding: 0 15px;
+    min-width: 160px;
+}
+
+.filter-select-field .icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    z-index: -1;
+    display: flex;
+}
+
+.filter-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 24px 0;
+}
+
+.filter-sidebar-heading {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    text-transform: capitalize;
+}
+
+.filter-close-btn {
+    cursor: pointer;
+    display: flex;
+}
+
+.filter-window-close-btn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    transition: all ease .3s;
+    user-select: none;
+    backdrop-filter: blur(5px);
+}
+
+.collection-filter.active .filter-window-close-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+.filter-box {
+    position: relative;
+    background-color: var(--white);
+    box-shadow: 0 0 20px 0px rgb(0 0 0 / 10%);
+    width: 340px;
+    z-index: 2;
+    height: 100dvh;
+    border-radius: 0;
+    padding: 20px;
+    margin-left: auto;
+}
+
+.filter-count {
+    margin: 0 0 24px 0;
+}
+
+.collection-product-count {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-muted);
+}
+
+.filter-product-availability {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 0 24px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin: 0 0 24px 0;
+}
+
+.filter-product-availability-title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.switch-toggle-checkbox {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.switch-toggle-checkbox .switch-toggle-checkbox-input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.switch-toggle-checkbox .switch-toggle-checkbox-input-label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 44px;
+    height: 24px;
+    background: var(--item-bg);
+    display: block;
+    border-radius: 100px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.switch-toggle-checkbox .switch-toggle-checkbox-input:checked~.switch-toggle-checkbox-input-label {
+    background: var(--brand-color);
+}
+
+.switch-toggle-checkbox .switch-toggle-checkbox-input-label:before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-radius: 50%;
+    transition: 0.3s;
+    opacity: 0.5;
+    box-shadow: 0 8px 15px var(--text-muted);
+}
+
+.switch-toggle-checkbox .switch-toggle-checkbox-input:checked~.switch-toggle-checkbox-input-label:before {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+    box-shadow: 0 8px 15px var(--brand-color);
+}
+
+.switch-toggle-checkbox .switch-toggle-checkbox-input-label:after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.switch-toggle-checkbox .switch-toggle-checkbox-input:checked~.switch-toggle-checkbox-input-label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+}
+
+.filter-accordion {
+    height: calc(100% - 165px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.filter-accordion-item {
+    border-bottom: 1px solid var(--border-color);
+    margin: 0 0 10px 0;
+}
+
+.filter-accordion-item:last-child {
+    margin: 0;
+    border-bottom: 0;
+}
+
+.filter-accordion-item:last-child {
+    margin: 0;
+    border-bottom: 0;
+}
+
+.filter-accordion-item .item-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 12px 0;
+}
+
+.filter-accordion-item .item-title-wrapper .item-title {
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.filter-accordion-item .item-title-wrapper .icon {
+    display: flex;
+}
+
+.filter-accordion-item .item-title-wrapper .icon svg {
+    transition: all ease .3s;
+}
+
+.filter-accordion-item .item-title-wrapper .icon svg {
+    transform: rotate(180deg);
+}
+
+.filter-accordion-item.active .item-title-wrapper .icon svg {
+    transform: rotate(0);
+}
+
+.filter-accordion-item-content {
+    margin: 0 0 16px 0;
+}
+
+.brand-shorting {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0 0 12px 0;
+}
+
+.brand-shorting button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    width: 24px;
+    height: 24px;
+}
+
+.filter-options {
+    margin: 0 0 12px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-options:last-child {
+    margin: 0;
+}
+
+.filter-option {
+    display: block;
+}
+
+.filter-option input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.filter-option label {
+    position: relative;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-family: var(--paragraph-font);
+    font-weight: 400;
+    text-transform: capitalize;
+    user-select: none;
+    display: flex;
+}
+
+.filter-option label:before {
+    content: '';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); */
+    padding: 8px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+.filter-option input:checked+label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    width: 3px;
+    height: 8px;
+    border: solid var(--black);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* filter-size css start */
+
+.filter-options-wrapper.size-option {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-options-wrapper.size-option .filter-options {
+    margin: 0;
+}
+
+.filter-options-wrapper.size-option .filter-option label {
+    padding: 7px 13px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    border: 1px solid var(--border-color);
+    display: block;
+    color: var(--paragraph-text-color);
+}
+
+.filter-options-wrapper.size-option .filter-option label::before {
+    display: none;
+}
+
+.filter-options-wrapper.size-option .filter-option label::after {
+    display: none;
+}
+
+.filter-options-wrapper.size-option .filter-option input:checked+label {
+    background: var(--border-color);
+}
+
+/* filter-size css end */
+
+/* filter-color css start */
+.filter-options-wrapper.color-option {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-options-wrapper.color-option .filter-options {
+    margin: 0;
+}
+
+.filter-options-wrapper.color-option .filter-option label {
+    display: block;
+}
+
+.filter-options-wrapper.color-option .filter-option label:before {
+    border: none;
+    padding: 16px;
+    margin: 0;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.filter-options-wrapper.color-option .filter-option input:checked+label:after {
+    top: 8px;
+    left: 12px;
+    width: 5px;
+    height: 12px;
+}
+
+.filter-option.color-yellow label:before {
+    background-color: #FFD700;
+}
+
+.filter-option.color-white label:before {
+    background-color: #fff;
+}
+
+.filter-option.color-red label:before {
+    background-color: #FF0000;
+}
+
+.filter-option.color-blue label:before {
+    background-color: #0000ff;
+}
+
+.filter-option.color-green label:before {
+    background-color: #008000;
+}
+
+.filter-option.color-pink label:before {
+    background-color: #ffc0cb;
+}
+
+.filter-option.color-offwhite label:before {
+    background-color: #F5F0E6;
+}
+
+.filter-option.color-brown label:before {
+    background-color: #a52a2a;
+}
+
+/* filter-color css end */
+
+/* collection filter css end */
+
+.collection-items {
+    display: grid;
+    gap: 5px;
+    row-gap: 30px;
+    transition: all ease .3s;
+}
+
+.collection-items.grid2 {
+    grid-template-columns: repeat(2, 1fr);
+    transition: all ease .3s;
+}
+
+.collection-items.grid3 {
+    grid-template-columns: repeat(3, 1fr);
+    transition: all ease .3s;
+}
+
+.collection-items.grid4 {
+    grid-template-columns: repeat(4, 1fr);
+    transition: all ease .3s;
+}
+
+/* collection section css end */
+
+@media only screen and (max-width: 767px) {
+
+    /* colection section css start */
+    .collection-tags {
+        gap: 10px;
+    }
+
+    .collection-grid-btn-wrap {
+        display: none;
+    }
+
+    .collection-items {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 40;
+    }
+
+    .collection-items.grid2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .collection-items.grid3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .collection-items.grid4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* colection section css end */
+}
+
+@media only screen and (max-width: 575px) {
+
+    /* colection section css start */
+    .collection-tag-wrap {
+        padding: 0 0 16px 0;
+        margin: 0 0 16px 0;
+    }
+
+    .collection-top {
+        margin: 0 0 16px 0;
+    }
+
+    .collection-filter-btn {
+        gap: 10px;
+    }
+
+    .filter-open-btn.btn {
+        padding: 11.5px;
+    }
+
+    .filter-select-field select {
+        min-width: 140px;
+    }
+
+
+    /* colection section css end */
+}

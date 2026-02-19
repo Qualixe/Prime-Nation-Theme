@@ -1,0 +1,22 @@
+/* card-slider-section css start */
+.card-slider-section2 {
+    background: var(--section-bg);
+}
+
+.card-slider-section .container {
+    max-width: 100%;
+}
+
+/* card-slider-section css end */
+
+
+@media only screen and (max-width: 992px) {
+
+    /* category-section css start */
+
+    .card-slider-section .container {
+        padding: 0 0 0 20px;
+    }
+
+    /* category-section css end */
+}

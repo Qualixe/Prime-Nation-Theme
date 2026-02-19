@@ -1,0 +1,93 @@
+/* hero section css start */
+.slider-hero-item {
+    display: block;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.slider-hero-overlay {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: linear-gradient(180deg, rgba(54, 54, 54, 0.2), rgba(4, 4, 4, 0.65) 100%);
+}
+
+.slider-hero-overlay .container {
+    max-width: 100%;
+}
+
+.hero-content-inner {
+    height: calc(100dvh - 30px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.slider-hero-overlay .hero-content {
+    width: 52%;
+    margin: 0 0 50px 30px;
+}
+
+.hero-content-sub-heading {
+    color: var(--white);
+    margin: 0 0 16px 0;
+}
+
+.hero-content-heading {
+    color: var(--white);
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.hero-content-btn {
+    margin: 24px 0 0 0;
+    display: flex;
+    gap: 20px;
+}
+
+/* hero section css end */
+
+@media only screen and (max-width:1200px) {
+
+    /* hero section css start */
+    /* .hero-content-inner {
+        height: 550px;
+    } */
+
+    /* hero section css end */
+}
+
+@media only screen and (max-width:767px) {
+
+    /* hero section css start */
+    .hero-content-inner {
+        height: 500px;
+    }
+
+    .slider-hero-overlay .hero-content {
+        width: 100%;
+    }
+
+    /* hero section css end */
+}
+
+@media only screen and (max-width: 575px) {
+
+    /* hero section css start */
+    .slider-hero-overlay .hero-content {
+        margin: 0 0 20px 0;
+    }
+
+    .hero-content-sub-heading {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+    }
+
+    .hero-content-btn {
+        margin: 10px 0 0 0;
+        gap: 10px;
+    }
+
+    /* hero section css end */
+}

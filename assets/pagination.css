@@ -1,0 +1,98 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.pagination a {
+    color: var(--btn-bg);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--paragraph-font);
+    padding: 5px;
+    transition: all ease .3s;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination a svg {
+    width: 12px;
+    height: 12px;
+}
+
+.pagination a:first-child svg {
+    transform: rotate(90deg);
+}
+
+.pagination a:last-child svg {
+    transform: rotate(-90deg);
+}
+
+.pagination a svg path {
+    fill: var(--black);
+    transition: all ease .3s;
+}
+
+.pagination a.active {
+    background-color: var(--brand-color);
+    color: var(--white);
+    border-color: var(--brand-color);
+    text-decoration: none;
+}
+
+.pagination a.active svg path {
+    fill: var(--white);
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--btn-bg);
+    color: var(--white);
+    border-color: var(--brand-color);
+    text-decoration: none;
+}
+
+.pagination a:hover:not(.active) svg path {
+    fill: var(--white);
+}
+
+@media only screen and (max-width: 1200px) {
+
+    /* pagination css start */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    /* pagination css end */
+}
+
+@media only screen and (max-width: 767px) {
+
+    /* pagination css start */
+    .pagination {
+        gap: 10px;
+    }
+
+    /* pagination css end */
+}
+
+@media only screen and (max-width: 575px) {
+
+    /* pagination css start */
+    .pagination a {
+        min-width: 39px;
+        min-height: 39px;
+    }
+
+    /* pagination css end */
+}

@@ -1,0 +1,56 @@
+<section class="topbar-section">
+  <div class="top-bar">
+    <!-- marque slider start -->
+    <div class="marquee-slider marquee--hover-pause">
+      <ul class="marquee__content">
+        {% for block in section.blocks %}
+          <li class="marquee-content-item">
+            <p class="topbar-text">{{ block.settings.text }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+      <ul class="marquee__content">
+        {% for block in section.blocks %}
+          <li class="marquee-content-item">
+            <p class="topbar-text">{{ block.settings.text }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <!-- marque slider end -->
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Topbar",
+  "class": "topbar-section",
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "3 days return and replacement guarantee."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Topbar",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

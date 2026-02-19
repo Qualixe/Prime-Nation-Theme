@@ -1,0 +1,23 @@
+/* product-grid-section css start */
+.product-grid-section .container {
+    max-width: 100%;
+}
+
+.product-grid-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    row-gap: 30px;
+}
+
+/* product-grid-section css end */
+
+@media only screen and (max-width: 992px) {
+
+    /* product-grid-section css end */
+   .product-grid-items {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+    /* product-grid-section css end */
+}

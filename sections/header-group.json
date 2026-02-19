@@ -1,0 +1,74 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "topbar_fFUb9i": {
+      "type": "topbar",
+      "blocks": {
+        "text_GfFzw6": {
+          "type": "text",
+          "settings": {
+            "text": "3 days return and replacement guarantee."
+          }
+        },
+        "text_Lcp4zV": {
+          "type": "text",
+          "settings": {
+            "text": "CASH on delivery"
+          }
+        },
+        "text_cfWxWy": {
+          "type": "text",
+          "settings": {
+            "text": "3 days return and replacement guarantee."
+          }
+        },
+        "text_mMPhKw": {
+          "type": "text",
+          "settings": {
+            "text": "CASH on delivery"
+          }
+        },
+        "text_6CnDnr": {
+          "type": "text",
+          "settings": {
+            "text": "3 days return and replacement guarantee."
+          }
+        },
+        "text_kBnKwN": {
+          "type": "text",
+          "settings": {
+            "text": "CASH on delivery"
+          }
+        }
+      },
+      "block_order": [
+        "text_GfFzw6",
+        "text_Lcp4zV",
+        "text_cfWxWy",
+        "text_mMPhKw",
+        "text_6CnDnr",
+        "text_kBnKwN"
+      ],
+      "name": "Topbar",
+      "settings": {}
+    },
+    "header_section": {
+      "type": "header",
+      "settings": {}
+    }
+  },
+  "order": [
+    "topbar_fFUb9i",
+    "header_section"
+  ]
+}

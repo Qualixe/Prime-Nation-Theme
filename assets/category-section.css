@@ -1,0 +1,113 @@
+/* category section css start */
+.section.category-section {
+    padding-bottom: 0;
+}
+
+.category-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.category-item .product-card .card-image-wrap .card-img .main-img img {
+    transition: all ease .3s;
+}
+
+.category-item:hover .product-card .card-image-wrap .card-img .main-img img {
+    transform: scale(1.1);
+}
+
+.category-item .product-card .card-image-wrap:before {
+    padding-bottom: 133%;
+}
+
+.category-item .product-card .card-content {
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(0, 25, 21, 0) 50%, rgba(0, 25, 21, .9));
+    justify-content: flex-end;
+}
+
+.category-item .product-card .card-content .img-card-content-title {
+    color: var(--white);
+    text-transform: capitalize;
+}
+
+/* category section css end */
+
+/* category section2 css start */
+.category-section2 {
+    margin-top: 5px;
+}
+
+.category-section2 .container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.category-section2 .category-items {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.category-section2 .category-items .category-item .product-card .card-content {
+    text-align: left;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.16);
+}
+
+.category-section2 .category-items .category-item .product-card .card-content .img-card-content-title {
+    text-decoration: underline;
+}
+
+/* category section2 css end */
+
+@media only screen and (max-width: 992px) {
+
+    /* category section css start */
+    .category-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* category section css end */
+}
+
+@media only screen and (max-width: 767px) {
+
+    /* category section2 css start */
+    .category-section2 .category-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-section2 .category-items .category-item:first-child {
+        grid-column: span 2;
+    }
+
+    /* category section2 css end */
+}
+
+@media only screen and (max-width: 575px) {
+
+    /* category section css start */
+    .section.category-section {
+        padding-top: 20px;
+    }
+
+    .category-item .product-card .card-content {
+        padding: 16px;
+    }
+
+    .category-item .product-card .card-content .img-card-content-title {
+        font-size: 16px;
+    }
+
+    /* category section css end */
+}

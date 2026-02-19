@@ -1,0 +1,27 @@
+    /* single-banner-section2 css start */
+    .single-banner2-img {
+        display: block;
+        width: 100%;
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    /* single-banner-section2 css end */
+
+    @media only screen and (max-width: 575px) {
+
+        /* single-banner-section2 css start */
+        .section.single-banner2-section {
+            padding: 10px 0;
+        }
+
+        .single-banner2-section .container {
+            padding: 0;
+        }
+
+        .single-banner2-img {
+            border-radius: 0;
+        }
+
+        /* single-banner-section2 css end */
+    }

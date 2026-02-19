@@ -1,0 +1,105 @@
+/* common-banner css start */
+.collection-page-banner.common-banner {
+    background-color: var(--white);
+}
+
+.collection-page-banner.common-banner .container {
+    max-width: 100%;
+}
+
+.about-page-banner {
+    background-image: url('../images/prime-nation-cover1.jpg');
+}
+
+.contact-page-banner {
+    background-image: url('../images/contact-common-banner-bg.jpg');
+}
+
+.blog-page-banner {
+    background-image: url('../images/blog-page-banner-bg.jpg');
+}
+
+.faq-page-banner {
+    background-image: url('../images/faq-page-banner-bg.jpg');
+}
+
+.common-banner {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-blend-mode: color;
+    margin: 110px 0 0 0;
+}
+
+.common-banner-content {
+    padding: 100px 0;
+}
+
+.collection-page-banner.common-banner .common-banner-content {
+    padding: 30px 0;
+}
+
+.common-banner-content .section-heading-wrapper {
+    margin: 0;
+}
+
+.collection-page-banner .common-banner-content .section-heading-wrapper {
+    text-align: left;
+}
+
+.common-banner-content .section-heading {
+    color: var(--white);
+}
+
+.collection-page-banner.common-banner .common-banner-content .section-heading {
+    color: var(--black);
+    position: relative;
+    width: fit-content;
+}
+
+.collection-page-banner.common-banner .common-banner-content .section-heading .count {
+    color: var(--text-muted);
+    font-size: 24px;
+    font-weight: 400;
+    position: absolute;
+    bottom: 50%;
+    left: 100%;
+    z-index: 1;
+    line-height: 1;
+}
+
+.common-banner-content .breadcrumb {
+    justify-content: center;
+    margin: 10px 0 0 0;
+}
+
+.common-banner-content .breadcrumb li a,
+.common-banner-content .breadcrumb li span {
+    color: var(--white);
+}
+
+.common-banner-content .breadcrumb li .breadcrumb-icon svg path {
+    fill: var(--white);
+}
+
+/* common-banner css end */
+@media only screen and (max-width: 992px) {
+    .common-banner {
+        margin: 94px 0 0 0;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .common-banner-content {
+        padding: 50px 0;
+    }
+
+    .collection-page-banner.common-banner .common-banner-content .section-heading .count {
+        font-size: 16px;
+    }
+
+    .collection-page-banner.common-banner .common-banner-content {
+        padding: 20px 0;
+    }
+}

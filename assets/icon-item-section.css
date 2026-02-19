@@ -1,0 +1,96 @@
+/* icon-item-section css start */
+.icon-item-section {
+    background: var(--section-bg);
+}
+
+.icon-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.icon-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--white);
+    border-radius: 5px;
+    box-shadow: 0 3px 12px rgb(0 0 0 / 10%);
+}
+
+.icon-item .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    border: 1px solid var(--brand-color);
+    border-radius: 50%;
+}
+
+.icon-item .icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-item .icon svg path {
+    stroke: var(--brand-color);
+}
+
+.icon-item-title {
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.icon-item-text {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+/* icon-item-section css end */
+
+@media only screen and (max-width: 992px) {
+
+    /* icon-item-section css end */
+    .icon-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* icon-item-section css end */
+}
+
+@media only screen and (max-width: 575px) {
+
+    /* icon-item-section css end */
+    .icon-items {
+        gap: 10px;
+    }
+
+    .icon-item {
+        flex-direction: column;
+    }
+
+    .icon-item .icon {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+    }
+
+    .icon-item-content {
+        text-align: center;
+    }
+
+    .icon-item .icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* icon-item-section css end */
+}

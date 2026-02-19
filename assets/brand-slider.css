@@ -1,0 +1,35 @@
+.brand-slider-section {
+    padding: 50px 0;
+}
+@media only screen and (max-width: 992px) {
+
+    /* brand-slider section css start */
+    .brand-slider-section {
+        padding: 30px 0;
+    }
+
+     .brand-slider-section .container{
+        padding: 0;
+        max-width: 100%;
+    }
+
+     .brand-slider-section .marquee-content-item-img {
+        height: 30px;
+    }
+
+    /* brand-slider section css end */
+}
+
+@media only screen and (max-width: 575px) {
+
+    /* brand-slider section css start */
+    .brand-slider-section .marquee-content-item-img {
+        height: 20px;
+    }
+
+    .brand-slider-section {
+        padding: 20px 0;
+    }
+
+    /* brand-slider section css end */
+}

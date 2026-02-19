@@ -1,0 +1,21 @@
+/* topbar-section css start */
+.topbar-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--brand-color);
+    padding: 8px 0;
+    z-index: 999;
+}
+
+.marquee-content-item .topbar-text {
+    font-family: var(--heading-font);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+/* topbar-section css end */
