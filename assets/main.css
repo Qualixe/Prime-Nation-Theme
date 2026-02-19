@@ -68,6 +68,10 @@
     /* font family */
     --heading-font: "Inter", serif;
     --paragraph-font: "Inter", serif;
+    --btn-color: #ffffff;
+    --btn-bg: #000000;
+    --btn-bg2: #ffffff;
+    */
 }
 
 * {
