@@ -1,0 +1,61 @@
+{% assign b = block.settings %}
+<div class="navbar-link-content">
+  <div class="container">
+    <div class="navbar-img-link-content">
+      <div class="navbar-img-link-content-left">
+        {% for link in b.menu.links %}
+          <div class="navbar-img-link-content-left-item">
+            <p class="navbar-img-link-content-left-item-title">
+              {{ link.title }}
+            </p>
+            {% if link.links.size > 0 %}
+              <ul>
+                {% for childMenu in link.links %}
+                  <li>
+                    <a href="{{ childMenu.url }}">{{ childMenu.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="navbar-img-link-content-right">
+        <div class="navbar-img-card">
+          <div class="product-card">
+            <div class="card-image-wrap">
+              <div class="card-img">
+                <a class="main-img" href="{{ b.url }}">
+                  {% if b.image != blank %}
+                    {{ b.image | image_url: width: 2000 | image_tag: class: 'mega_menu_img' }}
+                  {% endif %}
+                </a>
+              </div>
+            </div>
+            <div class="card-content">
+              <a href="{{ b.url }}" class="card-title">{{ b.heading }}</a>
+              <p class="card-subtitle">{{ b.text }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-img-card">
+          <div class="product-card">
+            <div class="card-image-wrap">
+              <div class="card-img">
+                <a class="main-img" href="{{ b.url_2 }}">
+                  {% if b.image_2 != blank %}
+                    {{ b.image_2 | image_url: width: 2000 | image_tag: class: 'mega_menu_img' }}
+                  {% endif %}
+                </a>
+              </div>
+            </div>
+            <div class="card-content">
+              <a href="{{ b.url_2 }}" class="card-title">{{ b.heading_2 }}</a>
+              <p class="card-subtitle">{{ b.text_2 }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
