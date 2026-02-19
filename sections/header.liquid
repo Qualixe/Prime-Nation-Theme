@@ -43,285 +43,109 @@
                 </div>
               </div>
               <ul class="navbar-links">
-                <li class="navbar-link">
-                  <div class="navbar-link-title">
-                    <span>shop</span>
-                    <span class="icon">
-                      <svg
-                        focusable="false"
-                        viewBox="0 0 16 14"
-                        width="10"
-                        height="10"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M.116 4.884l1.768-1.768L8 9.232l6.116-6.116 1.768 1.768L8 12.768.116 4.884z"></path>
-                      </svg>
-                    </span>
-                  </div>
-                  <div class="navbar-link-content">
-                    <div class="container">
-                      <div class="navbar-img-link-content">
-                        <div class="navbar-img-link-content-left">
-                          <div class="navbar-img-link-content-left-item">
-                            <p class="navbar-img-link-content-left-item-title">Shop All</p>
-                            <ul>
-                              <li><a href="collections.html">boots</a></li>
-                              <li><a href="#">Casuals</a></li>
-                              <li><a href="#">Comfort</a></li>
-                              <li><a href="#">Formal</a></li>
-                              <li><a href="#">Safety</a></li>
-                              <li><a href="#">Sneakers</a></li>
-                              <li><a href="#">Sandals</a></li>
-                            </ul>
-                          </div>
-                          <div class="navbar-img-link-content-left-item">
-                            <p class="navbar-img-link-content-left-item-title">Occasion</p>
-                            <ul>
-                              <li><a href="#">boots</a></li>
-                              <li><a href="#">Casuals</a></li>
-                              <li><a href="#">Comfort</a></li>
-                              <li><a href="#">Formal</a></li>
-                              <li><a href="#">Safety</a></li>
-                              <li><a href="#">Sneakers</a></li>
-                              <li><a href="#">Sandals</a></li>
-                            </ul>
-                          </div>
-                          <div class="navbar-img-link-content-left-item">
-                            <p class="navbar-img-link-content-left-item-title">More</p>
-                            <ul>
-                              <li><a href="#">boots</a></li>
-                              <li><a href="#">Casuals</a></li>
-                              <li><a href="#">Comfort</a></li>
-                              <li><a href="#">Formal</a></li>
-                              <li><a href="#">Safety</a></li>
-                              <li><a href="#">Sneakers</a></li>
-                              <li><a href="#">Sandals</a></li>
-                            </ul>
-                          </div>
+                {% for link in s.menu.links %}
+                  {% assign title = link.title | handleize %}
+                  {% assign has_mega_menu = false %}
+
+                  {% for block in section.blocks %}
+                    {% assign block_title = block.settings.link | handleize %}
+                    {% if title == block_title and block.type == 'mega_menu' %}
+                      {% assign has_mega_menu = true %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+
+                  <li class="navbar-link">
+                    {% if link.links.size > 0 %}
+                      <div class="dropdown-wrapper">
+                        <div class="navbar-link-title dropdown-btn1">
+                          {{ link.title }}
+                          <span class="icon">
+                            <svg
+                              focusable="false"
+                              viewBox="0 0 16 14"
+                              width="10"
+                              height="10"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M.116 4.884l1.768-1.768L8 9.232l6.116-6.116 1.768 1.768L8 12.768.116 4.884z">
+                              </path>
+                            </svg>
+                          </span>
                         </div>
-                        <div class="navbar-img-link-content-right">
-                          <div class="navbar-img-card">
-                            <div class="product-card">
-                              <div class="card-image-wrap">
-                                <div class="card-img">
-                                  <a class="main-img" href="#">
-                                    <img
-                                      class="card_img"
-                                      src="./assets/images/megamenu-img1.avif"
-                                      alt="megamenu-img1.avif"
-                                    >
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="navbar-img-card">
-                            <div class="product-card">
-                              <div class="card-image-wrap">
-                                <div class="card-img">
-                                  <a class="main-img" href="#">
-                                    <img
-                                      class="card_img"
-                                      src="./assets/images/megamenu-img2.avif"
-                                      alt="megamenu-img2.avif"
-                                    >
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                        <div class="sub-menu dropdown-sub-menu dropdown-sub-menu1">
+                          <ul>
+                            {% for childMenu in link.links %}
+                              <li>
+                                {% if childMenu.links.size > 0 %}
+                                  <div class="dropdown-wrapper2">
+                                    <div class="dropdown-nav-link-text dropdown-btn2">
+                                      {{ childMenu.title }}
+                                      <span class="icon">
+                                        <svg
+                                          focusable="false"
+                                          viewBox="0 0 16 14"
+                                          width="10"
+                                          height="10"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path fill-rule="evenodd" clip-rule="evenodd"
+                                              d="M.116 4.884l1.768-1.768L8 9.232l6.116-6.116 1.768 1.768L8 12.768.116 4.884z">
+                                          </path>
+                                        </svg>
+                                      </span>
+                                    </div>
+                                    <div class="sub-menu2 dropdown-sub-menu dropdown-sub-menu2">
+                                      <ul>
+                                        {% for grandMenu in childMenu.links %}
+                                          <li>
+                                            <a href="{{ grandMenu.url }}">{{ grandMenu.title }}</a>
+                                          </li>
+                                        {% endfor %}
+                                      </ul>
+                                    </div>
+                                  </div>
+                                {% else %}
+                                  <a href="{{ childMenu.url }}">{{ childMenu.title }}</a>
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="navbar-link">
-                  <div class="navbar-link-title">
-                    <span>Collections</span>
-                    <span class="icon">
-                      <svg
-                        focusable="false"
-                        viewBox="0 0 16 14"
-                        width="10"
-                        height="10"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M.116 4.884l1.768-1.768L8 9.232l6.116-6.116 1.768 1.768L8 12.768.116 4.884z"></path>
-                      </svg>
-                    </span>
-                  </div>
-                  <div class="navbar-link-content">
-                    <div class="container">
-                      <div class="navbar-img-link-content">
-                        <div class="navbar-img-link-content-left">
-                          <div class="navbar-img-link-content-left-item">
-                            <p class="navbar-img-link-content-left-item-title">Occasion</p>
-                            <ul>
-                              <li><a href="#">Wedding Saree</a></li>
-                              <li><a href="#">Bridal Saree</a></li>
-                              <li><a href="#">Engagement Saree</a></li>
-                              <li><a href="#">Party Saree</a></li>
-                              <li><a href="#">Mehendi Saree</a></li>
-                              <li><a href="#">Reception Saree</a></li>
-                              <li><a href="#">Bridesmaid Saree</a></li>
-                              <li><a href="#">Festive Saree</a></li>
-                              <li><a href="#">Casual Saree</a></li>
-                            </ul>
-                          </div>
-                          <div class="navbar-img-link-content-left-item">
-                            <p class="navbar-img-link-content-left-item-title">Style</p>
-                            <ul>
-                              <li><a href="#">Embroidered Saree</a></li>
-                              <li><a href="#">Stone Work Saree</a></li>
-                              <li><a href="#">Hand Work Saree</a></li>
-                              <li><a href="#">Printed Saree</a></li>
-                              <li><a href="#">Katan Saree</a></li>
-                              <li><a href="#">Kanchipuram Saree</a></li>
-                              <li><a href="#">Gadwal Saree</a></li>
-                              <li><a href="#">Half & Half Saree</a></li>
-                              <li><a href="#">Woven Saree</a></li>
-                              <li><a href="#">Khaddi Saree</a></li>
-                              <li><a href="#">Catalogue Saree</a></li>
-                              <li><a href="#">Ready Saree</a></li>
-                            </ul>
-                          </div>
-                          <div class="navbar-img-link-content-left-item">
-                            <p class="navbar-img-link-content-left-item-title">Fabric</p>
-                            <ul>
-                              <li><a href="#">Cotton Saree</a></li>
-                              <li><a href="#">Silk Saree</a></li>
-                              <li><a href="#">Half Silk Saree</a></li>
-                              <li><a href="#">Art Silk Saree</a></li>
-                              <li><a href="#">Georgette Saree</a></li>
-                              <li><a href="#">Chiffon Saree</a></li>
-                              <li><a href="#">Crepe Saree</a></li>
-                              <li><a href="#">Muslin Saree</a></li>
-                              <li><a href="#">Desi Cotton Saree</a></li>
-                              <li><a href="#">Desi Silk Saree</a></li>
-                              <li><a href="#">Jamdani Saree</a></li>
-                            </ul>
-                          </div>
+                    {% else %}
+                      {% if has_mega_menu %}
+                        <div class="navbar-link-title">
+                          <span>{{ link.title }}</span>
+                          <span class="icon">
+                            <svg
+                              focusable="false"
+                              viewBox="0 0 16 14"
+                              width="10"
+                              height="10"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M.116 4.884l1.768-1.768L8 9.232l6.116-6.116 1.768 1.768L8 12.768.116 4.884z">
+                              </path>
+                            </svg>
+                          </span>
                         </div>
-                        <div class="navbar-img-link-content-right">
-                          <div class="navbar-img-card">
-                            <div class="product-card">
-                              <div class="card-image-wrap">
-                                <div class="card-img">
-                                  <a class="main-img" href="#">
-                                    <img
-                                      class="card_img"
-                                      src="./assets/images/megamenu-img1.avif"
-                                      alt="megamenu-img1.avif"
-                                    >
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="navbar-img-card">
-                            <div class="product-card">
-                              <div class="card-image-wrap">
-                                <div class="card-img">
-                                  <a class="main-img" href="#">
-                                    <img
-                                      class="card_img"
-                                      src="./assets/images/megamenu-img2.avif"
-                                      alt="megamenu-img2.avif"
-                                    >
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="navbar-link">
-                  <div class="dropdown-wrapper">
-                    <div class="navbar-link-title dropdown-btn1">
-                      pages
-                      <span class="icon">
-                        <svg
-                          focusable="false"
-                          viewBox="0 0 16 14"
-                          width="10"
-                          height="10"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M.116 4.884l1.768-1.768L8 9.232l6.116-6.116 1.768 1.768L8 12.768.116 4.884z"></path>
-                        </svg>
-                      </span>
-                    </div>
-                    <div class="sub-menu dropdown-sub-menu dropdown-sub-menu1">
-                      <ul>
-                        <li>
-                          <a href="collections.html">collections</a>
-                        </li>
-                        <li>
-                          <a href="product.html">product</a>
-                        </li>
-                        <li>
-                          <a href="about.html">about</a>
-                        </li>
-                        <li>
-                          <a href="history.html">history</a>
-                        </li>
-                        <li>
-                          <div class="dropdown-wrapper2">
-                            <div class="dropdown-nav-link-text dropdown-btn2">
-                              blog<span class="icon">
-                                <svg
-                                  focusable="false"
-                                  viewBox="0 0 16 14"
-                                  width="10"
-                                  height="10"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M.116 4.884l1.768-1.768L8 9.232l6.116-6.116 1.768 1.768L8 12.768.116 4.884z">
-                                  </path>
-                                </svg>
-                              </span>
-                            </div>
-                            <div class="sub-menu2 dropdown-sub-menu dropdown-sub-menu2">
-                              <ul>
-                                <li>
-                                  <a href="blog.html">blog all</a>
-                                </li>
-                                <li>
-                                  <a href="article.html">article</a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <a href="contact.html">contact</a>
-                        </li>
-                        <li>
-                          <a href="cart.html">cart</a>
-                        </li>
-                        <li>
-                          <a href="store.html">find store</a>
-                        </li>
-                        <li>
-                          <a href="faq.html">faqs</a>
-                        </li>
-                        <li>
-                          <a href="policy.html">policy</a>
-                        </li>
-                        <li>
-                          <a href="return.html">Return</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
+                        {% for block in section.blocks %}
+                          {% assign block_title = block.settings.link | handleize %}
+                          {% if title == block_title and block.type == 'mega_menu' %}
+                            {% render 'mega-menu', block: block, top: false %}
+                          {% endif %}
+                        {% endfor %}
+                      {% else %}
+                        <a href="{{ link.url }}" class="navbar-link-title">
+                          {{ link.title }}
+                        </a>
+                      {% endif %}
+                    {% endif %}
+                  </li>
+                {% endfor %}
               </ul>
               <div class="navbar-sidebar-bottom">
                 <ul class="social-icons">
