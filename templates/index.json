@@ -9,6 +9,31 @@
  */
 {
   "sections": {
+    "hero_section_8AjfMt": {
+      "type": "hero-section",
+      "blocks": {
+        "hero_YhjRG9": {
+          "type": "hero",
+          "settings": {
+            "image": "shopify://shop_images/hero-img.webp",
+            "image_2": "shopify://shop_images/hero-img.webp",
+            "sub_heading": "AW'25",
+            "heading": "Collection is live",
+            "button_text": "Shop Now",
+            "button_url": "",
+            "button_text_2": "See All products",
+            "button_url_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "hero_YhjRG9"
+      ],
+      "name": "Hero Section",
+      "settings": {
+        "color_scheme": ""
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -205,6 +230,7 @@
     }
   },
   "order": [
+    "hero_section_8AjfMt",
     "product_list_fa6P9H"
   ]
 }
