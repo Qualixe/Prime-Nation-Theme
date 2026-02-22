@@ -7,9 +7,15 @@
             <div class="product-card">
               <div class="card-image-wrap">
                 <div class="card-img">
-                  <a class="main-img" href="{{ block.settings.url }}">
-                    {{ block.settings.image | image_url: width: 1920 | image_tag: alt: block.settings.image.alt }}
-                  </a>
+                  {% if block.settings.image != blank %}
+                    <a class="main-img" href="{{ block.settings.url }}">
+                      {{ block.settings.image | image_url: width: 1920 | image_tag: alt: block.settings.image.alt }}
+                    </a>
+                  {% else %}
+                    <a class="main-img" href="{{ block.settings.url }}">
+                      {{ 'product-1' | placeholder_svg_tag: alt: block.settings.image.alt }}
+                    </a>
+                  {% endif %}
                 </div>
                 <a href="{{ block.settings.url }}" class="card-content">
                   <h5 class="img-card-content-title">{{ block.settings.heading }}</h5>
