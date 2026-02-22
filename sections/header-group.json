@@ -70,9 +70,11 @@
           "settings": {
             "link": "catalog",
             "menu": "main-menu",
+            "image": "shopify://shop_images/megamenu-img1.avif",
             "heading": "EXPLORE LATEST",
             "text": "Featured Collection",
             "url": "",
+            "image_2": "shopify://shop_images/megamenu-img2.avif",
             "heading_2": "EXPLORE LATEST",
             "text_2": "Featured Collection",
             "url_2": ""

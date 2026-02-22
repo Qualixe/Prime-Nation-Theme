@@ -33,9 +33,20 @@
       "settings": {
         "color_scheme": ""
       }
+    },
+    "featured_collection_dKhXzi": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "heading": "SNEAKERS",
+        "button_url": "",
+        "button_text": "view all",
+        "collection": "frontpage"
+      }
     }
   },
   "order": [
-    "hero_section_8AjfMt"
+    "hero_section_8AjfMt",
+    "featured_collection_dKhXzi"
   ]
 }
