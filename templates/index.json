@@ -234,6 +234,12 @@
     "brand_slider_XieETw": {
       "type": "brand-slider",
       "blocks": {
+        "brand_GrWzgM": {
+          "type": "brand",
+          "settings": {
+            "brand_image": "shopify://shop_images/brand-img_4.png"
+          }
+        },
         "brand_GLJDJn": {
           "type": "brand",
           "settings": {
@@ -254,6 +260,7 @@
         }
       },
       "block_order": [
+        "brand_GrWzgM",
         "brand_GLJDJn",
         "brand_FBzjxA",
         "brand_wcyGwG"
