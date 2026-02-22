@@ -1,0 +1,90 @@
+<section class="{% if section.settings.contact_icon %}contact-icon-item-section{% else %}icon-item-section{% endif %} color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    <div class="{% if section.settings.contact_icon %}contact-icon-items{% else %}icon-items{% endif %} ">
+      {% for icon in section.blocks %}
+        <div class="{% if section.settings.contact_icon %}contact-icon-item{% else %}icon-item{% endif %}">
+          <span class="icon">
+            {% if icon.settings.image != blank %}
+              {{ icon.settings.image
+                | image_url: width: 1000
+                | image_tag: alt: icon.settings.title
+              }}
+            {% else %}
+              {{ icon.settings.icon }}
+            {% endif %}
+          </span>
+
+          {% if icon.settings.title != blank %}
+            <p class="{% if section.settings.contact_icon %}contact-icon-item-title{% else %}icon-item-title{% endif %}">{{ icon.settings.title }}</p>
+          {% endif %}
+
+          {% if icon.settings.text != blank %}
+            <p class="{% if section.settings.contact_icon %}contact-icon-item-text{% else %}icon-item-text{% endif %}">{{ icon.settings.text }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Icon Item Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Icon type"
+    
+    },
+
+    {
+      "type": "checkbox",
+      "id": "contact_icon",
+      "label": "Contact Icon",
+      "default": false
+    },
+        {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_item",
+      "name": "Icon Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Icon (HTML / SVG)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Icon Title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Icon Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon Item Section"
+    }
+  ]
+}
+{% endschema %}
