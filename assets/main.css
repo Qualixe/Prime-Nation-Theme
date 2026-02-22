@@ -646,6 +646,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .side-cart-empty-text {
@@ -653,20 +654,16 @@ button {
     text-align: center;
 }
 
-.cart-sidebar-box.active .side-cart-empty {
-    display: none;
-}
+/* Removed conflicting CSS - Alpine.js handles empty/product state with x-if */
 
 /* side-cart empty css end */
 
 /* side-cart-product-content css start */
 .side-cart-product-content {
-    display: none;
+    /* Alpine.js x-if handles display, no need for display:none */
 }
 
-.cart-sidebar-box.active .side-cart-product-content {
-    display: block;
-}
+/* Removed conflicting CSS - Alpine.js handles empty/product state with x-if */
 
 .side-cart-product-item-wrapper {
     padding: 20px;
