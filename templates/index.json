@@ -209,6 +209,15 @@
         "color_scheme": ""
       }
     },
+    "single_banner_8xiXbg": {
+      "type": "single-banner",
+      "name": "Single Banner",
+      "settings": {
+        "image": "shopify://shop_images/single-banner-img3.jpg",
+        "link": "",
+        "color_scheme": ""
+      }
+    },
     "full_banner_4zA8gx": {
       "type": "full-banner",
       "name": "Full Banner",
@@ -221,14 +230,6 @@
         "content_position": "left",
         "color_scheme": "scheme-1"
       }
-    },
-    "single_banner_8xiXbg": {
-      "type": "single-banner",
-      "name": "Single Banner",
-      "settings": {
-        "link": "",
-        "color_scheme": ""
-      }
     }
   },
   "order": [
@@ -237,8 +238,8 @@
     "collection_item_KBLwVP",
     "featured_categories_LmDJeF",
     "product_grid_section_CBrDBr",
-    "full_banner_4zA8gx",
     "grid_category_7H6md9",
-    "single_banner_8xiXbg"
+    "single_banner_8xiXbg",
+    "full_banner_4zA8gx"
   ]
 }
