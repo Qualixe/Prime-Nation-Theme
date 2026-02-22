@@ -102,11 +102,20 @@
             "url": "shopify://collections/running",
             "heading": "Running"
           }
+        },
+        "category_BmCqkL": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-img3.png",
+            "url": "shopify://collections/air-jordan-1-low",
+            "heading": "Jordan | low"
+          }
         }
       },
       "block_order": [
         "category_8zteKG",
-        "category_E7nmYi"
+        "category_E7nmYi",
+        "category_BmCqkL"
       ],
       "name": "Featured Categories",
       "settings": {
