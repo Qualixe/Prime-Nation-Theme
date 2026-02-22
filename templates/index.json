@@ -94,10 +94,19 @@
             "url": "shopify://collections/air-force-1",
             "heading": "Air force"
           }
+        },
+        "category_E7nmYi": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-img2.png",
+            "url": "shopify://collections/running",
+            "heading": "Running"
+          }
         }
       },
       "block_order": [
-        "category_8zteKG"
+        "category_8zteKG",
+        "category_E7nmYi"
       ],
       "name": "Featured Categories",
       "settings": {
