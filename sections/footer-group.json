@@ -10,6 +10,30 @@
 {
   "type": "footer",
   "name": "Footer",
-  "sections": {},
-  "order": []
+  "sections": {
+    "icon_item_section_kkfNVj": {
+      "type": "icon-item-section",
+      "blocks": {
+        "icon_item_3ApYA8": {
+          "type": "icon_item",
+          "settings": {
+            "icon": "<svg width=\"30\" height=\"30\" viewbox=\"0 0 30 30\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                <path d=\"M3.96249 9.2998L15 15.6873L25.9625 9.3373\" stroke=\"#232323\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n                <path d=\"M15 27.0123V15.6748\" stroke=\"#232323\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n                <path d=\"M12.4125 3.10011L5.7375 6.80011C4.225 7.63761 2.9875 9.73761 2.9875 11.4626V18.5251C2.9875 20.2501 4.225 22.3501 5.7375 23.1876L12.4125 26.9001C13.8375 27.6876 16.175 27.6876 17.6 26.9001L24.275 23.1876C25.7875 22.3501 27.025 20.2501 27.025 18.5251V11.4626C27.025 9.73761 25.7875 7.63761 24.275 6.80011L17.6 3.08761C16.1625 2.30011 13.8375 2.30011 12.4125 3.10011Z\" stroke=\"#232323\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n              </svg>",
+            "title": "60 mins delivery",
+            "text": "free shpping over 1500tk"
+          }
+        }
+      },
+      "block_order": [
+        "icon_item_3ApYA8"
+      ],
+      "name": "Icon Item Section",
+      "settings": {
+        "contact_icon": false,
+        "color_scheme": ""
+      }
+    }
+  },
+  "order": [
+    "icon_item_section_kkfNVj"
+  ]
 }
