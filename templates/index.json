@@ -183,17 +183,17 @@
           "type": "banner",
           "settings": {
             "image": "shopify://shop_images/grid-category-img1.jpg",
-            "heading": "new premium dress",
+            "heading": "new premium accessories",
             "text": "explore living",
             "button": "Shop Now",
-            "link": ""
+            "link": "shopify://collections/accessories"
           }
         },
         "banner_mTdMnR": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/grid-category-img1.jpg",
-            "heading": "new premium dress",
+            "image": "shopify://shop_images/grid-category-img2.png",
+            "heading": "ready to wear",
             "text": "explore living",
             "button": "Shop Now",
             "link": ""
