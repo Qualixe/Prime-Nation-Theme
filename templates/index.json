@@ -110,12 +110,21 @@
             "url": "shopify://collections/air-jordan-1-low",
             "heading": "Jordan | low"
           }
+        },
+        "category_dMwtmE": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-img4.png",
+            "url": "shopify://collections/air-jordan-11",
+            "heading": "Jordan ||"
+          }
         }
       },
       "block_order": [
         "category_8zteKG",
         "category_E7nmYi",
-        "category_BmCqkL"
+        "category_BmCqkL",
+        "category_dMwtmE"
       ],
       "name": "Featured Categories",
       "settings": {
