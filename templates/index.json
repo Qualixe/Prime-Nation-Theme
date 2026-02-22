@@ -134,6 +134,14 @@
             "url": "shopify://collections/adidas-samba",
             "heading": "Adidas samba"
           }
+        },
+        "category_84iUta": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-img7.png",
+            "url": "shopify://collections/air-jordan-4",
+            "heading": "Jordan 4"
+          }
         }
       },
       "block_order": [
@@ -142,7 +150,8 @@
         "category_BmCqkL",
         "category_dMwtmE",
         "category_GAHm9C",
-        "category_DmkPLz"
+        "category_DmkPLz",
+        "category_84iUta"
       ],
       "name": "Featured Categories",
       "settings": {
