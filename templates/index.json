@@ -51,6 +51,7 @@
         "collection_rf7GhD": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/category-img1.jpg",
             "url": "",
             "heading": ""
           }
@@ -61,6 +62,7 @@
       ],
       "name": "Collection Item",
       "settings": {
+        "collection": "",
         "color_scheme": ""
       }
     }
