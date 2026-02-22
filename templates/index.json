@@ -20,9 +20,9 @@
             "sub_heading": "AW'25",
             "heading": "Collection is live",
             "button_text": "Shop Now",
-            "button_url": "",
+            "button_url": "shopify://collections",
             "button_text_2": "See All products",
-            "button_url_2": ""
+            "button_url_2": "shopify://collections/all"
           }
         }
       },
