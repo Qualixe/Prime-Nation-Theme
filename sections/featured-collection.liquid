@@ -6,13 +6,13 @@
     </div>
     <div class="swiper card-slider">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="card-slider-item">
-            {% for product in s.collection.products %}
+        {% for product in s.collection.products %}
+          <div class="swiper-slide">
+            <div class="card-slider-item">
               {% render 'card-product', product: product %}
-            {% endfor %}
+            </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
       <div class="swiper-button-prev card-slider-btn-prev"></div>
       <div class="swiper-button-next card-slider-btn-next"></div>
