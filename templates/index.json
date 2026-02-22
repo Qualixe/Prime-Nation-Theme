@@ -167,12 +167,21 @@
         "heading": "featured categories",
         "color_scheme": ""
       }
+    },
+    "product_grid_section_CBrDBr": {
+      "type": "product-grid-section",
+      "name": "Product Grid Section",
+      "settings": {
+        "heading": "New Arrivals",
+        "collection": "new-arrival"
+      }
     }
   },
   "order": [
     "hero_section_8AjfMt",
     "featured_collection_dKhXzi",
     "collection_item_KBLwVP",
-    "featured_categories_LmDJeF"
+    "featured_categories_LmDJeF",
+    "product_grid_section_CBrDBr"
   ]
 }
