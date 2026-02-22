@@ -296,6 +296,29 @@
         "content_position": "right",
         "color_scheme": ""
       }
+    },
+    "blog_section_BfYwAR": {
+      "type": "blog-section",
+      "blocks": {
+        "section_info_wJpTP9": {
+          "type": "section_info",
+          "settings": {
+            "heading": "From the Journal",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "section_info_wJpTP9"
+      ],
+      "name": "Blog",
+      "settings": {
+        "blog": "news",
+        "color_scheme": "",
+        "limit": 3,
+        "button_text": "View More",
+        "button_link": ""
+      }
     }
   },
   "order": [
@@ -308,6 +331,7 @@
     "single_banner_8xiXbg",
     "full_banner_4zA8gx",
     "brand_slider_XieETw",
-    "full_banner_HjzJCM"
+    "full_banner_HjzJCM",
+    "blog_section_BfYwAR"
   ]
 }
