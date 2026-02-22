@@ -8,20 +8,16 @@
     /* background-color: rgba(0, 0, 0, 0.3); */
 }
 
-.single-banner-text-left {
-    background-image: url('../images/single-banner-img.jpg');
-}
+.single-banner-text-left {}
 
-.single-banner-text-right {
-    background-image: url('../images/single-banner-right-text-bg.jpg');
-}
+.single-banner-text-right {}
 
 .single-banner-content-wrap {
     display: flex;
     align-items: center;
 }
 
-.single-banner-text-right .single-banner-content-wrap{
+.single-banner-text-right .single-banner-content-wrap {
     justify-content: flex-end;
 }
 

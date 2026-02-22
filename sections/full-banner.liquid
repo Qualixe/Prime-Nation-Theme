@@ -1,0 +1,88 @@
+{% assign s = section.settings %}
+
+<section class="single-banner-section single-banner-text-{{ s.content_position }} color-{{ section.settings.color_scheme }}">
+    <div class="container">
+        <div class="single-banner-content-wrap">
+            <div class="single-banner-content">
+                {% if s.heading !=blank %}
+                    <h2 class="single-banner-content-title">{{ s.heading }}</h2>
+                {% endif %}
+                
+                {% if s.text !=blank %}
+                    <p class="single-banner-content-text">{{ s.text }}</p>
+                {% endif %}
+                {% if s.button !=blank %}
+                    <a href="{{ s.link }}" class="btn primary-btn">{{ s.button }}<span></span></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% style %}
+    .single-banner-text-{{ s.content_position }} {
+        background-image: url('{{ s.image |  image_url: width: 3000  }}');
+    }
+
+{% endstyle %}
+
+
+{% schema %}
+{
+    "name": "Full Banner",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default" : "Formal Wear"
+        },
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Text",
+            "default" : "Where confidence meets cut"
+        },
+        {
+            "type": "text",
+            "id": "button",
+            "label": "Button",
+            "default" : "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+        },
+        {
+            "type": "select",
+            "id": "content_position",
+            "label": "Content Position",
+            "options": [
+                { "label": "Left", "value": "left"},
+                { "label": "Right", "value": "right"}
+            ],
+            "default" : "left"
+        },
+        {
+            "type": "header",
+            "content": "Color"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "Color Scheme",
+            "default" : "scheme-1"
+        }
+    ],
+    
+    "presets": [{
+        "name": "Full Banner"
+    }]
+}
+{% endschema %}
