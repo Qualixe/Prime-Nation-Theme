@@ -20,10 +20,11 @@
 </section>
 
 {% style %}
-    .single-banner-text-{{ s.content_position }} {
-        background-image: url('{{ s.image |  image_url: width: 3000  }}');
-    }
-
+    {% if s.image != blank %}
+        .single-banner-text-{{ s.content_position }} {
+            background-image: url('{{ s.image | image_url: width: 3000 }}');
+        }
+    {% endif %}
 {% endstyle %}
 
 
