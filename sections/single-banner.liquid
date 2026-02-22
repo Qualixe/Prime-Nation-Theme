@@ -1,0 +1,45 @@
+{% assign s = section.settings %}
+<section class="single-banner2-section color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    <a href="{{ s.link }}" class="single-banner2-img">
+      {% if s.image %}
+        {{ s.image | image_url: width: 1000 | image_tag: class: 'single-banner2_img' }}
+      {% endif %}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Single Banner"
+    }
+  ]
+}
+{% endschema %}
