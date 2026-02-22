@@ -5,22 +5,24 @@
         <div class="{% if section.settings.contact_icon %}contact-icon-item{% else %}icon-item{% endif %}">
           <span class="icon">
             {% if icon.settings.image != blank %}
-              {{ icon.settings.image
-                | image_url: width: 1000
-                | image_tag: alt: icon.settings.title
-              }}
+              {{ icon.settings.image | image_url: width: 1000 | image_tag: alt: icon.settings.title }}
             {% else %}
               {{ icon.settings.icon }}
             {% endif %}
           </span>
+          <div class="icon-item-content">
+            {% if icon.settings.title != blank %}
+              <p class="{% if section.settings.contact_icon %}contact-icon-item-title{% else %}icon-item-title{% endif %}">
+                {{ icon.settings.title }}
+              </p>
+            {% endif %}
 
-          {% if icon.settings.title != blank %}
-            <p class="{% if section.settings.contact_icon %}contact-icon-item-title{% else %}icon-item-title{% endif %}">{{ icon.settings.title }}</p>
-          {% endif %}
-
-          {% if icon.settings.text != blank %}
-            <p class="{% if section.settings.contact_icon %}contact-icon-item-text{% else %}icon-item-text{% endif %}">{{ icon.settings.text }}</p>
-          {% endif %}
+            {% if icon.settings.text != blank %}
+              <p class="{% if section.settings.contact_icon %}contact-icon-item-text{% else %}icon-item-text{% endif %}">
+                {{ icon.settings.text }}
+              </p>
+            {% endif %}
+          </div>
         </div>
       {% endfor %}
     </div>
@@ -34,7 +36,6 @@
     {
       "type": "header",
       "content": "Icon type"
-    
     },
 
     {
@@ -43,7 +44,7 @@
       "label": "Contact Icon",
       "default": false
     },
-        {
+    {
       "type": "header",
       "content": "Color"
     },
