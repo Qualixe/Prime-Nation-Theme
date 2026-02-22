@@ -1,7 +1,7 @@
 {% assign s = section.settings %}
 {% style %}
   {% if s.image != blank %}
-     #{{ section.id }} .single-banner-text-{{ s.content_position }} {
+     #{{ section.id }}.single-banner-text-{{ s.content_position }} {
           background-image: url('{{ s.image | image_url: width: 3000 }}');
       }
   {% endif %}
