@@ -126,6 +126,14 @@
             "url": "shopify://collections/air-jordan-1-high",
             "heading": "Jordan | high"
           }
+        },
+        "category_DmkPLz": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-img6.png",
+            "url": "shopify://collections/adidas-samba",
+            "heading": "Adidas samba"
+          }
         }
       },
       "block_order": [
@@ -133,7 +141,8 @@
         "category_E7nmYi",
         "category_BmCqkL",
         "category_dMwtmE",
-        "category_GAHm9C"
+        "category_GAHm9C",
+        "category_DmkPLz"
       ],
       "name": "Featured Categories",
       "settings": {
