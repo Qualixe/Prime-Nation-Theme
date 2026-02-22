@@ -51,9 +51,9 @@
         "collection_rf7GhD": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/category-img1.jpg",
-            "url": "",
-            "heading": ""
+            "image": "shopify://shop_images/category-img9.webp",
+            "url": "shopify://collections/hoodie",
+            "heading": "Hoodies"
           }
         }
       },
