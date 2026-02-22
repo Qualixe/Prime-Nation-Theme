@@ -55,10 +55,19 @@
             "url": "shopify://collections/hoodie",
             "heading": "Hoodies"
           }
+        },
+        "collection_x9DeFB": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/category-img10.webp",
+            "url": "shopify://collections/sweatshirt",
+            "heading": "Sweatshirt"
+          }
         }
       },
       "block_order": [
-        "collection_rf7GhD"
+        "collection_rf7GhD",
+        "collection_x9DeFB"
       ],
       "name": "Collection Item",
       "settings": {
