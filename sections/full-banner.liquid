@@ -1,12 +1,15 @@
 {% assign s = section.settings %}
 {% style %}
   {% if s.image != blank %}
-      .single-banner-text-{{ s.content_position }} {
+     #{{ section.id }} .single-banner-text-{{ s.content_position }} {
           background-image: url('{{ s.image | image_url: width: 3000 }}');
       }
   {% endif %}
 {% endstyle %}
-<section class="single-banner-section single-banner-text-{{ s.content_position }} color-{{ section.settings.color_scheme }}">
+<section
+  id="{{ section.id }}"
+  class="single-banner-section single-banner-text-{{ s.content_position }} color-{{ section.settings.color_scheme }}"
+>
   <div class="container">
     <div class="single-banner-content-wrap">
       <div class="single-banner-content">
