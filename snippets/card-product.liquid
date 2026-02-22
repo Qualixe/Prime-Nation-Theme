@@ -2,11 +2,11 @@
   <div class="card-image-wrap">
     <div class="card-img">
       <a class="main-img" href="{{ product.url }}">
-        {{ product.featured_image | image_url: width: 1920 | image_tag: alt: product.title }}
+        {{ product.featured_image | image_url: width: 2000 | image_tag: alt: product.title }}
       </a>
       {%if product.media.size >1 %}
       <a class="hover-img" href="{{ product.url }}">
-        {{ product.images[1] | image_url: width: 1920 | image_tag: alt: product.title }}
+        {{ product.images[1] | image_url: width: 2000 | image_tag: alt: product.title }}
       </a>
       {%endif %}
     </div>
