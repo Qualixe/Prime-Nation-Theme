@@ -1,10 +1,10 @@
 <div class="product-card card_hover">
   <div class="card-image-wrap">
     <div class="card-img">
-      <a class="main-img" href="#">
+      <a class="main-img" href="{{ product.url }}">
         {{ product.featured_image | image_url: width: 1920 | image_tag: alt: product.title }}
       </a>
-      <a class="hover-img" href="#">
+      <a class="hover-img" href="{{ product.url }}">
         {{ product.images[1] | image_url: width: 1920 | image_tag: alt: product.title }}
       </a>
     </div>
