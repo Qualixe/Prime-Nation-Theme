@@ -230,6 +230,31 @@
         "content_position": "left",
         "color_scheme": "scheme-1"
       }
+    },
+    "brand_slider_XieETw": {
+      "type": "brand-slider",
+      "blocks": {
+        "brand_FBzjxA": {
+          "type": "brand",
+          "settings": {
+            "brand_image": "shopify://shop_images/brand-img_2.png"
+          }
+        },
+        "brand_wcyGwG": {
+          "type": "brand",
+          "settings": {
+            "brand_image": "shopify://shop_images/brand-img_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "brand_FBzjxA",
+        "brand_wcyGwG"
+      ],
+      "name": "Brand Slider",
+      "settings": {
+        "color_scheme": ""
+      }
     }
   },
   "order": [
@@ -240,6 +265,7 @@
     "product_grid_section_CBrDBr",
     "grid_category_7H6md9",
     "single_banner_8xiXbg",
-    "full_banner_4zA8gx"
+    "full_banner_4zA8gx",
+    "brand_slider_XieETw"
   ]
 }
