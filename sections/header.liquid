@@ -202,7 +202,7 @@
         <div class="navbar-middle">
           <div class="navbar-brand">
             {% if s.logo %}
-              <a href="index.html" class="navbar-logo">
+              <a href="{{ routes.root_url }}" class="navbar-logo">
                 {{ s.logo | image_url: width: 1000 | image_tag: alt: 'logo' }}
               </a>
             {% endif %}
