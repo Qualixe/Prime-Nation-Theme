@@ -21,10 +21,19 @@
             "title": "60 mins delivery",
             "text": "free shpping over 1500tk"
           }
+        },
+        "icon_item_wzM87L": {
+          "type": "icon_item",
+          "settings": {
+            "icon": "<svg width=\"30\" height=\"30\" viewbox=\"0 0 30 30\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                <path d=\"M15 18.75C19.6599 18.75 23.4375 15.1123 23.4375 10.625C23.4375 6.13769 19.6599 2.5 15 2.5C10.3401 2.5 6.5625 6.13769 6.5625 10.625C6.5625 15.1123 10.3401 18.75 15 18.75Z\" stroke=\"#232323\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n                <path d=\"M9.39993 16.8998L9.38745 26.1248C9.38745 27.2498 10.175 27.7998 11.15 27.3373L14.4999 25.7498C14.7749 25.6123 15.2374 25.6123 15.5124 25.7498L18.8749 27.3373C19.8374 27.7873 20.6375 27.2498 20.6375 26.1248V16.6748\" stroke=\"#232323\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n              </svg>",
+            "title": "authorized product",
+            "text": "within 30 days for an exchange"
+          }
         }
       },
       "block_order": [
-        "icon_item_3ApYA8"
+        "icon_item_3ApYA8",
+        "icon_item_wzM87L"
       ],
       "name": "Icon Item Section",
       "settings": {
