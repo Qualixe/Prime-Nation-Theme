@@ -283,6 +283,19 @@
       "settings": {
         "color_scheme": ""
       }
+    },
+    "full_banner_HjzJCM": {
+      "type": "full-banner",
+      "name": "Full Banner",
+      "settings": {
+        "image": "shopify://shop_images/single-banner-right-text-bg.jpg",
+        "heading": "ethnic wear",
+        "text": "Rooted in tradition, styled for today",
+        "button": "Shop Now",
+        "link": "shopify://collections/all",
+        "content_position": "right",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
@@ -294,6 +307,7 @@
     "grid_category_7H6md9",
     "single_banner_8xiXbg",
     "full_banner_4zA8gx",
-    "brand_slider_XieETw"
+    "brand_slider_XieETw",
+    "full_banner_HjzJCM"
   ]
 }
