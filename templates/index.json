@@ -83,11 +83,33 @@
         "collection": "",
         "color_scheme": ""
       }
+    },
+    "featured_categories_LmDJeF": {
+      "type": "featured-categories",
+      "blocks": {
+        "category_8zteKG": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-img1.jpg",
+            "url": "shopify://collections/air-force-1",
+            "heading": "Air force"
+          }
+        }
+      },
+      "block_order": [
+        "category_8zteKG"
+      ],
+      "name": "Featured Categories",
+      "settings": {
+        "heading": "featured categories",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "hero_section_8AjfMt",
     "featured_collection_dKhXzi",
-    "collection_item_KBLwVP"
+    "collection_item_KBLwVP",
+    "featured_categories_LmDJeF"
   ]
 }
