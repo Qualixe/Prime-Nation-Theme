@@ -111,6 +111,7 @@ $(document).ready(function () {
     event.stopPropagation();
     $(".size-chart-sidebar").addClass("active");
     $(".size-chart-sidebar-inner").addClass("active");
+
     $("body").addClass("active");
   });
 
@@ -157,26 +158,9 @@ $(document).ready(function () {
   });
   // product-details-modal js end--
 
-  // cart-sidebar js start---
-  $(".side-cart-btn").click(function (event) {
-    event.stopPropagation();
-    $(".cart-sidebar").addClass("active");
-    $("body").addClass("active");
-  });
-
-  $(".cart-sidebar-close-window-btn").click(function (event) {
-    event.stopPropagation();
-    $(".cart-sidebar").removeClass("active");
-    $("body").removeClass("active");
-  });
-
-  $(".side-cart-close-btn").click(function (event) {
-    event.stopPropagation();
-    $(".cart-sidebar").removeClass("active");
-    $("body").removeClass("active");
-  });
-  // cart-sidebar js end---
-
+  // cart-sidebar js - REMOVED - Now handled by Alpine.js in cart-drawer.liquid
+  // If you need to open cart from external buttons, use: window.dispatchEvent(new Event('open-cart-drawer'))
+  
   // collection filter sidebar js start--
   $(".filter-open-btn").click(function (event) {
     event.stopPropagation();
