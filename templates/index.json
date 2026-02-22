@@ -67,8 +67,9 @@
         "collection_yWHfqc": {
           "type": "collection",
           "settings": {
-            "url": "",
-            "heading": ""
+            "image": "shopify://shop_images/30700_img_2927-2-scaled.jpg",
+            "url": "shopify://collections/jacket",
+            "heading": "Jacket"
           }
         }
       },
