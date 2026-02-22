@@ -39,7 +39,7 @@
       "name": "Featured Collection",
       "settings": {
         "heading": "SNEAKERS",
-        "button_url": "",
+        "button_url": "shopify://collections/all",
         "button_text": "view all",
         "collection": "sneakers"
       }
