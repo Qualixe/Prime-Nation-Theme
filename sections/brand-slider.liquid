@@ -1,0 +1,70 @@
+<section class="brand-slider-section color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    <!-- marque slider start -->
+    <div class="marquee-slider marquee--hover-pause">
+      <ul class="marquee__content">
+        {% for block in section.blocks %}
+          <li class="marquee-content-item">
+            <div class="marquee-content-item-img">
+              {% if block.settings.brand_image %}
+                {{ block.settings.brand_image | image_url: width: 200 | image_tag: class: 'brand-image' }}
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <ul class="marquee__content">
+        {% for block in section.blocks %}
+          <li class="marquee-content-item">
+            <div class="marquee-content-item-img">
+              {% if block.settings.brand_image %}
+                {{ block.settings.brand_image | image_url: width: 200 | image_tag: class: 'brand-image' }}
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <!-- marque slider end -->
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Slider"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "brand_image",
+          "label": "Brand Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Slider"
+    }
+  ]
+}
+{% endschema %}
