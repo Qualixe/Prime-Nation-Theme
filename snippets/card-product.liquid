@@ -1,0 +1,27 @@
+<div class="product-card card_hover">
+  <div class="card-image-wrap">
+    <div class="card-img">
+      <a class="main-img" href="#">
+        {{ product.featured_image | image_url: width: 1920 | image_tag: alt: product.title }}
+      </a>
+      <a class="hover-img" href="#">
+        {{ product.images[1] | image_url: width: 1920 | image_tag: alt: product.title }}
+      </a>
+    </div>
+    {% if product.compare_at_price > product.price %}
+      <span class="card-badge">save {{ product.compare_at_price | minus: product.price | money }}</span>
+    {% endif %}
+    <div class="card-btn">
+      <a href="{{ product.url }}" class="btn primary-btn">add to cart</a>
+    </div>
+  </div>
+  <div class="card-content">
+    <div class="card-content-top">
+      <a href="{{ product.url }}" class="card-title">{{ product.title }}</a>
+      <div class="card-price-wrap">
+        <p class="latest-price">{{ product.price | money }}</p>
+      </div>
+    </div>
+    <p class="card-product-varient">{{ product.variants.size }} in colors</p>
+  </div>
+</div>
