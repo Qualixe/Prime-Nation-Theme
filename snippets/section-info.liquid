@@ -1,0 +1,9 @@
+{%- assign section_info = section.blocks | where: 'type', 'section_info' -%}
+{% for block in section_info %}
+  {%- assign b = block.settings -%}
+  {%- if b.heading != blank -%}
+    <div class="section-heading-wrapper">
+      <h2 class="section-heading">{{ b.heading }}</h2>
+    </div>
+  {%- endif -%}
+{% endfor %}
