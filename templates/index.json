@@ -175,6 +175,39 @@
         "heading": "New Arrivals",
         "collection": "new-arrival"
       }
+    },
+    "grid_category_7H6md9": {
+      "type": "grid-category",
+      "blocks": {
+        "banner_gnFwmC": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/grid-category-img1.jpg",
+            "heading": "new premium dress",
+            "text": "explore living",
+            "button": "Shop Now",
+            "link": ""
+          }
+        },
+        "banner_mTdMnR": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/grid-category-img1.jpg",
+            "heading": "new premium dress",
+            "text": "explore living",
+            "button": "Shop Now",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "banner_gnFwmC",
+        "banner_mTdMnR"
+      ],
+      "name": "Banners",
+      "settings": {
+        "color_scheme": ""
+      }
     }
   },
   "order": [
@@ -182,6 +215,7 @@
     "featured_collection_dKhXzi",
     "collection_item_KBLwVP",
     "featured_categories_LmDJeF",
-    "product_grid_section_CBrDBr"
+    "product_grid_section_CBrDBr",
+    "grid_category_7H6md9"
   ]
 }
