@@ -208,6 +208,19 @@
       "settings": {
         "color_scheme": ""
       }
+    },
+    "full_banner_4zA8gx": {
+      "type": "full-banner",
+      "name": "Full Banner",
+      "settings": {
+        "image": "shopify://shop_images/single-banner-img.png",
+        "heading": "Formal Wear",
+        "text": "Where confidence meets cut",
+        "button": "Shop Now",
+        "link": "",
+        "content_position": "left",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
@@ -216,6 +229,7 @@
     "collection_item_KBLwVP",
     "featured_categories_LmDJeF",
     "product_grid_section_CBrDBr",
-    "grid_category_7H6md9"
+    "grid_category_7H6md9",
+    "full_banner_4zA8gx"
   ]
 }
