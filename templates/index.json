@@ -299,6 +299,18 @@
     },
     "blog_section_BfYwAR": {
       "type": "blog-section",
+      "blocks": {
+        "section_info_wJpTP9": {
+          "type": "section_info",
+          "settings": {
+            "heading": "From the Journal",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "section_info_wJpTP9"
+      ],
       "name": "Blog",
       "settings": {
         "blog": "news",
