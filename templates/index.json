@@ -41,12 +41,33 @@
         "heading": "SNEAKERS",
         "button_url": "shopify://collections/all",
         "button_text": "view all",
-        "collection": "sneakers"
+        "collection": "sneakers",
+        "color_scheme": ""
+      }
+    },
+    "collection_item_KBLwVP": {
+      "type": "collection-item",
+      "blocks": {
+        "collection_rf7GhD": {
+          "type": "collection",
+          "settings": {
+            "url": "",
+            "heading": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_rf7GhD"
+      ],
+      "name": "Collection Item",
+      "settings": {
+        "color_scheme": ""
       }
     }
   },
   "order": [
     "hero_section_8AjfMt",
-    "featured_collection_dKhXzi"
+    "featured_collection_dKhXzi",
+    "collection_item_KBLwVP"
   ]
 }
