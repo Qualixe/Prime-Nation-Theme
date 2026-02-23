@@ -10,6 +10,7 @@
     return {
       products: [],
       filteredProducts: [],
+      currentCollectionTitle: '{{ current_collection.title | default: "All Collections" }}',
       filters: {
         brands: [],
         sizes: [],
@@ -24,6 +25,46 @@
       init() {
         this.loadFiltersFromURL();
         this.loadProducts();
+      },
+      
+      loadCollection(url, title) {
+        this.loading = true;
+        this.currentCollectionTitle = title;
+        
+        // Update active state
+        document.querySelectorAll('.collection-tags a').forEach(link => {
+          link.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // Fetch collection products via AJAX
+        fetch(url + '?view=json')
+          .then(response => response.json())
+          .then(data => {
+            this.products = data.products || [];
+            this.resetFilters();
+            this.applyFilters();
+            this.loading = false;
+            
+            // Update URL without reload
+            window.history.pushState({}, '', url);
+          })
+          .catch(error => {
+            console.error('Error loading collection:', error);
+            // Fallback to normal navigation
+            window.location.href = url;
+          });
+      },
+      
+      resetFilters() {
+        this.filters = {
+          brands: [],
+          sizes: [],
+          colors: [],
+          priceRange: null,
+          inStoreOnly: false,
+          sortBy: 'featured'
+        };
       },
       
       loadFiltersFromURL() {
@@ -250,7 +291,7 @@
       <div class="common-banner-content">
         <div class="section-heading-wrapper">
           <h2 class="section-heading">
-            {{ current_collection.title | default: 'All Collections' }}
+            <span x-text="currentCollectionTitle"></span>
             <span class="count" x-text="productCount"></span>
           </h2>
         </div>
@@ -266,12 +307,14 @@
           <a 
             class="{% if current_collection.handle == 'all' %}active{% endif %}"
             href="{{ routes.all_products_collection_url }}"
+            @click.prevent="loadCollection('{{ routes.all_products_collection_url }}', 'All')"
           >All</a>
           {% for collection in collections %}
             {% if collection.all_products_count > 0 %}
               <a 
                 class="{% if current_collection.handle == collection.handle %}active{% endif %}"
                 href="{{ collection.url }}"
+                @click.prevent="loadCollection('{{ collection.url }}', '{{ collection.title | escape }}')"
               >{{ collection.title }}</a>
             {% endif %}
           {% endfor %}
