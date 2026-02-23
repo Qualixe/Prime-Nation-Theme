@@ -9,8 +9,7 @@
                 <a href="{{routes.root_url }}">
                   {% if block.settings.logo %}
                     {{ block.settings.logo | image_url: width: 200 | image_tag: alt: block.settings.logo.alt }}
-                  {% else %}
-                    <img src="{{ 'logo.png' | asset_url }}" alt="logo">
+
                   {% endif %}
                 </a>
               </div>
