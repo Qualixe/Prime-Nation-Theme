@@ -312,7 +312,56 @@ var swiper = new Swiper(".card-slider", {
 });
 // card-slider js end--
 
-// product-slider js removed - now handled by product-gallery.liquid snippet
+// product-slider js start---
+var swiper = new Swiper(".product-slider-thumb", {
+  direction: "vertical",
+  loop: false,
+  spaceBetween: 20,
+  slidesPerView: 5,
+  freeMode: true,
+  mousewheel: true,
+  breakpoints: {
+    // when window width is >= 320px
+    1: {
+      direction: "horizontal",
+      spaceBetween: 10,
+      slidesPerView: 4,
+    },
+    // when window width is >= 576px
+    576: {
+      direction: "horizontal",
+      spaceBetween: 20,
+      slidesPerView: 5,
+    },
+    // when window width is >= 767px
+    768: {
+      direction: "vertical",
+      spaceBetween: 20,
+      slidesPerView: 5,
+    },
+    // when window width is >= 767px
+    993: {
+      direction: "vertical",
+    },
+  },
+});
+var swiper2 = new Swiper(".product-slider", {
+  loop: true,
+  // autoHeight: true,
+  spaceBetween: 10,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  pagination: {
+    el: ".product-slider-pagination",
+    clickable: true,
+  },
+  thumbs: {
+    swiper: swiper,
+  },
+});
+// product-slider js end---
 
 // progesss-bar js start--
 const progress = document.querySelector(".progress");
