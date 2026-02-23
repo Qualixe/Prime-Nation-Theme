@@ -90,11 +90,25 @@
           "settings": {
             "image": "shopify://shop_images/prime-nation-img6.jpg"
           }
+        },
+        "image_984X7A": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img7.jpg"
+          }
+        },
+        "image_RdBQhj": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img8_a10d30e5-592e-4ac4-8938-c75035703a36.jpg"
+          }
         }
       },
       "block_order": [
         "image_87DQMb",
-        "image_L6xdr3"
+        "image_L6xdr3",
+        "image_984X7A",
+        "image_RdBQhj"
       ],
       "name": "Gallery",
       "settings": {
