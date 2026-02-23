@@ -12,61 +12,65 @@
     "single-product": {
       "type": "single-product",
       "blocks": {
-        "product_info": {
-          "type": "product_info",
-          "settings": {}
-        },
-        "product_gallery": {
-          "type": "product_gallery",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {}
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "add_to_cart": {
-          "type": "add_to_cart",
-          "settings": {}
-        },
-        "size_chart": {
+        "size_chart_AqaRwz": {
           "type": "size_chart",
           "settings": {
             "size_chart": ""
           }
         },
-        "product_description": {
-          "type": "product_description",
+        "details_modal_CEN3Dc": {
+          "type": "details_modal",
           "settings": {}
         },
-        "accordion_1": {
+        "slider_modal_AdKKLF": {
+          "type": "slider_modal",
+          "settings": {}
+        },
+        "accordion_tQNfbx": {
           "type": "accordion",
           "settings": {
-            "title": "Free Delivery and Returns",
-            "content": "<ul><li><p><strong>Fabric:</strong> Made from 100% fine cotton, ensuring a soft, breathable feel that keeps you comfortable throughout the day.</p></li><li><p><strong>Yarn-Dyed:</strong> The fabric is yarn-dyed, meaning the colors are woven into the fibers rather than printed, ensuring lasting vibrancy and a premium finish.</p></li><li><p><strong>GSM 220:</strong> The medium-weight fabric (220 GSM) offers durability while maintaining a comfortable, lightweight feel.</p></li><li><p><strong>Fit:</strong> Designed in a regular fit, offering a structured yet relaxed silhouette for all-day wear.</p></li></ul>"
+            "title_1": "Free Delivery and Returns",
+            "content_1": "",
+            "title_2": "Reviews",
+            "content_2": ""
           }
         },
-        "accordion_2": {
-          "type": "accordion",
-          "settings": {
-            "title": "Reviews (3)",
-            "content": "<ul><li><p><strong>Dual-Tone Aesthetic:</strong> A rich brown base complemented by deep black sleeves and accents, adding a bold yet refined contrast.</p></li><li><p><strong>Vertical Panel Detailing:</strong> Sleek, parallel stripes running down the torso enhance the structured look, adding a touch of vintage-inspired sophistication.</p></li><li><p><strong>Classic Polo Collar:</strong> A clean-cut, buttoned neckline that balances casual comfort with formal polish.</p></li></ul><p>Whether you're pairing it with tailored trousers for a polished office look or styling it with joggers for a smart-casual vibe, this product is designed to keep you looking sharp, confident, and effortlessly stylish.</p>"
-          }
+        "variants_nGPMpX": {
+          "type": "variants",
+          "settings": {}
+        },
+        "title_price_KHR7Ab": {
+          "type": "title_price",
+          "settings": {}
+        },
+        "add_to_cart_NURniK": {
+          "type": "add_to_cart",
+          "settings": {}
+        },
+        "details_list_pRUUpK": {
+          "type": "details_list",
+          "settings": {}
+        },
+        "gallery_EYThCh": {
+          "type": "gallery",
+          "settings": {}
+        },
+        "breadcrumb_YHLGgM": {
+          "type": "breadcrumb",
+          "settings": {}
         }
       },
       "block_order": [
-        "product_info",
-        "product_gallery",
-        "variant_picker",
-        "quantity_selector",
-        "add_to_cart",
-        "size_chart",
-        "product_description",
-        "accordion_1",
-        "accordion_2"
+        "size_chart_AqaRwz",
+        "details_modal_CEN3Dc",
+        "slider_modal_AdKKLF",
+        "accordion_tQNfbx",
+        "variants_nGPMpX",
+        "title_price_KHR7Ab",
+        "add_to_cart_NURniK",
+        "details_list_pRUUpK",
+        "gallery_EYThCh",
+        "breadcrumb_YHLGgM"
       ],
       "settings": {
         "color_scheme": "scheme-1"
@@ -74,8 +78,43 @@
     },
     "product_recommendations": {
       "type": "product-recommendations",
+      "blocks": {
+        "static-product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 16,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
       "settings": {
-        "color_scheme": "scheme-1"
+        "product": "",
+        "recommendation_type": "related",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 16,
+        "rows_gap": 16,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 12,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
