@@ -639,27 +639,29 @@
                 <div class="product-card card_hover">
                   <div class="card-image-wrap">
                     <div class="card-img">
-                      <template x-if="getImageUrl(product)">
-                        <a class="main-img" :href="product.url">
-                          <img :src="getImageUrl(product)" :alt="product.title" loading="lazy">
-                        </a>
-                      </template>
-                      <template x-if="!getImageUrl(product)">
-                        <a class="main-img" :href="product.url">
+                      <a class="main-img" :href="product.url">
+                        <img 
+                          x-show="getImageUrl(product)" 
+                          :src="getImageUrl(product) || ''" 
+                          :alt="product.title" 
+                          loading="lazy"
+                        >
+                        <div x-show="!getImageUrl(product)">
                           {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                        </a>
-                      </template>
+                        </div>
+                      </a>
                       
-                      <template x-if="getHoverImageUrl(product)">
-                        <a class="hover-img" :href="product.url">
-                          <img :src="getHoverImageUrl(product)" :alt="product.title" loading="lazy">
-                        </a>
-                      </template>
-                      <template x-if="!getHoverImageUrl(product)">
-                        <a class="hover-img" :href="product.url">
+                      <a class="hover-img" :href="product.url">
+                        <img 
+                          x-show="getHoverImageUrl(product)" 
+                          :src="getHoverImageUrl(product) || ''" 
+                          :alt="product.title" 
+                          loading="lazy"
+                        >
+                        <div x-show="!getHoverImageUrl(product)">
                           {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}
-                        </a>
-                      </template>
+                        </div>
+                      </a>
                     </div>
                     <template x-if="product.compare_at_price_max > product.price_max">
                       <span class="card-badge" x-text="'save ' + formatMoney(product.compare_at_price_max - product.price_max)"></span>
