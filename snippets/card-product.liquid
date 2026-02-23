@@ -2,11 +2,19 @@
   <div class="card-image-wrap">
     <div class="card-img">
       <a class="main-img" href="{{ product.url }}">
-        {{ product.featured_image | image_url: width: 2000 | image_tag: alt: product.title }}
+        {% if product.featured_image %}
+          {{ product.featured_image | image_url: width: 2000 | image_tag: alt: product.title }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
       </a>
       {% if product.media.size > 1 %}
         <a class="hover-img" href="{{ product.url }}">
           {{ product.images[1] | image_url: width: 2000 | image_tag: alt: product.title }}
+        </a>
+      {% else %}
+        <a class="hover-img" href="{{ product.url }}">
+          {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}
         </a>
       {% endif %}
     </div>

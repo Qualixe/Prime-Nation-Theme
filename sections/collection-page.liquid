@@ -260,6 +260,24 @@
 
   <!-- Collection Section -->
   <section class="section collection-section">
+    <div class="collection-tag-wrap">
+      <div class="container">
+        <div class="collection-tags">
+          <a 
+            class="{% if current_collection.handle == 'all' %}active{% endif %}"
+            href="{{ routes.all_products_collection_url }}"
+          >All</a>
+          {% for collection in collections %}
+            {% if collection.all_products_count > 0 %}
+              <a 
+                class="{% if current_collection.handle == collection.handle %}active{% endif %}"
+                href="{{ collection.url }}"
+              >{{ collection.title }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="collection-wrapper">
         
