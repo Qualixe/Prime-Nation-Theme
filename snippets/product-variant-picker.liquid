@@ -2,13 +2,16 @@
 {% assign product = product | default: section.settings.product %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 
-<div class="product-variants" x-data="productVariants()">
+<div class="product-variants" data-product-variants>
   {% for option in product.options_with_values %}
     <div class="product-varient {% if option.name == 'Color' or option.name == 'Colour' %}color-varient{% endif %}">
       <div class="product-varient-title-wrap">
         <h6 class="product-varient-title">
           <strong>{{ option.name }}:</strong>
-          <span x-text="selectedOptions['{{ option.name }}']"></span>
+          <span data-option-value="{{ option.name }}">{{ option.selected_value }}</span>
+          {% if option.name == 'Size' %}
+            {% render 'product-size-chart', block: block, section: section %}
+          {% endif %}
         </h6>
       </div>
       
@@ -18,9 +21,9 @@
             {% assign variant_for_value = product.variants | where: option.name, value | first %}
             <button 
               type="button"
-              class="product-color-varient"
-              :class="{ 'active': selectedOptions['{{ option.name }}'] === '{{ value }}' }"
-              @click="selectOption('{{ option.name }}', '{{ value }}')"
+              class="product-color-varient {% if option.selected_value == value %}active{% endif %}"
+              data-option-name="{{ option.name }}"
+              data-option-value="{{ value }}"
               {% unless variant_for_value.available %}disabled{% endunless %}
             >
               <div class="product-color-varient-img">
@@ -36,17 +39,15 @@
       {% else %}
         <div class="product-varient-field-wrap product-size">
           {% for value in option.values %}
-            {% assign variant_for_value = product.variants | where: option.name, value | first %}
-            <div class="product-varient-input-field" :class="{ 'disabled': !isOptionAvailable('{{ option.name }}', '{{ value }}') }">
+            <div class="product-varient-input-field">
               <input
                 class="product-varient-input"
                 type="radio"
                 id="option_{{ option.name | handleize }}_{{ value | handleize }}"
                 name="option_{{ option.name | handleize }}"
                 value="{{ value }}"
-                @change="selectOption('{{ option.name }}', '{{ value }}')"
-                :checked="selectedOptions['{{ option.name }}'] === '{{ value }}'"
-                :disabled="!isOptionAvailable('{{ option.name }}', '{{ value }}')"
+                data-option-name="{{ option.name }}"
+                {% if option.selected_value == value %}checked{% endif %}
               >
               <label class="product-varient-label" for="option_{{ option.name | handleize }}_{{ value | handleize }}">
                 <span class="varient-value">{{ value }}</span>
@@ -58,55 +59,123 @@
     </div>
   {% endfor %}
   
-  <input type="hidden" name="id" :value="currentVariant.id" data-variant-id>
+  <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
 </div>
 
 <script>
-function productVariants() {
+(function() {
   const product = {{ product | json }};
-  
-  return {
-    selectedOptions: {
-      {% for option in product.options_with_values %}
-        '{{ option.name }}': '{{ option.selected_value }}'{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    },
-    currentVariant: {{ current_variant | json }},
-    
-    selectOption(name, value) {
-      this.selectedOptions[name] = value;
-      this.updateVariant();
-    },
-    
-    updateVariant() {
-      const variant = product.variants.find(v => {
-        return Object.keys(this.selectedOptions).every((key, index) => {
-          return v.options[index] === this.selectedOptions[key];
-        });
-      });
-      
-      if (variant) {
-        this.currentVariant = variant;
-        this.updateURL(variant.id);
-        this.$dispatch('variant-change', { variant });
-      }
-    },
-    
-    isOptionAvailable(optionName, value) {
-      const tempOptions = { ...this.selectedOptions, [optionName]: value };
-      return product.variants.some(v => {
-        const matches = Object.keys(tempOptions).every((key, index) => {
-          return v.options[index] === tempOptions[key];
-        });
-        return matches && v.available;
-      });
-    },
-    
-    updateURL(variantId) {
-      const url = new URL(window.location.href);
-      url.searchParams.set('variant', variantId);
-      window.history.replaceState({}, '', url);
-    }
+  let selectedOptions = {
+    {% for option in product.options_with_values %}
+      '{{ option.name }}': '{{ option.selected_value }}'{% unless forloop.last %},{% endunless %}
+    {% endfor %}
   };
-}
+  
+  const variantPicker = document.querySelector('[data-product-variants]');
+  if (!variantPicker) return;
+  
+  // Handle color button clicks
+  variantPicker.querySelectorAll('.product-color-varient').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.disabled) return;
+      
+      const optionName = this.dataset.optionName;
+      const optionValue = this.dataset.optionValue;
+      
+      // Update active state
+      this.closest('.product-color-varient-wrap').querySelectorAll('.product-color-varient').forEach(b => {
+        b.classList.remove('active');
+      });
+      this.classList.add('active');
+      
+      selectOption(optionName, optionValue);
+    });
+  });
+  
+  // Handle radio button changes
+  variantPicker.querySelectorAll('.product-varient-input').forEach(input => {
+    input.addEventListener('change', function() {
+      const optionName = this.dataset.optionName;
+      const optionValue = this.value;
+      selectOption(optionName, optionValue);
+    });
+  });
+  
+  function selectOption(name, value) {
+    selectedOptions[name] = value;
+    
+    // Update option value display
+    const valueDisplay = document.querySelector(`[data-option-value="${name}"]`);
+    if (valueDisplay) {
+      valueDisplay.textContent = value;
+    }
+    
+    updateVariant();
+  }
+  
+  function updateVariant() {
+    const variant = product.variants.find(v => {
+      return Object.keys(selectedOptions).every((key, index) => {
+        return v.options[index] === selectedOptions[key];
+      });
+    });
+    
+    if (variant) {
+      // Update hidden input
+      const variantInput = document.querySelector('[data-variant-id]');
+      if (variantInput) {
+        variantInput.value = variant.id;
+      }
+      
+      // Update URL
+      const url = new URL(window.location.href);
+      url.searchParams.set('variant', variant.id);
+      window.history.replaceState({}, '', url);
+      
+      // Dispatch event
+      document.dispatchEvent(new CustomEvent('variant:changed', { 
+        detail: { variant } 
+      }));
+      
+      // Update availability states
+      updateAvailability();
+    }
+  }
+  
+  function updateAvailability() {
+    // Update disabled states for options
+    Object.keys(selectedOptions).forEach(optionName => {
+      const optionValues = product.options_with_values.find(o => o.name === optionName)?.values || [];
+      
+      optionValues.forEach(value => {
+        const tempOptions = { ...selectedOptions, [optionName]: value };
+        const isAvailable = product.variants.some(v => {
+          const matches = Object.keys(tempOptions).every((key, index) => {
+            return v.options[index] === tempOptions[key];
+          });
+          return matches && v.available;
+        });
+        
+        // Update color buttons
+        const colorBtn = variantPicker.querySelector(`.product-color-varient[data-option-name="${optionName}"][data-option-value="${value}"]`);
+        if (colorBtn) {
+          colorBtn.disabled = !isAvailable;
+        }
+        
+        // Update radio inputs
+        const radioInput = variantPicker.querySelector(`input[data-option-name="${optionName}"][value="${value}"]`);
+        if (radioInput) {
+          radioInput.disabled = !isAvailable;
+          const field = radioInput.closest('.product-varient-input-field');
+          if (field) {
+            field.classList.toggle('disabled', !isAvailable);
+          }
+        }
+      });
+    });
+  }
+  
+  // Initial availability check
+  updateAvailability();
+})();
 </script>

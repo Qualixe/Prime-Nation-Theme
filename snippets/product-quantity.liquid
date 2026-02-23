@@ -1,13 +1,12 @@
 {% comment %} Product Quantity Selector {% endcomment %}
 
-<div class="product-quantity" x-data="{ quantity: 1 }">
+<div class="product-quantity" data-product-quantity>
   <label for="quantity">Quantity:</label>
   <div class="quantity-selector">
     <button 
       type="button" 
       class="quantity-btn minus"
-      @click="quantity = Math.max(1, quantity - 1)"
-      :disabled="quantity <= 1"
+      data-quantity-minus
     >
       <svg width="12" height="2" viewBox="0 0 12 2" fill="none">
         <path d="M1 1H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -17,14 +16,15 @@
       type="number" 
       id="quantity" 
       name="quantity" 
-      x-model="quantity"
+      value="1"
       min="1" 
       class="quantity-input"
+      data-quantity-input
     >
     <button 
       type="button" 
       class="quantity-btn plus"
-      @click="quantity++"
+      data-quantity-plus
     >
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
         <path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -32,6 +32,45 @@
     </button>
   </div>
 </div>
+
+<script>
+(function() {
+  const quantityInput = document.querySelector('[data-quantity-input]');
+  const minusBtn = document.querySelector('[data-quantity-minus]');
+  const plusBtn = document.querySelector('[data-quantity-plus]');
+  
+  if (!quantityInput) return;
+  
+  minusBtn?.addEventListener('click', () => {
+    const currentValue = parseInt(quantityInput.value) || 1;
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+      updateButtonStates();
+    }
+  });
+  
+  plusBtn?.addEventListener('click', () => {
+    const currentValue = parseInt(quantityInput.value) || 1;
+    quantityInput.value = currentValue + 1;
+    updateButtonStates();
+  });
+  
+  quantityInput.addEventListener('change', () => {
+    const value = parseInt(quantityInput.value) || 1;
+    quantityInput.value = Math.max(1, value);
+    updateButtonStates();
+  });
+  
+  function updateButtonStates() {
+    const value = parseInt(quantityInput.value) || 1;
+    if (minusBtn) {
+      minusBtn.disabled = value <= 1;
+    }
+  }
+  
+  updateButtonStates();
+})();
+</script>
 
 <style>
 .product-quantity {

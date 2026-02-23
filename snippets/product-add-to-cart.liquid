@@ -2,84 +2,109 @@
 {% assign product = product | default: section.settings.product %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 
-<div class="product-btn-area" x-data="addToCart()" @variant-change.window="updateVariant($event.detail.variant)">
+<div class="product-btn-area" data-add-to-cart>
   <div class="add-to-card-btn">
     <button 
       class="btn primary-btn" 
       type="button"
-      @click="addToCart()"
-      :disabled="!available || loading"
-      x-text="buttonText"
+      data-add-to-cart-btn
+      data-variant-id="{{ current_variant.id }}"
+      {% unless current_variant.available %}disabled{% endunless %}
     >
+      <svg width="20" height="20" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 24">
+        <g>
+          <path fill="#fff" d="M19.884,21.897c-0.124,0.124-0.271,0.186-0.439,0.186h-15c-0.169,0-0.315-0.062-0.439-0.186c-0.124-0.124-0.186-0.271-0.186-0.439v-15c0-0.169,0.062-0.315,0.186-0.439c0.124-0.124,0.271-0.186,0.439-0.186h3.75c0-1.028,0.368-1.911,1.104-2.646c0.735-0.735,1.618-1.104,2.646-1.104s1.911,0.368,2.646,1.104c0.735,0.736,1.104,1.618,1.104,2.646h3.75c0.169,0,0.315,0.062,0.439,0.186c0.124,0.124,0.186,0.271,0.186,0.439v15C20.069,21.627,20.008,21.773,19.884,21.897z M18.819,7.083h-3.125v2.5c0,0.169-0.062,0.316-0.186,0.439c-0.124,0.124-0.271,0.186-0.439,0.186s-0.315-0.062-0.439-0.186c-0.124-0.124-0.186-0.27-0.186-0.439v-2.5h-5v2.5c0,0.169-0.062,0.316-0.186,0.439c-0.124,0.124-0.271,0.186-0.439,0.186s-0.315-0.062-0.439-0.186c-0.124-0.124-0.186-0.27-0.186-0.439v-2.5H5.069v13.75h13.75V7.083z M10.177,4.065C9.688,4.554,9.444,5.143,9.444,5.833h5c0-0.69-0.244-1.279-0.732-1.768s-1.077-0.732-1.768-0.732S10.665,3.577,10.177,4.065z"></path>
+        </g>
+      </svg>
+      <span data-button-text>{{ current_variant.available | json }}</span>
+      <span></span>
     </button>
   </div>
 </div>
 
 <script>
-function addToCart() {
-  return {
-    variantId: {{ current_variant.id }},
-    available: {{ current_variant.available | json }},
-    loading: false,
-    buttonText: '{{ current_variant.available | json }}' ? 'Add to Bag' : 'Sold Out',
+(function() {
+  const addToCartBtn = document.querySelector('[data-add-to-cart-btn]');
+  const buttonText = document.querySelector('[data-button-text]');
+  
+  if (!addToCartBtn) return;
+  
+  let currentVariantId = addToCartBtn.dataset.variantId;
+  let isAvailable = !addToCartBtn.disabled;
+  
+  // Update button text
+  buttonText.textContent = isAvailable ? 'Add to Bag' : 'Sold Out';
+  
+  // Listen for variant changes
+  document.addEventListener('variant:changed', (e) => {
+    const variant = e.detail.variant;
+    currentVariantId = variant.id;
+    isAvailable = variant.available;
     
-    updateVariant(variant) {
-      this.variantId = variant.id;
-      this.available = variant.available;
-      this.buttonText = variant.available ? 'Add to Bag' : 'Sold Out';
-    },
+    addToCartBtn.dataset.variantId = variant.id;
+    addToCartBtn.disabled = !variant.available;
+    buttonText.textContent = variant.available ? 'Add to Bag' : 'Sold Out';
+  });
+  
+  // Add to cart functionality
+  addToCartBtn.addEventListener('click', async function() {
+    if (!isAvailable || this.disabled) return;
     
-    async addToCart() {
-      if (!this.available || this.loading) return;
+    const quantityInput = document.querySelector('input[name="quantity"]');
+    const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+    
+    // Update button state
+    this.disabled = true;
+    buttonText.textContent = 'Adding...';
+    
+    try {
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: currentVariantId,
+          quantity: quantity
+        })
+      });
       
-      this.loading = true;
-      this.buttonText = 'Adding...';
-      
-      const quantity = document.querySelector('input[name="quantity"]')?.value || 1;
-      
-      try {
-        const response = await fetch('/cart/add.js', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            id: this.variantId,
-            quantity: parseInt(quantity)
-          })
-        });
+      if (response.ok) {
+        const data = await response.json();
         
-        if (response.ok) {
-          const data = await response.json();
-          
-          // Trigger cart update event
-          window.dispatchEvent(new CustomEvent('cart:updated'));
-          
-          // Open cart drawer if exists
-          const cartDrawer = document.querySelector('[x-data*="cartDrawer"]');
-          if (cartDrawer && window.Alpine) {
-            Alpine.$data(cartDrawer).open = true;
-          }
-          
-          this.buttonText = 'Added!';
-          setTimeout(() => {
-            this.buttonText = 'Add to Bag';
-          }, 2000);
+        // Trigger cart update event
+        window.dispatchEvent(new CustomEvent('cart:updated'));
+        
+        // Open cart drawer if exists
+        const cartDrawer = document.querySelector('[x-data*="cartDrawer"]');
+        if (cartDrawer && window.Alpine) {
+          Alpine.$data(cartDrawer).open = true;
         } else {
-          throw new Error('Failed to add to cart');
+          // Fallback: trigger cart drawer open
+          const cartBtn = document.querySelector('.side-cart-btn');
+          if (cartBtn) {
+            cartBtn.click();
+          }
         }
-      } catch (error) {
-        console.error('Error adding to cart:', error);
-        this.buttonText = 'Error - Try Again';
+        
+        buttonText.textContent = 'Added!';
         setTimeout(() => {
-          this.buttonText = 'Add to Bag';
+          buttonText.textContent = 'Add to Bag';
+          addToCartBtn.disabled = false;
         }, 2000);
-      } finally {
-        this.loading = false;
+      } else {
+        throw new Error('Failed to add to cart');
       }
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      buttonText.textContent = 'Error - Try Again';
+      setTimeout(() => {
+        buttonText.textContent = 'Add to Bag';
+        addToCartBtn.disabled = false;
+      }, 2000);
     }
-  };
-}
+  });
+})();
 </script>
 
 <style>
