@@ -69,6 +69,7 @@
       "type": "image-text",
       "name": "Image Text",
       "settings": {
+        "image": "shopify://shop_images/prime-nation-img1.jpg",
         "right": false,
         "heading": "Prime Nation BD",
         "text": "<p>Welcome to *Prime Nation BD*, your one-stop destination for stylish, comfortable, and high-quality footwear. Based in Bangladesh, we pride ourselves on offering a wide range of shoes that cater to every style and occasion. Whether you’re looking for sneakers, formal shoes, or casual wear, we have something for everyone.</p><p><br/>At Prime Nation BD, we focus on providing shoes that blend both fashion and comfort. Our mission is to bring you top-quality products, all while maintaining exceptional customer service. We work with trusted brands and ensure every pair of shoes we offer meets the highest standards of craftsmanship.</p>",
