@@ -24,17 +24,11 @@
           "type": "variant_picker",
           "settings": {}
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "add_to_cart": {
-          "type": "add_to_cart",
-          "settings": {}
-        },
         "size_chart": {
           "type": "size_chart",
-          "settings": {}
+          "settings": {
+            "size_chart": ""
+          }
         },
         "product_description": {
           "type": "product_description",
@@ -59,14 +53,14 @@
         "product_info",
         "product_gallery",
         "variant_picker",
-        "quantity_selector",
-        "add_to_cart",
         "size_chart",
         "product_description",
         "accordion_1",
         "accordion_2"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": ""
+      }
     }
   },
   "order": [
