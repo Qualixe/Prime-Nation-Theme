@@ -1,30 +1,52 @@
 {% assign s = section.settings %}
-<section class="section card-slider-section color-{{ section.settings.color_scheme }}">
-  <div class="container">
-    <div class="section-heading-wrapper">
-      <h2 class="section-heading">{{ s.heading }}</h2>
-    </div>
-    <div class="swiper card-slider">
-      <div class="swiper-wrapper">
-        {% for product in s.collection.products %}
-          <div class="swiper-slide">
-            <div class="card-slider-item">
-              {% render 'card-product', product: product %}
-            </div>
-          </div>
-        {% endfor %}
+
+<div x-data="{ swiperInstance: null }" x-init="
+  $nextTick(() => {
+    swiperInstance = new Swiper($el.querySelector('.card-slider'), {
+      slidesPerView: 4,
+      spaceBetween: 5,
+      grabCursor: true,
+      loop: false,
+      navigation: {
+        nextEl: '.card-slider-btn-next',
+        prevEl: '.card-slider-btn-prev',
+      },
+      breakpoints: {
+        1: { slidesPerView: 1.7 },
+        576: { slidesPerView: 2.3 },
+        768: { slidesPerView: 3.2 },
+        993: { slidesPerView: 4 },
+      }
+    });
+  })
+">
+  <section class="section card-slider-section color-{{ section.settings.color_scheme }}">
+    <div class="container">
+      <div class="section-heading-wrapper">
+        <h2 class="section-heading">{{ s.heading }}</h2>
       </div>
-      <div class="swiper-button-prev card-slider-btn-prev"></div>
-      <div class="swiper-button-next card-slider-btn-next"></div>
+      <div class="swiper card-slider">
+        <div class="swiper-wrapper">
+          {% for product in s.collection.products %}
+            <div class="swiper-slide">
+              <div class="card-slider-item">
+                {% render 'card-product', product: product %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-button-prev card-slider-btn-prev"></div>
+        <div class="swiper-button-next card-slider-btn-next"></div>
+      </div>
+      <div class="section-btn">
+        <a href="{{ s.button_url }}" class="btn primary-btn">
+          {{- s.button_text }}
+          <span></span>
+        </a>
+      </div>
     </div>
-    <div class="section-btn">
-      <a href="{{ s.button_url }}" class="btn primary-btn">
-        {{- s.button_text }}
-        <span></span>
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
 
 {% schema %}
 {
