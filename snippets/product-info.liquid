@@ -2,7 +2,7 @@
 {% assign product = product | default: section.settings.product %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 
-<div class="product-info" x-data="{ currentVariant: {{ current_variant | json }} }" @variant-change.window="currentVariant = $event.detail.variant">
+<div class="product-info" x-data="productInfo()" @variant-change.window="updateVariant($event.detail.variant)">
   <h2 class="product-title">{{ product.title }}</h2>
   
   {% if product.metafields.custom.subtitle %}
@@ -31,9 +31,19 @@
 </div>
 
 <script>
-function formatMoney(cents) {
-  const value = (cents / 100).toFixed(2);
-  let format = '{{ shop.money_format }}';
-  return format.replace(/\{\{\s*amount\s*\}\}/g, value);
+function productInfo() {
+  return {
+    currentVariant: {{ current_variant | json }},
+    
+    updateVariant(variant) {
+      this.currentVariant = variant;
+    },
+    
+    formatMoney(cents) {
+      const value = (cents / 100).toFixed(2);
+      let format = '{{ shop.money_format }}';
+      return format.replace(/\{\{\s*amount\s*\}\}/g, value);
+    }
+  };
 }
 </script>
