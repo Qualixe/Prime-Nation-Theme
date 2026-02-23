@@ -114,12 +114,24 @@
       "settings": {
         "color_scheme": ""
       }
+    },
+    "image_text_fGt48R": {
+      "type": "image-text",
+      "name": "Image Text",
+      "settings": {
+        "image": "shopify://shop_images/prime-nation-img2.jpg",
+        "right": true,
+        "heading": "Why Choose Us?",
+        "text": "<ul><li><strong>Variety:</strong> We offer a broad selection of shoes to suit all tastes, from casual sneakers to formal footwear.</li><li><strong>Quality:</strong> We focus on delivering only the highest quality shoes, ensuring long-lasting wear and comfort.</li><li><strong>Customer Satisfaction:</strong> Our friendly and knowledgeable team is here to provide a seamless shopping experience.</li><li><strong>Affordable Prices:</strong> We believe in offering great value for money, without compromising on quality.</li></ul><p>Visit us today and discover the perfect pair for you! Feel free to reach out or stop by our store for personalized assistance.</p>",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "main",
     "page_banner_bdXULV",
     "image_text_KcPPRT",
-    "gallery_FptwPN"
+    "gallery_FptwPN",
+    "image_text_fGt48R"
   ]
 }
