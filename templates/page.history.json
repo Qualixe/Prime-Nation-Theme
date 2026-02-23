@@ -76,6 +76,30 @@
         "color_scheme": ""
       }
     },
+    "time_line_RLt7LL": {
+      "type": "time-line",
+      "blocks": {
+        "timeline_xk9L4d": {
+          "type": "timeline",
+          "settings": {
+            "timeline_title_left": "2025",
+            "timeline_title_right": "",
+            "timeline_text": "<p>Expanded online operations with a fully functional e-commerce website, offering nationwide delivery across Bangladesh, multiple digital payment options (bKash, Nagad, Rocket, card), and cash-on-delivery service. Strengthened customer trust by introducing a 7-day return and exchange policy.</p>",
+            "timeline_image1": "shopify://shop_images/prime-nation-img1.jpg",
+            "timeline_image2": "shopify://shop_images/prime-nation-img2.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_xk9L4d"
+      ],
+      "name": "Time Line",
+      "settings": {
+        "heading": "The <em>Story</em> of Prime Nation BD",
+        "heading_text": "Every champion has a story. Every story points to grace.",
+        "color_scheme": ""
+      }
+    },
     "image_text_fGt48R": {
       "type": "image-text",
       "name": "Image Text",
@@ -92,6 +116,7 @@
     "main",
     "page_banner_bdXULV",
     "image_text_KcPPRT",
+    "time_line_RLt7LL",
     "image_text_fGt48R"
   ]
 }
