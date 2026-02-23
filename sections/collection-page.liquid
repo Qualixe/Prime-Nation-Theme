@@ -1,4 +1,9 @@
-{% assign collection = collections[section.settings.collection] %}
+{% comment %} Use collection from template context {% endcomment %}
+{% if collection %}
+  {% assign current_collection = collection %}
+{% else %}
+  {% assign current_collection = collections[section.settings.collection] %}
+{% endif %}
 
 <script>
   function collectionPage() {
@@ -15,13 +20,20 @@
       },
       gridView: 4,
       loading: true,
+      moneyFormat: {{ shop.money_format | json }},
       
       init() {
         this.loadProducts();
       },
       
+      formatMoney(cents) {
+        if (typeof cents === 'string') cents = parseFloat(cents);
+        const value = (cents / 100).toFixed(2);
+        return this.moneyFormat.replace('{{amount}}', value).replace('{{ amount }}', value);
+      },
+      
       loadProducts() {
-        this.products = {{ collection.products | json }};
+        this.products = {{ current_collection.products | json }};
         this.filteredProducts = this.products;
         this.loading = false;
       },
@@ -152,7 +164,7 @@
       <div class="common-banner-content">
         <div class="section-heading-wrapper">
           <h2 class="section-heading">
-            {{ collection.title | default: 'All Collections' }}
+            {{ current_collection.title | default: 'All Collections' }}
             <span class="count" x-text="productCount"></span>
           </h2>
         </div>
@@ -216,7 +228,7 @@
                   </div>
                   <div class="filter-accordion-item-content">
                     <div class="filter-options-wrapper">
-                      {% assign brands = collection.products | map: 'vendor' | uniq | sort %}
+                      {% assign brands = current_collection.products | map: 'vendor' | uniq | sort %}
                       {% for brand in brands %}
                         <div class="filter-options">
                           <div class="filter-option">
@@ -466,7 +478,7 @@
                       </template>
                     </div>
                     <template x-if="product.compare_at_price_max > product.price_max">
-                      <span class="card-badge" x-text="'save ' + ((product.compare_at_price_max - product.price_max) / 100).toFixed(2)"></span>
+                      <span class="card-badge" x-text="'save ' + formatMoney(product.compare_at_price_max - product.price_max)"></span>
                     </template>
                     <div class="card-btn">
                       <form :action="'/cart/add'" method="post">
@@ -479,7 +491,7 @@
                     <div class="card-content-top">
                       <a :href="product.url" class="card-title" x-text="product.title"></a>
                       <div class="card-price-wrap">
-                        <p class="latest-price" x-text="'{{ shop.money_format }}'.replace('{{amount}}', (product.price / 100).toFixed(2))"></p>
+                        <p class="latest-price" x-text="formatMoney(product.price)"></p>
                       </div>
                     </div>
                     <p class="card-product-varient" x-text="product.variants.length + ' variants'"></p>
