@@ -344,19 +344,37 @@
                   </div>
                   <div class="filter-accordion-item-content">
                     <div class="filter-options-wrapper size-option">
-                      {% assign sizes = 'XXS,XS,S,M,L,XL,XXL' | split: ',' %}
+                      {% comment %} Get all unique sizes from product variants {% endcomment %}
+                      {% assign all_sizes = '' %}
+                      {% for product in current_collection.products %}
+                        {% for variant in product.variants %}
+                          {% if variant.option1 and variant.option1 != 'Default Title' %}
+                            {% assign all_sizes = all_sizes | append: ',' | append: variant.option1 %}
+                          {% endif %}
+                          {% if variant.option2 and variant.option2 != 'Default Title' %}
+                            {% assign all_sizes = all_sizes | append: ',' | append: variant.option2 %}
+                          {% endif %}
+                          {% if variant.option3 and variant.option3 != 'Default Title' %}
+                            {% assign all_sizes = all_sizes | append: ',' | append: variant.option3 %}
+                          {% endif %}
+                        {% endfor %}
+                      {% endfor %}
+                      {% assign sizes = all_sizes | split: ',' | uniq | sort %}
+                      
                       {% for size in sizes %}
-                        <div class="filter-options">
-                          <div class="filter-option">
-                            <input 
-                              type="checkbox" 
-                              id="size_{{ size | handleize }}"
-                              @change="toggleFilter('sizes', '{{ size }}')"
-                              :checked="isFilterActive('sizes', '{{ size }}')"
-                            >
-                            <label for="size_{{ size | handleize }}">{{ size }}</label>
+                        {% if size != '' %}
+                          <div class="filter-options">
+                            <div class="filter-option">
+                              <input 
+                                type="checkbox" 
+                                id="size_{{ size | handleize }}"
+                                @change="toggleFilter('sizes', '{{ size }}')"
+                                :checked="isFilterActive('sizes', '{{ size }}')"
+                              >
+                              <label for="size_{{ size | handleize }}">{{ size }}</label>
+                            </div>
                           </div>
-                        </div>
+                        {% endif %}
                       {% endfor %}
                     </div>
                   </div>
@@ -374,19 +392,38 @@
                   </div>
                   <div class="filter-accordion-item-content">
                     <div class="filter-options-wrapper color-option">
-                      {% assign colors = 'yellow,white,red,blue,green,pink,brown,black' | split: ',' %}
+                      {% comment %} Get all unique colors from product variants {% endcomment %}
+                      {% assign all_colors = '' %}
+                      {% for product in current_collection.products %}
+                        {% for variant in product.variants %}
+                          {% if variant.option1 and variant.option1 != 'Default Title' %}
+                            {% assign all_colors = all_colors | append: ',' | append: variant.option1 %}
+                          {% endif %}
+                          {% if variant.option2 and variant.option2 != 'Default Title' %}
+                            {% assign all_colors = all_colors | append: ',' | append: variant.option2 %}
+                          {% endif %}
+                          {% if variant.option3 and variant.option3 != 'Default Title' %}
+                            {% assign all_colors = all_colors | append: ',' | append: variant.option3 %}
+                          {% endif %}
+                        {% endfor %}
+                      {% endfor %}
+                      {% assign colors = all_colors | split: ',' | uniq | sort %}
+                      
                       {% for color in colors %}
-                        <div class="filter-options">
-                          <div class="filter-option color-{{ color }}">
-                            <input 
-                              type="checkbox" 
-                              id="color_{{ color }}"
-                              @change="toggleFilter('colors', '{{ color }}')"
-                              :checked="isFilterActive('colors', '{{ color }}')"
-                            >
-                            <label for="color_{{ color }}"></label>
+                        {% if color != '' %}
+                          {% assign color_lower = color | downcase %}
+                          <div class="filter-options">
+                            <div class="filter-option color-{{ color_lower | handleize }}">
+                              <input 
+                                type="checkbox" 
+                                id="color_{{ color | handleize }}"
+                                @change="toggleFilter('colors', '{{ color_lower }}')"
+                                :checked="isFilterActive('colors', '{{ color_lower }}')"
+                              >
+                              <label for="color_{{ color | handleize }}">{{ color }}</label>
+                            </div>
                           </div>
-                        </div>
+                        {% endif %}
                       {% endfor %}
                     </div>
                   </div>
