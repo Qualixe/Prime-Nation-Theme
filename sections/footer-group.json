@@ -58,9 +58,60 @@
         "contact_icon": false,
         "color_scheme": ""
       }
+    },
+    "footer_section_88rKPF": {
+      "type": "footer-section",
+      "blocks": {
+        "brand_info_3UK7by": {
+          "type": "brand_info",
+          "settings": {
+            "logo": "shopify://shop_images/logo_1.png",
+            "title": "",
+            "text": "We offer a wide range of high-quality footwear for every style. Visit us in-store or reach out online for any questions or product inquiries."
+          }
+        },
+        "menu_dUQ3pU": {
+          "type": "menu",
+          "settings": {
+            "title": "Quick links",
+            "menu": "main-menu"
+          }
+        },
+        "menu_wJLeDa": {
+          "type": "menu",
+          "settings": {
+            "title": "Policies",
+            "menu": "footer"
+          }
+        },
+        "contact_wPHf7N": {
+          "type": "contact",
+          "settings": {
+            "phone": "+8801886079133",
+            "email": "primenationbd@gmail.com",
+            "address": "<p>Building of Sultan Dine & Nongor, 3rd Floor Holding No# 5, Nur Islam Mollah Market, 12 Bus stand,Mirpur-12</p>",
+            "facebook_url": "https://www.facebook.com/sharer/sharer.php?u=https://primenationbd.com/about-us/",
+            "twitter_url": "https://x.com/share?url=https://primenationbd.com/about-us/",
+            "instagram_url": "",
+            "tiktok_url": "",
+            "pinterest_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand_info_3UK7by",
+        "menu_dUQ3pU",
+        "menu_wJLeDa",
+        "contact_wPHf7N"
+      ],
+      "name": "Footer Section",
+      "settings": {
+        "color_scheme": ""
+      }
     }
   },
   "order": [
-    "icon_item_section_kkfNVj"
+    "icon_item_section_kkfNVj",
+    "footer_section_88rKPF"
   ]
 }
