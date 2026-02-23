@@ -84,10 +84,17 @@
           "settings": {
             "image": "shopify://shop_images/prime-nation-img5.jpg"
           }
+        },
+        "image_L6xdr3": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img6.jpg"
+          }
         }
       },
       "block_order": [
-        "image_87DQMb"
+        "image_87DQMb",
+        "image_L6xdr3"
       ],
       "name": "Gallery",
       "settings": {
