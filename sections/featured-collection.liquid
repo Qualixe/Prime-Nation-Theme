@@ -1,93 +1,104 @@
 {% assign s = section.settings %}
 
-<div 
-  x-data="{ 
-    swiperInstance: null,
-    initSwiper() {
-      if (this.swiperInstance) {
-        this.swiperInstance.destroy(true, true);
-      }
-      this.$nextTick(() => {
-        this.swiperInstance = new Swiper(this.$el.querySelector('.card-slider'), {
-          slidesPerView: 4,
-          spaceBetween: 5,
-          grabCursor: true,
-          loop: false,
-          navigation: {
-            nextEl: '.card-slider-btn-next',
-            prevEl: '.card-slider-btn-prev',
-          },
-          breakpoints: {
-            1: { slidesPerView: 1.7 },
-            576: { slidesPerView: 2.3 },
-            768: { slidesPerView: 3.2 },
-            993: { slidesPerView: 4 },
-          }
-        });
-      });
-    }
-  }" 
-  x-init="
-    initSwiper();
-    document.addEventListener('shopify:section:load', (e) => {
-      if (e.target.contains($el)) initSwiper();
-    });
-  "
-  @section-reload.window="initSwiper()"
+<section 
+  class="section card-slider-section color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
 >
-  <section class="section card-slider-section color-{{ section.settings.color_scheme }}">
-    <div class="container">
-      <div class="section-heading-wrapper">
-        <h2 class="section-heading">{{ s.heading }}</h2>
-      </div>
-      <div class="swiper card-slider">
-        <div class="swiper-wrapper">
-          {% for product in s.collection.products %}
-            <div class="swiper-slide">
-              <div class="card-slider-item">
-                {% render 'card-product', product: product %}
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="swiper-button-prev card-slider-btn-prev"></div>
-        <div class="swiper-button-next card-slider-btn-next"></div>
-      </div>
-      <div class="section-btn">
-        <a href="{{ s.button_url }}" class="btn primary-btn">
-          {{- s.button_text }}
-          <span></span>
-        </a>
-      </div>
+  <div class="container">
+    <div class="section-heading-wrapper">
+      <h2 class="section-heading">{{ s.heading }}</h2>
     </div>
-  </section>
-</div>
+    <div class="swiper card-slider">
+      <div class="swiper-wrapper">
+        {% for product in s.collection.products %}
+          <div class="swiper-slide">
+            <div class="card-slider-item">
+              {% render 'card-product', product: product %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-prev card-slider-btn-prev"></div>
+      <div class="swiper-button-next card-slider-btn-next"></div>
+    </div>
+    <div class="section-btn">
+      <a href="{{ s.button_url }}" class="btn primary-btn">
+        {{- s.button_text }}
+        <span></span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <script>
-  // Reinitialize on Shopify editor section events
+(function() {
+  const sectionId = '{{ section.id }}';
+  let swiperInstance = null;
+  
+  function initSwiper() {
+    const section = document.querySelector('[data-section-id="' + sectionId + '"]');
+    if (!section) return;
+    
+    const swiperEl = section.querySelector('.card-slider');
+    if (!swiperEl) return;
+    
+    // Destroy existing instance
+    if (swiperInstance) {
+      swiperInstance.destroy(true, true);
+      swiperInstance = null;
+    }
+    
+    // Check if Swiper is loaded
+    if (typeof Swiper === 'undefined') {
+      setTimeout(initSwiper, 100);
+      return;
+    }
+    
+    // Initialize new Swiper
+    setTimeout(() => {
+      swiperInstance = new Swiper(swiperEl, {
+        slidesPerView: 4,
+        spaceBetween: 5,
+        grabCursor: true,
+        loop: false,
+        navigation: {
+          nextEl: section.querySelector('.card-slider-btn-next'),
+          prevEl: section.querySelector('.card-slider-btn-prev'),
+        },
+        breakpoints: {
+          1: { slidesPerView: 1.7 },
+          576: { slidesPerView: 2.3 },
+          768: { slidesPerView: 3.2 },
+          993: { slidesPerView: 4 },
+        }
+      });
+    }, 100);
+  }
+  
+  // Initial load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwiper);
+  } else {
+    initSwiper();
+  }
+  
+  // Shopify editor events
   document.addEventListener('shopify:section:load', function(event) {
-    if (event.target.querySelector('[x-data]')) {
-      const swiperEl = event.target.querySelector('.card-slider');
-      if (swiperEl && typeof Swiper !== 'undefined') {
-        new Swiper(swiperEl, {
-          slidesPerView: 4,
-          spaceBetween: 5,
-          grabCursor: true,
-          loop: false,
-          navigation: {
-            nextEl: event.target.querySelector('.card-slider-btn-next'),
-            prevEl: event.target.querySelector('.card-slider-btn-prev'),
-          },
-          breakpoints: {
-            1: { slidesPerView: 1.7 },
-            576: { slidesPerView: 2.3 },
-            768: { slidesPerView: 3.2 },
-            993: { slidesPerView: 4 },
-          }
-        });
-      }
+    if (event.target.querySelector('[data-section-id="' + sectionId + '"]')) {
+      setTimeout(initSwiper, 200);
     }
   });
+  
+  document.addEventListener('shopify:section:reorder', function() {
+    setTimeout(initSwiper, 200);
+  });
+  
+  document.addEventListener('shopify:section:select', function(event) {
+    if (event.target.querySelector('[data-section-id="' + sectionId + '"]')) {
+      setTimeout(initSwiper, 200);
+    }
+  });
+})();
 </script>
 
 {% schema %}
