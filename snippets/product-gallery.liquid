@@ -1,9 +1,10 @@
 {% comment %} Product Image Gallery with Swiper {% endcomment %}
 {% assign product = product | default: section.settings.product %}
+{% assign unique_id = section.id | default: 'product-gallery' %}
 
-<div class="product-slider-area" data-product-gallery>
+<div class="product-slider-area" data-product-gallery="{{ unique_id }}">
   <div class="product-slider-inner">
-    <div class="swiper product-slider" data-main-slider>
+    <div class="swiper product-slider product-slider-{{ unique_id }}" data-main-slider="{{ unique_id }}">
       <div class="swiper-wrapper">
         {% if product.media.size > 0 %}
           {% for media in product.media %}
@@ -31,7 +32,7 @@
     </div>
     
     {% if product.media.size > 1 %}
-    <div thumbsSlider="" class="swiper product-slider-thumb" data-thumb-slider>
+    <div thumbsSlider="" class="swiper product-slider-thumb product-slider-thumb-{{ unique_id }}" data-thumb-slider="{{ unique_id }}">
       <div class="swiper-wrapper">
         {% for media in product.media %}
           <div class="swiper-slide">
@@ -52,32 +53,63 @@
 
 <script>
 (function() {
-  if (typeof Swiper === 'undefined') return;
+  const uniqueId = '{{ unique_id }}';
+  const thumbSlider = document.querySelector('[data-thumb-slider="' + uniqueId + '"]');
+  const mainSlider = document.querySelector('[data-main-slider="' + uniqueId + '"]');
   
-  const thumbSlider = document.querySelector('[data-thumb-slider]');
-  const mainSlider = document.querySelector('[data-main-slider]');
+  if (!mainSlider || typeof Swiper === 'undefined') return;
   
-  if (!mainSlider) return;
+  // Check if already initialized
+  if (mainSlider.swiper) {
+    mainSlider.swiper.destroy(true, true);
+  }
   
   let thumbSwiperInstance = null;
   
   if (thumbSlider) {
+    if (thumbSlider.swiper) {
+      thumbSlider.swiper.destroy(true, true);
+    }
+    
     thumbSwiperInstance = new Swiper(thumbSlider, {
-      spaceBetween: 10,
-      slidesPerView: 4,
+      direction: "vertical",
+      loop: false,
+      spaceBetween: 20,
+      slidesPerView: 5,
       freeMode: true,
-      watchSlidesProgress: true,
+      mousewheel: true,
+      breakpoints: {
+        1: {
+          direction: "horizontal",
+          spaceBetween: 10,
+          slidesPerView: 4,
+        },
+        576: {
+          direction: "horizontal",
+          spaceBetween: 20,
+          slidesPerView: 5,
+        },
+        768: {
+          direction: "vertical",
+          spaceBetween: 20,
+          slidesPerView: 5,
+        },
+        993: {
+          direction: "vertical",
+        },
+      },
     });
   }
   
   new Swiper(mainSlider, {
+    loop: product.media.size > 1,
     spaceBetween: 10,
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: mainSlider.querySelector('.swiper-button-next'),
+      prevEl: mainSlider.querySelector('.swiper-button-prev'),
     },
     pagination: {
-      el: '.swiper-pagination',
+      el: mainSlider.querySelector('.swiper-pagination'),
       clickable: true,
     },
     thumbs: thumbSwiperInstance ? {
