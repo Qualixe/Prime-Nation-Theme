@@ -333,6 +333,32 @@
                 </div>
                 
                 <!-- Size Filter -->
+                {% comment %} Get sizes from products that have "Size" option {% endcomment %}
+                {% assign all_sizes = '' %}
+                {% for product in current_collection.products %}
+                  {% if product.options contains 'Size' %}
+                    {% assign size_index = 0 %}
+                    {% for option in product.options %}
+                      {% if option == 'Size' %}
+                        {% assign size_index = forloop.index0 %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                    
+                    {% for variant in product.variants %}
+                      {% if size_index == 0 and variant.option1 != 'Default Title' %}
+                        {% assign all_sizes = all_sizes | append: ',' | append: variant.option1 %}
+                      {% elsif size_index == 1 and variant.option2 != 'Default Title' %}
+                        {% assign all_sizes = all_sizes | append: ',' | append: variant.option2 %}
+                      {% elsif size_index == 2 and variant.option3 != 'Default Title' %}
+                        {% assign all_sizes = all_sizes | append: ',' | append: variant.option3 %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+                {% assign sizes = all_sizes | split: ',' | uniq | sort %}
+                
+                {% if sizes.size > 0 and all_sizes != '' %}
                 <div class="filter-accordion-item active">
                   <div class="item-title-wrapper accordion-toggle-btn">
                     <p class="item-title">Size</p>
@@ -344,31 +370,6 @@
                   </div>
                   <div class="filter-accordion-item-content">
                     <div class="filter-options-wrapper size-option">
-                      {% comment %} Get sizes from products that have "Size" option {% endcomment %}
-                      {% assign all_sizes = '' %}
-                      {% for product in current_collection.products %}
-                        {% if product.options contains 'Size' %}
-                          {% assign size_index = 0 %}
-                          {% for option in product.options %}
-                            {% if option == 'Size' %}
-                              {% assign size_index = forloop.index0 %}
-                              {% break %}
-                            {% endif %}
-                          {% endfor %}
-                          
-                          {% for variant in product.variants %}
-                            {% if size_index == 0 and variant.option1 != 'Default Title' %}
-                              {% assign all_sizes = all_sizes | append: ',' | append: variant.option1 %}
-                            {% elsif size_index == 1 and variant.option2 != 'Default Title' %}
-                              {% assign all_sizes = all_sizes | append: ',' | append: variant.option2 %}
-                            {% elsif size_index == 2 and variant.option3 != 'Default Title' %}
-                              {% assign all_sizes = all_sizes | append: ',' | append: variant.option3 %}
-                            {% endif %}
-                          {% endfor %}
-                        {% endif %}
-                      {% endfor %}
-                      {% assign sizes = all_sizes | split: ',' | uniq | sort %}
-                      
                       {% for size in sizes %}
                         {% if size != '' %}
                           <div class="filter-options">
@@ -387,8 +388,39 @@
                     </div>
                   </div>
                 </div>
+                {% endif %}
                 
                 <!-- Color Filter -->
+                {% comment %} Get colors from products that have "Color" or "Colour" option {% endcomment %}
+                {% assign all_colors = '' %}
+                {% for product in current_collection.products %}
+                  {% assign has_color = false %}
+                  {% assign color_index = 0 %}
+                  
+                  {% for option in product.options %}
+                    {% assign option_lower = option | downcase %}
+                    {% if option_lower == 'color' or option_lower == 'colour' %}
+                      {% assign has_color = true %}
+                      {% assign color_index = forloop.index0 %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                  
+                  {% if has_color %}
+                    {% for variant in product.variants %}
+                      {% if color_index == 0 and variant.option1 != 'Default Title' %}
+                        {% assign all_colors = all_colors | append: ',' | append: variant.option1 %}
+                      {% elsif color_index == 1 and variant.option2 != 'Default Title' %}
+                        {% assign all_colors = all_colors | append: ',' | append: variant.option2 %}
+                      {% elsif color_index == 2 and variant.option3 != 'Default Title' %}
+                        {% assign all_colors = all_colors | append: ',' | append: variant.option3 %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+                {% assign colors = all_colors | split: ',' | uniq | sort %}
+                
+                {% if colors.size > 0 and all_colors != '' %}
                 <div class="filter-accordion-item active">
                   <div class="item-title-wrapper accordion-toggle-btn">
                     <p class="item-title">Color</p>
@@ -400,35 +432,6 @@
                   </div>
                   <div class="filter-accordion-item-content">
                     <div class="filter-options-wrapper color-option">
-                      {% comment %} Get colors from products that have "Color" or "Colour" option {% endcomment %}
-                      {% assign all_colors = '' %}
-                      {% for product in current_collection.products %}
-                        {% assign has_color = false %}
-                        {% assign color_index = 0 %}
-                        
-                        {% for option in product.options %}
-                          {% assign option_lower = option | downcase %}
-                          {% if option_lower == 'color' or option_lower == 'colour' %}
-                            {% assign has_color = true %}
-                            {% assign color_index = forloop.index0 %}
-                            {% break %}
-                          {% endif %}
-                        {% endfor %}
-                        
-                        {% if has_color %}
-                          {% for variant in product.variants %}
-                            {% if color_index == 0 and variant.option1 != 'Default Title' %}
-                              {% assign all_colors = all_colors | append: ',' | append: variant.option1 %}
-                            {% elsif color_index == 1 and variant.option2 != 'Default Title' %}
-                              {% assign all_colors = all_colors | append: ',' | append: variant.option2 %}
-                            {% elsif color_index == 2 and variant.option3 != 'Default Title' %}
-                              {% assign all_colors = all_colors | append: ',' | append: variant.option3 %}
-                            {% endif %}
-                          {% endfor %}
-                        {% endif %}
-                      {% endfor %}
-                      {% assign colors = all_colors | split: ',' | uniq | sort %}
-                      
                       {% for color in colors %}
                         {% if color != '' %}
                           {% assign color_lower = color | downcase %}
@@ -448,6 +451,7 @@
                     </div>
                   </div>
                 </div>
+                {% endif %}
                 
                 <!-- Price Filter -->
                 <div class="filter-accordion-item active">
