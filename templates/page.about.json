@@ -141,7 +141,8 @@
           "type": "image_text_grid",
           "settings": {
             "title": "Lorem ipsum dolor",
-            "text": ""
+            "text": "",
+            "image": "shopify://shop_images/prime-nation-img3.jpg"
           }
         }
       },
