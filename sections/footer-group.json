@@ -77,6 +77,13 @@
             "menu": "main-menu"
           }
         },
+        "menu_wJLeDa": {
+          "type": "menu",
+          "settings": {
+            "title": "Policies",
+            "menu": "footer"
+          }
+        },
         "contact_wPHf7N": {
           "type": "contact",
           "settings": {
@@ -94,6 +101,7 @@
       "block_order": [
         "brand_info_3UK7by",
         "menu_dUQ3pU",
+        "menu_wJLeDa",
         "contact_wPHf7N"
       ],
       "name": "Footer Section",
