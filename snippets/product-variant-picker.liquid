@@ -1,0 +1,112 @@
+{% comment %} Product Variant Picker {% endcomment %}
+{% assign product = product | default: section.settings.product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class="product-variants" x-data="productVariants()">
+  {% for option in product.options_with_values %}
+    <div class="product-varient {% if option.name == 'Color' or option.name == 'Colour' %}color-varient{% endif %}">
+      <div class="product-varient-title-wrap">
+        <h6 class="product-varient-title">
+          <strong>{{ option.name }}:</strong>
+          <span x-text="selectedOptions['{{ option.name }}']"></span>
+        </h6>
+      </div>
+      
+      {% if option.name == 'Color' or option.name == 'Colour' %}
+        <div class="product-color-varient-wrap">
+          {% for value in option.values %}
+            {% assign variant_for_value = product.variants | where: option.name, value | first %}
+            <button 
+              type="button"
+              class="product-color-varient"
+              :class="{ 'active': selectedOptions['{{ option.name }}'] === '{{ value }}' }"
+              @click="selectOption('{{ option.name }}', '{{ value }}')"
+              {% unless variant_for_value.available %}disabled{% endunless %}
+            >
+              <div class="product-color-varient-img">
+                {% if variant_for_value.featured_image %}
+                  {{ variant_for_value.featured_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: value }}
+                {% else %}
+                  {{ product.featured_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: value }}
+                {% endif %}
+              </div>
+            </button>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="product-varient-field-wrap product-size">
+          {% for value in option.values %}
+            {% assign variant_for_value = product.variants | where: option.name, value | first %}
+            <div class="product-varient-input-field" :class="{ 'disabled': !isOptionAvailable('{{ option.name }}', '{{ value }}') }">
+              <input
+                class="product-varient-input"
+                type="radio"
+                id="option_{{ option.name | handleize }}_{{ value | handleize }}"
+                name="option_{{ option.name | handleize }}"
+                value="{{ value }}"
+                @change="selectOption('{{ option.name }}', '{{ value }}')"
+                :checked="selectedOptions['{{ option.name }}'] === '{{ value }}'"
+                :disabled="!isOptionAvailable('{{ option.name }}', '{{ value }}')"
+              >
+              <label class="product-varient-label" for="option_{{ option.name | handleize }}_{{ value | handleize }}">
+                <span class="varient-value">{{ value }}</span>
+              </label>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+  
+  <input type="hidden" name="id" :value="currentVariant.id" data-variant-id>
+</div>
+
+<script>
+function productVariants() {
+  const product = {{ product | json }};
+  
+  return {
+    selectedOptions: {
+      {% for option in product.options_with_values %}
+        '{{ option.name }}': '{{ option.selected_value }}'{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    },
+    currentVariant: {{ current_variant | json }},
+    
+    selectOption(name, value) {
+      this.selectedOptions[name] = value;
+      this.updateVariant();
+    },
+    
+    updateVariant() {
+      const variant = product.variants.find(v => {
+        return Object.keys(this.selectedOptions).every((key, index) => {
+          return v.options[index] === this.selectedOptions[key];
+        });
+      });
+      
+      if (variant) {
+        this.currentVariant = variant;
+        this.updateURL(variant.id);
+        this.$dispatch('variant-change', { variant });
+      }
+    },
+    
+    isOptionAvailable(optionName, value) {
+      const tempOptions = { ...this.selectedOptions, [optionName]: value };
+      return product.variants.some(v => {
+        const matches = Object.keys(tempOptions).every((key, index) => {
+          return v.options[index] === tempOptions[key];
+        });
+        return matches && v.available;
+      });
+    },
+    
+    updateURL(variantId) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('variant', variantId);
+      window.history.replaceState({}, '', url);
+    }
+  };
+}
+</script>

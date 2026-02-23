@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "product-page": {
+      "type": "product-page",
+      "blocks": {
+        "product_info": {
+          "type": "product_info"
+        },
+        "product_gallery": {
+          "type": "product_gallery"
+        },
+        "variant_picker": {
+          "type": "variant_picker"
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
+        },
+        "add_to_cart": {
+          "type": "add_to_cart"
+        },
+        "size_chart": {
+          "type": "size_chart"
+        },
+        "product_description": {
+          "type": "product_description"
+        },
+        "accordion_1": {
+          "type": "accordion",
+          "settings": {
+            "title": "Free Delivery and Returns",
+            "content": "<ul><li><p><strong>Fabric:</strong> Made from 100% fine cotton</p></li><li><p><strong>GSM 220:</strong> Medium-weight fabric</p></li></ul>"
+          }
+        },
+        "accordion_2": {
+          "type": "accordion",
+          "settings": {
+            "title": "Reviews",
+            "content": "<p>Customer reviews will appear here</p>"
+          }
+        }
+      },
+      "block_order": [
+        "product_info",
+        "product_gallery",
+        "variant_picker",
+        "quantity_selector",
+        "add_to_cart",
+        "size_chart",
+        "product_description",
+        "accordion_1",
+        "accordion_2"
+      ]
+    }
+  },
+  "order": [
+    "product-page"
+  ]
+}

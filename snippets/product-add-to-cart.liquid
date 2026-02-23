@@ -1,0 +1,90 @@
+{% comment %} Add to Cart Button {% endcomment %}
+{% assign product = product | default: section.settings.product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class="product-btn-area" x-data="addToCart()" @variant-change.window="updateVariant($event.detail.variant)">
+  <div class="add-to-card-btn">
+    <button 
+      class="btn primary-btn" 
+      type="button"
+      @click="addToCart()"
+      :disabled="!available || loading"
+      x-text="buttonText"
+    >
+    </button>
+  </div>
+</div>
+
+<script>
+function addToCart() {
+  return {
+    variantId: {{ current_variant.id }},
+    available: {{ current_variant.available | json }},
+    loading: false,
+    buttonText: '{{ current_variant.available | json }}' ? 'Add to Bag' : 'Sold Out',
+    
+    updateVariant(variant) {
+      this.variantId = variant.id;
+      this.available = variant.available;
+      this.buttonText = variant.available ? 'Add to Bag' : 'Sold Out';
+    },
+    
+    async addToCart() {
+      if (!this.available || this.loading) return;
+      
+      this.loading = true;
+      this.buttonText = 'Adding...';
+      
+      const quantity = document.querySelector('input[name="quantity"]')?.value || 1;
+      
+      try {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: this.variantId,
+            quantity: parseInt(quantity)
+          })
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          
+          // Trigger cart update event
+          window.dispatchEvent(new CustomEvent('cart:updated'));
+          
+          // Open cart drawer if exists
+          const cartDrawer = document.querySelector('[x-data*="cartDrawer"]');
+          if (cartDrawer && window.Alpine) {
+            Alpine.$data(cartDrawer).open = true;
+          }
+          
+          this.buttonText = 'Added!';
+          setTimeout(() => {
+            this.buttonText = 'Add to Bag';
+          }, 2000);
+        } else {
+          throw new Error('Failed to add to cart');
+        }
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+        this.buttonText = 'Error - Try Again';
+        setTimeout(() => {
+          this.buttonText = 'Add to Bag';
+        }, 2000);
+      } finally {
+        this.loading = false;
+      }
+    }
+  };
+}
+</script>
+
+<style>
+.add-to-card-btn .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+</style>

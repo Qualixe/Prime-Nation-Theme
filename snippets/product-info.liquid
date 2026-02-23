@@ -1,0 +1,39 @@
+{% comment %} Product Title, Price, and Basic Info {% endcomment %}
+{% assign product = product | default: section.settings.product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class="product-info" x-data="{ currentVariant: {{ current_variant | json }} }" @variant-change.window="currentVariant = $event.detail.variant">
+  <h2 class="product-title">{{ product.title }}</h2>
+  
+  {% if product.metafields.custom.subtitle %}
+    <h5 class="product-subtitle">{{ product.metafields.custom.subtitle }}</h5>
+  {% endif %}
+  
+  <div class="product-price-wrap">
+    <h5 class="latest-price" x-text="formatMoney(currentVariant.price)">
+      {{ current_variant.price | money }}
+    </h5>
+    <template x-if="currentVariant.compare_at_price && currentVariant.compare_at_price > currentVariant.price">
+      <h5 class="previous-price" x-text="formatMoney(currentVariant.compare_at_price)">
+        {{ current_variant.compare_at_price | money }}
+      </h5>
+    </template>
+  </div>
+  
+  {% if product.metafields.custom.details %}
+    <ul class="product-details-lists">
+      {% assign details = product.metafields.custom.details | split: '|' %}
+      {% for detail in details %}
+        <li>{{ detail }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<script>
+function formatMoney(cents) {
+  const value = (cents / 100).toFixed(2);
+  let format = '{{ shop.money_format }}';
+  return format.replace(/\{\{\s*amount\s*\}\}/g, value);
+}
+</script>

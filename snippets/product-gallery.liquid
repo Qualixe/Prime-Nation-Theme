@@ -1,0 +1,88 @@
+{% comment %} Product Image Gallery with Swiper {% endcomment %}
+{% assign product = product | default: section.settings.product %}
+
+<div class="product-slider-area" data-product-gallery>
+  <div class="product-slider-inner">
+    <div class="swiper product-slider" data-main-slider>
+      <div class="swiper-wrapper">
+        {% if product.media.size > 0 %}
+          {% for media in product.media %}
+            <div class="swiper-slide">
+              <div class="product-slider-img">
+                {% if media.media_type == 'image' %}
+                  {{ media | image_url: width: 1000 | image_tag: loading: 'lazy', alt: media.alt | escape }}
+                {% elsif media.media_type == 'video' or media.media_type == 'external_video' %}
+                  {{ media | media_tag: image_size: '1000x', autoplay: false, loop: false, controls: true }}
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="swiper-slide">
+            <div class="product-slider-img">
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <div class="swiper-pagination product-slider-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    
+    {% if product.media.size > 1 %}
+    <div thumbsSlider="" class="swiper product-slider-thumb" data-thumb-slider>
+      <div class="swiper-wrapper">
+        {% for media in product.media %}
+          <div class="swiper-slide">
+            <div class="product-slider-img">
+              {% if media.media_type == 'image' %}
+                {{ media | image_url: width: 200 | image_tag: loading: 'lazy', alt: media.alt | escape }}
+              {% elsif media.media_type == 'video' or media.media_type == 'external_video' %}
+                {{ media.preview_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: media.alt | escape }}
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+(function() {
+  if (typeof Swiper === 'undefined') return;
+  
+  const thumbSlider = document.querySelector('[data-thumb-slider]');
+  const mainSlider = document.querySelector('[data-main-slider]');
+  
+  if (!mainSlider) return;
+  
+  let thumbSwiperInstance = null;
+  
+  if (thumbSlider) {
+    thumbSwiperInstance = new Swiper(thumbSlider, {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+  }
+  
+  new Swiper(mainSlider, {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    thumbs: thumbSwiperInstance ? {
+      swiper: thumbSwiperInstance,
+    } : undefined,
+  });
+})();
+</script>
