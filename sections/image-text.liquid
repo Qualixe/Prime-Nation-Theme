@@ -1,0 +1,63 @@
+{% assign s = section.settings %}
+<section class="section img-text-section {% if s.right %}img-text-section-reverse{% endif %} color-{{ section.settings.color_scheme }}">
+    <div class="container">
+        <div class="img-text-section-wrapper">
+            <div class="img-text-section-img">
+                {% if s.image !=blank %}
+                    {{ s.image |  image_url: width: 1000 |  image_tag: class: 'image-text_img'  }}
+                {% else %}
+                    {{ 'image' |  placeholder_svg_tag: 'svg-icon image-text-svg' }}
+                {% endif %}
+            </div>
+            <div class="img-text-section-content">
+                <h2 class="img-text-section-content-title">{{ s.heading }}</h2>
+                <div class="img-text-section-content-text">{{ s.text }}</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name": "Image Text",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "checkbox",
+            "id": "right",
+            "label": "Image Right",
+            "default" : false
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default" : "Who we are?"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+        },
+        {
+            "type": "header",
+            "content": "Color"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "Color Scheme",
+            "default" : "scheme-1"
+        }
+    ],
+    
+    "presets": [{
+        "name": "Image Text"
+    }]
+}
+{% endschema %}
