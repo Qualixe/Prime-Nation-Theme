@@ -1,0 +1,526 @@
+{% assign collection = collections[section.settings.collection] %}
+
+<script>
+  function collectionPage() {
+    return {
+      products: [],
+      filteredProducts: [],
+      filters: {
+        brands: [],
+        sizes: [],
+        colors: [],
+        priceRange: null,
+        inStoreOnly: false,
+        sortBy: 'featured'
+      },
+      gridView: 4,
+      loading: true,
+      
+      init() {
+        this.loadProducts();
+      },
+      
+      loadProducts() {
+        this.products = {{ collection.products | json }};
+        this.filteredProducts = this.products;
+        this.loading = false;
+      },
+      
+      toggleFilter(type, value) {
+        const index = this.filters[type].indexOf(value);
+        if (index > -1) {
+          this.filters[type].splice(index, 1);
+        } else {
+          this.filters[type].push(value);
+        }
+        this.applyFilters();
+      },
+      
+      isFilterActive(type, value) {
+        return this.filters[type].includes(value);
+      },
+      
+      applyFilters() {
+        let filtered = [...this.products];
+        
+        // Brand filter
+        if (this.filters.brands.length > 0) {
+          filtered = filtered.filter(p => 
+            this.filters.brands.some(brand => 
+              p.vendor.toLowerCase().includes(brand.toLowerCase())
+            )
+          );
+        }
+        
+        // Size filter
+        if (this.filters.sizes.length > 0) {
+          filtered = filtered.filter(p =>
+            p.variants.some(v =>
+              this.filters.sizes.some(size =>
+                v.option1?.toLowerCase() === size.toLowerCase() ||
+                v.option2?.toLowerCase() === size.toLowerCase() ||
+                v.option3?.toLowerCase() === size.toLowerCase()
+              )
+            )
+          );
+        }
+        
+        // Color filter
+        if (this.filters.colors.length > 0) {
+          filtered = filtered.filter(p =>
+            p.variants.some(v =>
+              this.filters.colors.some(color =>
+                v.option1?.toLowerCase().includes(color) ||
+                v.option2?.toLowerCase().includes(color) ||
+                v.option3?.toLowerCase().includes(color)
+              )
+            )
+          );
+        }
+        
+        // Price filter
+        if (this.filters.priceRange) {
+          const [min, max] = this.filters.priceRange;
+          filtered = filtered.filter(p => {
+            const price = p.price / 100;
+            return max ? (price >= min && price <= max) : (price >= min);
+          });
+        }
+        
+        // In-store availability
+        if (this.filters.inStoreOnly) {
+          filtered = filtered.filter(p => p.available);
+        }
+        
+        // Sort
+        this.sortProducts(filtered);
+        
+        this.filteredProducts = filtered;
+      },
+      
+      sortProducts(products) {
+        switch(this.filters.sortBy) {
+          case 'best_selling':
+            // Shopify doesn't provide sales data, so we'll keep original order
+            break;
+          case 'price_low_high':
+            products.sort((a, b) => a.price - b.price);
+            break;
+          case 'price_high_low':
+            products.sort((a, b) => b.price - a.price);
+            break;
+          case 'title_asc':
+            products.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+          case 'title_desc':
+            products.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+          case 'created_desc':
+            products.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            break;
+          case 'created_asc':
+            products.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+            break;
+        }
+      },
+      
+      setPriceRange(min, max = null) {
+        this.filters.priceRange = [min, max];
+        this.applyFilters();
+      },
+      
+      clearPriceRange() {
+        this.filters.priceRange = null;
+        this.applyFilters();
+      },
+      
+      setGridView(view) {
+        this.gridView = view;
+      },
+      
+      get productCount() {
+        return this.filteredProducts.length;
+      }
+    };
+  }
+</script>
+
+<div x-data="collectionPage()" x-cloak>
+  <!-- Common Banner -->
+  <section class="common-banner collection-page-banner">
+    <div class="container">
+      <div class="common-banner-content">
+        <div class="section-heading-wrapper">
+          <h2 class="section-heading">
+            {{ collection.title | default: 'All Collections' }}
+            <span class="count" x-text="productCount"></span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collection Section -->
+  <section class="section collection-section">
+    <div class="container">
+      <div class="collection-wrapper">
+        
+        <!-- Filter Sidebar -->
+        <div class="collection-filter">
+          <span class="filter-window-close-btn"></span>
+          <div class="filter-box">
+            <div class="filter-top">
+              <p class="filter-sidebar-heading">Filter</p>
+              <span class="filter-close-btn">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 15L15 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M15 15L3 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </div>
+            
+            <div class="filter-count">
+              <p class="collection-product-count" x-text="productCount + ' products'"></p>
+            </div>
+            
+            <!-- In-store Availability -->
+            <div class="filter-product-availability">
+              <p class="filter-product-availability-title">In-store availability</p>
+              <div class="switch-tab">
+                <div class="switch-toggle-checkbox">
+                  <input 
+                    class="switch-toggle-checkbox-input" 
+                    id="switch_toggle_btn" 
+                    type="checkbox"
+                    x-model="filters.inStoreOnly"
+                    @change="applyFilters()"
+                  >
+                  <label class="switch-toggle-checkbox-input-label" for="switch_toggle_btn">Toggle</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Filter Accordion -->
+            <div class="filter-accordion">
+              <div class="filter-accordion-items">
+                
+                <!-- Brand Filter -->
+                <div class="filter-accordion-item active">
+                  <div class="item-title-wrapper accordion-toggle-btn">
+                    <p class="item-title">Brand</p>
+                    <span class="icon">
+                      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.6665 4.66669L4.6665 0.666687L0.666504 4.66669" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="filter-accordion-item-content">
+                    <div class="filter-options-wrapper">
+                      {% assign brands = collection.products | map: 'vendor' | uniq | sort %}
+                      {% for brand in brands %}
+                        <div class="filter-options">
+                          <div class="filter-option">
+                            <input 
+                              type="checkbox" 
+                              id="brand_{{ brand | handleize }}"
+                              @change="toggleFilter('brands', '{{ brand }}')"
+                              :checked="isFilterActive('brands', '{{ brand }}')"
+                            >
+                            <label for="brand_{{ brand | handleize }}">{{ brand }}</label>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Size Filter -->
+                <div class="filter-accordion-item active">
+                  <div class="item-title-wrapper accordion-toggle-btn">
+                    <p class="item-title">Size</p>
+                    <span class="icon">
+                      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.6665 4.66669L4.6665 0.666687L0.666504 4.66669" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="filter-accordion-item-content">
+                    <div class="filter-options-wrapper size-option">
+                      {% assign sizes = 'XXS,XS,S,M,L,XL,XXL' | split: ',' %}
+                      {% for size in sizes %}
+                        <div class="filter-options">
+                          <div class="filter-option">
+                            <input 
+                              type="checkbox" 
+                              id="size_{{ size | handleize }}"
+                              @change="toggleFilter('sizes', '{{ size }}')"
+                              :checked="isFilterActive('sizes', '{{ size }}')"
+                            >
+                            <label for="size_{{ size | handleize }}">{{ size }}</label>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Color Filter -->
+                <div class="filter-accordion-item active">
+                  <div class="item-title-wrapper accordion-toggle-btn">
+                    <p class="item-title">Color</p>
+                    <span class="icon">
+                      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.6665 4.66669L4.6665 0.666687L0.666504 4.66669" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="filter-accordion-item-content">
+                    <div class="filter-options-wrapper color-option">
+                      {% assign colors = 'yellow,white,red,blue,green,pink,brown,black' | split: ',' %}
+                      {% for color in colors %}
+                        <div class="filter-options">
+                          <div class="filter-option color-{{ color }}">
+                            <input 
+                              type="checkbox" 
+                              id="color_{{ color }}"
+                              @change="toggleFilter('colors', '{{ color }}')"
+                              :checked="isFilterActive('colors', '{{ color }}')"
+                            >
+                            <label for="color_{{ color }}"></label>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Price Filter -->
+                <div class="filter-accordion-item active">
+                  <div class="item-title-wrapper accordion-toggle-btn">
+                    <p class="item-title">Price</p>
+                    <span class="icon">
+                      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.6665 4.66669L4.6665 0.666687L0.666504 4.66669" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="filter-accordion-item-content">
+                    <div class="filter-options-wrapper">
+                      <div class="filter-options">
+                        <div class="filter-option">
+                          <input 
+                            type="checkbox" 
+                            id="price1"
+                            @change="$event.target.checked ? setPriceRange(0, 200) : clearPriceRange()"
+                          >
+                          <label for="price1">Under {{ 200 | money }}</label>
+                        </div>
+                      </div>
+                      <div class="filter-options">
+                        <div class="filter-option">
+                          <input 
+                            type="checkbox" 
+                            id="price2"
+                            @change="$event.target.checked ? setPriceRange(200, 500) : clearPriceRange()"
+                          >
+                          <label for="price2">{{ 200 | money }} – {{ 500 | money }}</label>
+                        </div>
+                      </div>
+                      <div class="filter-options">
+                        <div class="filter-option">
+                          <input 
+                            type="checkbox" 
+                            id="price3"
+                            @change="$event.target.checked ? setPriceRange(500, 1000) : clearPriceRange()"
+                          >
+                          <label for="price3">{{ 500 | money }} – {{ 1000 | money }}</label>
+                        </div>
+                      </div>
+                      <div class="filter-options">
+                        <div class="filter-option">
+                          <input 
+                            type="checkbox" 
+                            id="price4"
+                            @change="$event.target.checked ? setPriceRange(1000, 2000) : clearPriceRange()"
+                          >
+                          <label for="price4">{{ 1000 | money }} – {{ 2000 | money }}</label>
+                        </div>
+                      </div>
+                      <div class="filter-options">
+                        <div class="filter-option">
+                          <input 
+                            type="checkbox" 
+                            id="price5"
+                            @change="$event.target.checked ? setPriceRange(2000) : clearPriceRange()"
+                          >
+                          <label for="price5">Over {{ 2000 | money }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Collection Content -->
+        <div class="collection-content">
+          <div class="collection-top">
+            <div class="collection-grid-varient">
+              <!-- Sort Dropdown -->
+              <div class="filter-select-field">
+                <span class="icon">
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.666504 0.666656L4.6665 4.66666L8.6665 0.666656" stroke="#333333" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <select x-model="filters.sortBy" @change="applyFilters()">
+                  <option value="featured">Featured</option>
+                  <option value="best_selling">Best selling</option>
+                  <option value="price_low_high">Price: Low to High</option>
+                  <option value="price_high_low">Price: High to Low</option>
+                  <option value="title_asc">A-Z</option>
+                  <option value="title_desc">Z-A</option>
+                  <option value="created_desc">Newest</option>
+                  <option value="created_asc">Oldest</option>
+                </select>
+              </div>
+              
+              <!-- Grid View Buttons -->
+              <div class="collection-grid-btn-wrap">
+                <button 
+                  class="collection-grid-btn grid2-btn"
+                  :class="{ 'active': gridView === 2 }"
+                  @click="setGridView(2)"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 2V14" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M2 8H14" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12.6667 2H3.33333C2.59695 2 2 2.59695 2 3.33333V12.6667C2 13.403 2.59695 14 3.33333 14H12.6667C13.403 14 14 13.403 14 12.6667V3.33333C14 2.59695 13.403 2 12.6667 2Z" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <button 
+                  class="collection-grid-btn grid3-btn"
+                  :class="{ 'active': gridView === 3 }"
+                  @click="setGridView(3)"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.6667 2H3.33333C2.59695 2 2 2.59695 2 3.33333V12.6667C2 13.403 2.59695 14 3.33333 14H12.6667C13.403 14 14 13.403 14 12.6667V3.33333C14 2.59695 13.403 2 12.6667 2Z" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M2 6H14" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M2 10H14" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M6 2V14" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10 2V14" stroke="#7C736A" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <button 
+                  class="collection-grid-btn grid4-btn"
+                  :class="{ 'active': gridView === 4 }"
+                  @click="setGridView(4)"
+                >
+                  <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 0H0.666667C0.298477 0 0 0.298477 0 0.666667V2C0 2.36819 0.298477 2.66667 0.666667 2.66667H2C2.36819 2.66667 2.66667 2.36819 2.66667 2V0.666667C2.66667 0.298477 2.36819 0 2 0Z" fill="#221F1C" />
+                    <path d="M6 0H4.66667C4.29848 0 4 0.298477 4 0.666667V2C4 2.36819 4.29848 2.66667 4.66667 2.66667H6C6.36819 2.66667 6.66667 2.36819 6.66667 2V0.666667C6.66667 0.298477 6.36819 0 6 0Z" fill="#221F1C" />
+                    <path d="M10 0H8.66667C8.29848 0 8 0.298477 8 0.666667V2C8 2.36819 8.29848 2.66667 8.66667 2.66667H10C10.3682 2.66667 10.6667 2.36819 10.6667 2V0.666667C10.6667 0.298477 10.3682 0 10 0Z" fill="#221F1C" />
+                    <path d="M13 0H12.3333C12.1492 0 12 0.149238 12 0.333333V2.33333C12 2.51743 12.1492 2.66667 12.3333 2.66667H13C13.1841 2.66667 13.3333 2.51743 13.3333 2.33333V0.333333C13.3333 0.149238 13.1841 0 13 0Z" fill="#221F1C" />
+                    <path d="M2 4H0.666667C0.298477 4 0 4.29848 0 4.66667V6C0 6.36819 0.298477 6.66667 0.666667 6.66667H2C2.36819 6.66667 2.66667 6.36819 2.66667 6V4.66667C2.66667 4.29848 2.36819 4 2 4Z" fill="#221F1C" />
+                    <path d="M6 4H4.66667C4.29848 4 4 4.29848 4 4.66667V6C4 6.36819 4.29848 6.66667 4.66667 6.66667H6C6.36819 6.66667 6.66667 6.36819 6.66667 6V4.66667C6.66667 4.29848 6.36819 4 6 4Z" fill="#221F1C" />
+                    <path d="M10 4H8.66667C8.29848 4 8 4.29848 8 4.66667V6C8 6.36819 8.29848 6.66667 8.66667 6.66667H10C10.3682 6.66667 10.6667 6.36819 10.6667 6V4.66667C10.6667 4.29848 10.3682 4 10 4Z" fill="#221F1C" />
+                    <path d="M13 4H12.3333C12.1492 4 12 4.14924 12 4.33333V6.33333C12 6.51743 12.1492 6.66667 12.3333 6.66667H13C13.1841 6.66667 13.3333 6.51743 13.3333 6.33333V4.33333C13.3333 4.14924 13.1841 4 13 4Z" fill="#221F1C" />
+                    <path d="M2 8H0.666667C0.298477 8 0 8.29848 0 8.66667V10C0 10.3682 0.298477 10.6667 0.666667 10.6667H2C2.36819 10.6667 2.66667 10.3682 2.66667 10V8.66667C2.66667 8.29848 2.36819 8 2 8Z" fill="#221F1C" />
+                    <path d="M6 8H4.66667C4.29848 8 4 8.29848 4 8.66667V10C4 10.3682 4.29848 10.6667 4.66667 10.6667H6C6.36819 10.6667 6.66667 10.3682 6.66667 10V8.66667C6.66667 8.29848 6.36819 8 6 8Z" fill="#221F1C" />
+                    <path d="M10 8H8.66667C8.29848 8 8 8.29848 8 8.66667V10C8 10.3682 8.29848 10.6667 8.66667 10.6667H10C10.3682 10.6667 10.6667 10.3682 10.6667 10V8.66667C10.6667 8.29848 10.3682 8 10 8Z" fill="#221F1C" />
+                    <path d="M13 8H12.3333C12.1492 8 12 8.14924 12 8.33333V10.3333C12 10.5174 12.1492 10.6667 12.3333 10.6667H13C13.1841 10.6667 13.3333 10.5174 13.3333 10.3333V8.33333C13.3333 8.14924 13.1841 8 13 8Z" fill="#221F1C" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <p class="collection-product-count" x-text="productCount + ' products'"></p>
+            <span class="filter-open-btn">Filter</span>
+          </div>
+          
+          <!-- Products Grid -->
+          <div 
+            class="collection-items"
+            :class="{
+              'grid2': gridView === 2,
+              'grid3': gridView === 3,
+              'grid4': gridView === 4
+            }"
+          >
+            <template x-for="product in filteredProducts" :key="product.id">
+              <div class="collection-item">
+                {% comment %} Product card will be rendered via Alpine {% endcomment %}
+                <div class="product-card card_hover">
+                  <div class="card-image-wrap">
+                    <div class="card-img">
+                      <a class="main-img" :href="product.url">
+                        <img :src="product.featured_image" :alt="product.title" loading="lazy">
+                      </a>
+                      <template x-if="product.images && product.images.length > 1">
+                        <a class="hover-img" :href="product.url">
+                          <img :src="product.images[1]" :alt="product.title" loading="lazy">
+                        </a>
+                      </template>
+                    </div>
+                    <template x-if="product.compare_at_price_max > product.price_max">
+                      <span class="card-badge" x-text="'save ' + ((product.compare_at_price_max - product.price_max) / 100).toFixed(2)"></span>
+                    </template>
+                    <div class="card-btn">
+                      <form :action="'/cart/add'" method="post">
+                        <input type="hidden" name="id" :value="product.variants[0].id">
+                        <button type="submit" class="btn primary-btn">Add to cart</button>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-content-top">
+                      <a :href="product.url" class="card-title" x-text="product.title"></a>
+                      <div class="card-price-wrap">
+                        <p class="latest-price" x-text="'{{ shop.money_format }}'.replace('{{amount}}', (product.price / 100).toFixed(2))"></p>
+                      </div>
+                    </div>
+                    <p class="card-product-varient" x-text="product.variants.length + ' variants'"></p>
+                  </div>
+                </div>
+              </div>
+            </template>
+            
+            <!-- Empty State -->
+            <template x-if="filteredProducts.length === 0">
+              <div class="collection-empty" style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+                <h3>No products found</h3>
+                <p>Try adjusting your filters</p>
+              </div>
+            </template>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  [x-cloak] { display: none !important; }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Page",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Page"
+    }
+  ]
+}
+{% endschema %}
