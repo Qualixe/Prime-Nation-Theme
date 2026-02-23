@@ -49,21 +49,6 @@
                     {% render 'product-variant-picker', product: product, block: block %}
                   </div>
                   
-                {% when 'quantity_selector' %}
-                  <div {{ block.shopify_attributes }}>
-                    {% render 'product-quantity', product: product, block: block %}
-                  </div>
-                  
-                {% when 'add_to_cart' %}
-                  <div {{ block.shopify_attributes }}>
-                    {% render 'product-add-to-cart', product: product, block: block %}
-                  </div>
-                  
-                {% when 'size_chart' %}
-                  <div {{ block.shopify_attributes }}>
-                    {% render 'product-size-chart', block: block, section: section %}
-                  </div>
-                  
                 {% when 'product_description' %}
                   <div class="product-description" {{ block.shopify_attributes }}>
                     {{ product.description }}
@@ -81,7 +66,7 @@
                         <div class="item-title-wrapper product-accordion-toggle-btn">
                           <h6 class="item-title">{{ block.settings.title }}</h6>
                           <span class="icon">
-                            <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6"></svg>
+                            <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"/>
                             </svg>
                           </span>
@@ -134,31 +119,6 @@
       "settings": []
     },
     {
-      "type": "quantity_selector",
-      "name": "Quantity Selector",
-      "limit": 1,
-      "settings": []
-    },
-    {
-      "type": "add_to_cart",
-      "name": "Add to Cart Button",
-      "limit": 1,
-      "settings": []
-    },
-    {
-      "type": "size_chart",
-      "name": "Size Chart",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "html",
-          "id": "size_chart",
-          "label": "Size Chart HTML",
-          "info": "Add custom size chart HTML"
-        }
-      ]
-    },
-    {
       "type": "product_description",
       "name": "Product Description",
       "limit": 1,
@@ -206,15 +166,6 @@
         },
         {
           "type": "variant_picker"
-        },
-        {
-          "type": "quantity_selector"
-        },
-        {
-          "type": "add_to_cart"
-        },
-        {
-          "type": "size_chart"
         },
         {
           "type": "product_description"
