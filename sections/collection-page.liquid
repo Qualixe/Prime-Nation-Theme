@@ -267,7 +267,7 @@
             class="{% if current_collection.handle == 'all' %}active{% endif %}"
             href="{{ routes.all_products_collection_url }}"
           >All</a>
-          {% for collection in collections %}
+          {% for collection in collections limit:10 %}
             {% if collection.all_products_count > 0 %}
               <a 
                 class="{% if current_collection.handle == collection.handle %}active{% endif %}"
