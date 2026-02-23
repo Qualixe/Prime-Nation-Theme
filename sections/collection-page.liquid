@@ -94,17 +94,17 @@
       },
       
       getImageUrl(product) {
-        if (product.featured_image && product.featured_image !== '') {
+        if (product.featured_image && product.featured_image.trim() !== '') {
           return product.featured_image;
         }
-        return null;
+        return false; // Return false so || operator works
       },
       
       getHoverImageUrl(product) {
-        if (product.images && product.images.length > 1 && product.images[1] !== '') {
+        if (product.images && product.images.length > 1 && product.images[1] && product.images[1].trim() !== '') {
           return product.images[1];
         }
-        return null;
+        return false; // Return false so || operator works
       },
       
       loadProducts() {
