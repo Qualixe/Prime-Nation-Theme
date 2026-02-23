@@ -5,10 +5,6 @@
   {% assign current_collection = collections[section.settings.collection] %}
 {% endif %}
 
-{% comment %} Capture placeholder SVGs {% endcomment %}
-{% capture placeholder_image_1 %}{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}{% endcapture %}
-{% capture placeholder_image_2 %}{{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}{% endcapture %}
-
 <script>
   function collectionPage() {
     return {
@@ -24,8 +20,6 @@
       },
       gridView: 4,
       loading: true,
-      placeholderSvg1: `{{ placeholder_image_1 | escape }}`,
-      placeholderSvg2: `{{ placeholder_image_2 | escape }}`,
       
       init() {
         this.loadFiltersFromURL();
@@ -645,22 +639,27 @@
                 <div class="product-card card_hover">
                   <div class="card-image-wrap">
                     <div class="card-img">
-                      <a class="main-img" :href="product.url">
-                        <template x-if="getImageUrl(product)">
+                      <template x-if="getImageUrl(product)">
+                        <a class="main-img" :href="product.url">
                           <img :src="getImageUrl(product)" :alt="product.title" loading="lazy">
-                        </template>
-                        <template x-if="!getImageUrl(product)">
-                          <div x-html="placeholderSvg1"></div>
-                        </template>
-                      </a>
-                      <a class="hover-img" :href="product.url">
-                        <template x-if="getHoverImageUrl(product)">
+                        </a>
+                      </template>
+                      <template x-if="!getImageUrl(product)">
+                        <a class="main-img" :href="product.url">
+                          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </a>
+                      </template>
+                      
+                      <template x-if="getHoverImageUrl(product)">
+                        <a class="hover-img" :href="product.url">
                           <img :src="getHoverImageUrl(product)" :alt="product.title" loading="lazy">
-                        </template>
-                        <template x-if="!getHoverImageUrl(product)">
-                          <div x-html="placeholderSvg2"></div>
-                        </template>
-                      </a>
+                        </a>
+                      </template>
+                      <template x-if="!getHoverImageUrl(product)">
+                        <a class="hover-img" :href="product.url">
+                          {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </a>
+                      </template>
                     </div>
                     <template x-if="product.compare_at_price_max > product.price_max">
                       <span class="card-badge" x-text="'save ' + formatMoney(product.compare_at_price_max - product.price_max)"></span>
