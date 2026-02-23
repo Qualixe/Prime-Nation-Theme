@@ -344,20 +344,28 @@
                   </div>
                   <div class="filter-accordion-item-content">
                     <div class="filter-options-wrapper size-option">
-                      {% comment %} Get all unique sizes from product variants {% endcomment %}
+                      {% comment %} Get sizes from products that have "Size" option {% endcomment %}
                       {% assign all_sizes = '' %}
                       {% for product in current_collection.products %}
-                        {% for variant in product.variants %}
-                          {% if variant.option1 and variant.option1 != 'Default Title' %}
-                            {% assign all_sizes = all_sizes | append: ',' | append: variant.option1 %}
-                          {% endif %}
-                          {% if variant.option2 and variant.option2 != 'Default Title' %}
-                            {% assign all_sizes = all_sizes | append: ',' | append: variant.option2 %}
-                          {% endif %}
-                          {% if variant.option3 and variant.option3 != 'Default Title' %}
-                            {% assign all_sizes = all_sizes | append: ',' | append: variant.option3 %}
-                          {% endif %}
-                        {% endfor %}
+                        {% if product.options contains 'Size' %}
+                          {% assign size_index = 0 %}
+                          {% for option in product.options %}
+                            {% if option == 'Size' %}
+                              {% assign size_index = forloop.index0 %}
+                              {% break %}
+                            {% endif %}
+                          {% endfor %}
+                          
+                          {% for variant in product.variants %}
+                            {% if size_index == 0 and variant.option1 != 'Default Title' %}
+                              {% assign all_sizes = all_sizes | append: ',' | append: variant.option1 %}
+                            {% elsif size_index == 1 and variant.option2 != 'Default Title' %}
+                              {% assign all_sizes = all_sizes | append: ',' | append: variant.option2 %}
+                            {% elsif size_index == 2 and variant.option3 != 'Default Title' %}
+                              {% assign all_sizes = all_sizes | append: ',' | append: variant.option3 %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
                       {% endfor %}
                       {% assign sizes = all_sizes | split: ',' | uniq | sort %}
                       
@@ -392,20 +400,32 @@
                   </div>
                   <div class="filter-accordion-item-content">
                     <div class="filter-options-wrapper color-option">
-                      {% comment %} Get all unique colors from product variants {% endcomment %}
+                      {% comment %} Get colors from products that have "Color" or "Colour" option {% endcomment %}
                       {% assign all_colors = '' %}
                       {% for product in current_collection.products %}
-                        {% for variant in product.variants %}
-                          {% if variant.option1 and variant.option1 != 'Default Title' %}
-                            {% assign all_colors = all_colors | append: ',' | append: variant.option1 %}
-                          {% endif %}
-                          {% if variant.option2 and variant.option2 != 'Default Title' %}
-                            {% assign all_colors = all_colors | append: ',' | append: variant.option2 %}
-                          {% endif %}
-                          {% if variant.option3 and variant.option3 != 'Default Title' %}
-                            {% assign all_colors = all_colors | append: ',' | append: variant.option3 %}
+                        {% assign has_color = false %}
+                        {% assign color_index = 0 %}
+                        
+                        {% for option in product.options %}
+                          {% assign option_lower = option | downcase %}
+                          {% if option_lower == 'color' or option_lower == 'colour' %}
+                            {% assign has_color = true %}
+                            {% assign color_index = forloop.index0 %}
+                            {% break %}
                           {% endif %}
                         {% endfor %}
+                        
+                        {% if has_color %}
+                          {% for variant in product.variants %}
+                            {% if color_index == 0 and variant.option1 != 'Default Title' %}
+                              {% assign all_colors = all_colors | append: ',' | append: variant.option1 %}
+                            {% elsif color_index == 1 and variant.option2 != 'Default Title' %}
+                              {% assign all_colors = all_colors | append: ',' | append: variant.option2 %}
+                            {% elsif color_index == 2 and variant.option3 != 'Default Title' %}
+                              {% assign all_colors = all_colors | append: ',' | append: variant.option3 %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
                       {% endfor %}
                       {% assign colors = all_colors | split: ',' | uniq | sort %}
                       
