@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "page_banner_bdXULV": {
+      "type": "page-banner",
+      "name": "Page Banner",
+      "settings": {
+        "image": "shopify://shop_images/prime-nation-cover2.jpg",
+        "color_scheme": ""
+      }
+    },
+    "image_text_KcPPRT": {
+      "type": "image-text",
+      "name": "Image Text",
+      "settings": {
+        "image": "shopify://shop_images/prime-nation-img1.jpg",
+        "right": false,
+        "heading": "Prime Nation BD",
+        "text": "<p>Welcome to *Prime Nation BD*, your one-stop destination for stylish, comfortable, and high-quality footwear. Based in Bangladesh, we pride ourselves on offering a wide range of shoes that cater to every style and occasion. Whether you’re looking for sneakers, formal shoes, or casual wear, we have something for everyone.</p><p><br/>At Prime Nation BD, we focus on providing shoes that blend both fashion and comfort. Our mission is to bring you top-quality products, all while maintaining exceptional customer service. We work with trusted brands and ensure every pair of shoes we offer meets the highest standards of craftsmanship.</p>",
+        "color_scheme": ""
+      }
+    },
+    "gallery_FptwPN": {
+      "type": "Gallery",
+      "blocks": {
+        "image_87DQMb": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img5.jpg"
+          }
+        },
+        "image_L6xdr3": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img6.jpg"
+          }
+        },
+        "image_984X7A": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img7.jpg"
+          }
+        },
+        "image_RdBQhj": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img8_a10d30e5-592e-4ac4-8938-c75035703a36.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_87DQMb",
+        "image_L6xdr3",
+        "image_984X7A",
+        "image_RdBQhj"
+      ],
+      "name": "Gallery",
+      "settings": {
+        "color_scheme": ""
+      }
+    },
+    "image_text_fGt48R": {
+      "type": "image-text",
+      "name": "Image Text",
+      "settings": {
+        "image": "shopify://shop_images/prime-nation-img2.jpg",
+        "right": true,
+        "heading": "Why Choose Us?",
+        "text": "<ul><li><strong>Variety:</strong> We offer a broad selection of shoes to suit all tastes, from casual sneakers to formal footwear.</li><li><strong>Quality:</strong> We focus on delivering only the highest quality shoes, ensuring long-lasting wear and comfort.</li><li><strong>Customer Satisfaction:</strong> Our friendly and knowledgeable team is here to provide a seamless shopping experience.</li><li><strong>Affordable Prices:</strong> We believe in offering great value for money, without compromising on quality.</li></ul><p>Visit us today and discover the perfect pair for you! Feel free to reach out or stop by our store for personalized assistance.</p>",
+        "color_scheme": ""
+      }
+    },
+    "image_text_grid_WnMByE": {
+      "type": "image-text-grid",
+      "blocks": {
+        "image_text_grid_3hPTAh": {
+          "type": "image_text_grid",
+          "settings": {
+            "title": "👟 Brand Overview",
+            "text": "<p><strong>Prime Nation BD</strong> is a one-stop shop for shoes that blend <strong>fashion, comfort, and durability</strong>. The brand focuses on delivering a <strong>wide variety of footwear</strong> — including casual sneakers, formal shoes, and versatile designs that appeal to different age groups and style preferences.  </p>",
+            "image": "shopify://shop_images/prime-nation-img4.jpg"
+          }
+        },
+        "image_text_grid_W4qw7H": {
+          "type": "image_text_grid",
+          "settings": {
+            "title": "🎯 Vision & Mission",
+            "text": "<p><strong>Vision:</strong> To become one of the <strong>leading shoe retailers in Bangladesh</strong> with a reputation for quality and reliability. <br/><br/><strong>Mission:</strong> To offer customers a <strong>wide range of shoes</strong> that combine <em>style, comfort, and durability</em> while providing excellent customer service.<br/><br/></p>",
+            "image": "shopify://shop_images/prime-nation-img3.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_grid_3hPTAh",
+        "image_text_grid_W4qw7H"
+      ],
+      "name": "Image Text Grid",
+      "settings": {
+        "heading": "Most popular brand"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "page_banner_bdXULV",
+    "image_text_KcPPRT",
+    "gallery_FptwPN",
+    "image_text_fGt48R",
+    "image_text_grid_WnMByE"
+  ]
+}
