@@ -88,10 +88,19 @@
             "timeline_image1": "shopify://shop_images/prime-nation-img1.jpg",
             "timeline_image2": "shopify://shop_images/prime-nation-img2.jpg"
           }
+        },
+        "timeline_tTgkew": {
+          "type": "timeline",
+          "settings": {
+            "timeline_title_left": "2024",
+            "timeline_title_right": "",
+            "timeline_text": ""
+          }
         }
       },
       "block_order": [
-        "timeline_xk9L4d"
+        "timeline_xk9L4d",
+        "timeline_tTgkew"
       ],
       "name": "Time Line",
       "settings": {
