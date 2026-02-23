@@ -1,28 +1,44 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "product-page": {
       "type": "product-page",
       "blocks": {
         "product_info": {
-          "type": "product_info"
+          "type": "product_info",
+          "settings": {}
         },
         "product_gallery": {
-          "type": "product_gallery"
+          "type": "product_gallery",
+          "settings": {}
         },
         "variant_picker": {
-          "type": "variant_picker"
+          "type": "variant_picker",
+          "settings": {}
         },
         "quantity_selector": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
         },
         "add_to_cart": {
-          "type": "add_to_cart"
+          "type": "add_to_cart",
+          "settings": {}
         },
         "size_chart": {
-          "type": "size_chart"
+          "type": "size_chart",
+          "settings": {}
         },
         "product_description": {
-          "type": "product_description"
+          "type": "product_description",
+          "settings": {}
         },
         "accordion_1": {
           "type": "accordion",
@@ -49,7 +65,8 @@
         "product_description",
         "accordion_1",
         "accordion_2"
-      ]
+      ],
+      "settings": {}
     }
   },
   "order": [
