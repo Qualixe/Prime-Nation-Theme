@@ -140,8 +140,9 @@
         "image_text_grid_W4qw7H": {
           "type": "image_text_grid",
           "settings": {
-            "title": "Lorem ipsum dolor",
-            "text": ""
+            "title": "🎯 Vision & Mission",
+            "text": "<p><strong>Vision:</strong> To become one of the <strong>leading shoe retailers in Bangladesh</strong> with a reputation for quality and reliability. <br/><br/><strong>Mission:</strong> To offer customers a <strong>wide range of shoes</strong> that combine <em>style, comfort, and durability</em> while providing excellent customer service.<br/><br/></p>",
+            "image": "shopify://shop_images/prime-nation-img3.jpg"
           }
         }
       },
