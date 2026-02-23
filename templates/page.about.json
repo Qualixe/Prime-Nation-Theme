@@ -84,13 +84,45 @@
           "settings": {
             "image": "shopify://shop_images/prime-nation-img5.jpg"
           }
+        },
+        "image_L6xdr3": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img6.jpg"
+          }
+        },
+        "image_984X7A": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img7.jpg"
+          }
+        },
+        "image_RdBQhj": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/prime-nation-img8_a10d30e5-592e-4ac4-8938-c75035703a36.jpg"
+          }
         }
       },
       "block_order": [
-        "image_87DQMb"
+        "image_87DQMb",
+        "image_L6xdr3",
+        "image_984X7A",
+        "image_RdBQhj"
       ],
       "name": "Gallery",
       "settings": {
+        "color_scheme": ""
+      }
+    },
+    "image_text_fGt48R": {
+      "type": "image-text",
+      "name": "Image Text",
+      "settings": {
+        "image": "shopify://shop_images/prime-nation-img2.jpg",
+        "right": true,
+        "heading": "Why Choose Us?",
+        "text": "<ul><li><strong>Variety:</strong> We offer a broad selection of shoes to suit all tastes, from casual sneakers to formal footwear.</li><li><strong>Quality:</strong> We focus on delivering only the highest quality shoes, ensuring long-lasting wear and comfort.</li><li><strong>Customer Satisfaction:</strong> Our friendly and knowledgeable team is here to provide a seamless shopping experience.</li><li><strong>Affordable Prices:</strong> We believe in offering great value for money, without compromising on quality.</li></ul><p>Visit us today and discover the perfect pair for you! Feel free to reach out or stop by our store for personalized assistance.</p>",
         "color_scheme": ""
       }
     }
@@ -99,6 +131,7 @@
     "main",
     "page_banner_bdXULV",
     "image_text_KcPPRT",
-    "gallery_FptwPN"
+    "gallery_FptwPN",
+    "image_text_fGt48R"
   ]
 }
