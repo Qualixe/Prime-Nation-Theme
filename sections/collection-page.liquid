@@ -94,11 +94,17 @@
       },
       
       getImageUrl(product) {
-        return product.featured_image || '';
+        if (product.featured_image && product.featured_image !== '') {
+          return product.featured_image;
+        }
+        return null;
       },
       
       getHoverImageUrl(product) {
-        return (product.images && product.images.length > 1) ? product.images[1] : null;
+        if (product.images && product.images.length > 1 && product.images[1] !== '') {
+          return product.images[1];
+        }
+        return null;
       },
       
       loadProducts() {
