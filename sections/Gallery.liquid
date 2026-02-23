@@ -1,0 +1,51 @@
+<section class="grid-category-section img-text-grid-section color-{{ section.settings.color_scheme }}">
+  <div class="grid-category-items">
+    {% for block in settings.blocks %}
+      <div class="grid-category-item">
+        <div class="grid-category-item-inner">
+          <div class="grid-category-item-img">
+            {{ block.settings.image | image_url: width: 2000 | image_tag }}
+          </div>
+          <div class="grid-category-item-content">
+            <div class="grid-category-item-content-inner"></div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery"
+    }
+  ]
+}
+{% endschema %}
