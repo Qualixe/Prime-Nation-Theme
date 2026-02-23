@@ -267,7 +267,7 @@
             class="{% if current_collection.handle == 'all' %}active{% endif %}"
             href="{{ routes.all_products_collection_url }}"
           >All</a>
-          {% for collection in collections limit:10 %}
+          {% for collection in collections %}
             {% if collection.all_products_count > 0 %}
               <a 
                 class="{% if current_collection.handle == collection.handle %}active{% endif %}"
@@ -635,18 +635,26 @@
                     <div class="card-img">
                       <a class="main-img" :href="product.url">
                         <img 
-                          :src="getImageUrl(product) || '{{ 'product-1' | placeholder_svg_tag | strip_newlines | escape }}'" 
+                          x-show="getImageUrl(product)" 
+                          :src="getImageUrl(product) || ''" 
                           :alt="product.title" 
                           loading="lazy"
                         >
+                        <div x-show="!getImageUrl(product)">
+                          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
                       </a>
                       
                       <a class="hover-img" :href="product.url">
                         <img 
-                          :src="getHoverImageUrl(product) || '{{ 'product-2' | placeholder_svg_tag | strip_newlines | escape }}'" 
+                          x-show="getHoverImageUrl(product)" 
+                          :src="getHoverImageUrl(product) || ''" 
                           :alt="product.title" 
                           loading="lazy"
                         >
+                        <div x-show="!getHoverImageUrl(product)">
+                          {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
                       </a>
                     </div>
                     <template x-if="product.compare_at_price_max > product.price_max">
