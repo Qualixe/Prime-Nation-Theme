@@ -285,6 +285,26 @@
 </script>
 
 <div x-data="collectionPage()" x-cloak>
+  
+  <!-- Loading Overlay -->
+  <div 
+    x-show="loading" 
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center;"
+  >
+    <div style="text-align: center;">
+      <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" style="animation: spin 1s linear infinite;">
+        <circle cx="25" cy="25" r="20" fill="none" stroke="#333" stroke-width="4" stroke-dasharray="31.4 31.4" stroke-linecap="round"/>
+      </svg>
+      <p style="margin-top: 10px; font-size: 14px; color: #333;">Loading...</p>
+    </div>
+  </div>
+  
   <!-- Common Banner -->
   <section class="common-banner collection-page-banner">
     <div class="container">
@@ -300,7 +320,7 @@
   </section>
 
   <!-- Collection Section -->
-  <section class="section collection-section">
+  <section class="section collection-section" :style="loading ? 'opacity: 0.5; pointer-events: none;' : ''">
     <div class="collection-tag-wrap">
       <div class="container">
         <div class="collection-tags">
@@ -740,6 +760,11 @@
 
 <style>
   [x-cloak] { display: none !important; }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
 </style>
 
 {% schema %}
