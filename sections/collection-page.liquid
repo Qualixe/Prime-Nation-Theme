@@ -20,7 +20,6 @@
       },
       gridView: 4,
       loading: true,
-      moneyFormat: {{ shop.money_format | json }},
       
       init() {
         this.loadProducts();
@@ -29,7 +28,10 @@
       formatMoney(cents) {
         if (typeof cents === 'string') cents = parseFloat(cents);
         const value = (cents / 100).toFixed(2);
-        return this.moneyFormat.replace('{{amount}}', value).replace('{{ amount }}', value);
+        // Use Shopify's money format - handle both {{amount}} and {{ amount }}
+        let format = '{{ shop.money_format }}';
+        // Replace the placeholder with the actual value
+        return format.replace(/\{\{\s*amount\s*\}\}/g, value);
       },
       
       loadProducts() {
