@@ -22,7 +22,95 @@
       loading: true,
       
       init() {
+        this.loadFiltersFromURL();
         this.loadProducts();
+      },
+      
+      loadFiltersFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        
+        // Load brands
+        if (params.has('brands')) {
+          this.filters.brands = params.get('brands').split(',');
+        }
+        
+        // Load sizes
+        if (params.has('sizes')) {
+          this.filters.sizes = params.get('sizes').split(',');
+        }
+        
+        // Load colors
+        if (params.has('colors')) {
+          this.filters.colors = params.get('colors').split(',');
+        }
+        
+        // Load price range
+        if (params.has('price_min')) {
+          const min = parseFloat(params.get('price_min'));
+          const max = params.has('price_max') ? parseFloat(params.get('price_max')) : null;
+          this.filters.priceRange = [min, max];
+        }
+        
+        // Load in-store only
+        if (params.has('in_store')) {
+          this.filters.inStoreOnly = params.get('in_store') === 'true';
+        }
+        
+        // Load sort
+        if (params.has('sort_by')) {
+          this.filters.sortBy = params.get('sort_by');
+        }
+        
+        // Load grid view
+        if (params.has('grid')) {
+          this.gridView = parseInt(params.get('grid'));
+        }
+      },
+      
+      updateURL() {
+        const params = new URLSearchParams();
+        
+        // Add brands
+        if (this.filters.brands.length > 0) {
+          params.set('brands', this.filters.brands.join(','));
+        }
+        
+        // Add sizes
+        if (this.filters.sizes.length > 0) {
+          params.set('sizes', this.filters.sizes.join(','));
+        }
+        
+        // Add colors
+        if (this.filters.colors.length > 0) {
+          params.set('colors', this.filters.colors.join(','));
+        }
+        
+        // Add price range
+        if (this.filters.priceRange) {
+          params.set('price_min', this.filters.priceRange[0]);
+          if (this.filters.priceRange[1]) {
+            params.set('price_max', this.filters.priceRange[1]);
+          }
+        }
+        
+        // Add in-store only
+        if (this.filters.inStoreOnly) {
+          params.set('in_store', 'true');
+        }
+        
+        // Add sort
+        if (this.filters.sortBy !== 'featured') {
+          params.set('sort_by', this.filters.sortBy);
+        }
+        
+        // Add grid view
+        if (this.gridView !== 4) {
+          params.set('grid', this.gridView);
+        }
+        
+        // Update URL without page reload
+        const newURL = params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname;
+        window.history.pushState({}, '', newURL);
       },
       
       formatMoney(cents) {
@@ -110,6 +198,9 @@
         this.sortProducts(filtered);
         
         this.filteredProducts = filtered;
+        
+        // Update URL with current filters
+        this.updateURL();
       },
       
       sortProducts(products) {
@@ -150,6 +241,7 @@
       
       setGridView(view) {
         this.gridView = view;
+        this.updateURL();
       },
       
       get productCount() {
