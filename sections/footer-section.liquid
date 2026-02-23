@@ -138,7 +138,17 @@
 {% schema %}
 {
   "name": "Footer Section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
+    }
+  ],
   "blocks": [
     {
       "type": "brand_info",
@@ -171,6 +181,22 @@
         { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
         { "type": "url", "id": "tiktok_url", "label": "TikTok URL" },
         { "type": "url", "id": "pinterest_url", "label": "Pinterest URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer Section",
+      "blocks": [
+        {
+          "type": "brand_info"
+        },
+        {
+          "type": "menu"
+        },
+        {
+          "type": "contact"
+        }
       ]
     }
   ]
