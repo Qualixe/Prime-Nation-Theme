@@ -634,11 +634,21 @@
                   <div class="card-image-wrap">
                     <div class="card-img">
                       <a class="main-img" :href="product.url">
-                        <img :src="getImageUrl(product)" :alt="product.title" loading="lazy">
+                        <template x-if="getImageUrl(product)">
+                          <img :src="getImageUrl(product)" :alt="product.title" loading="lazy">
+                        </template>
+                        <template x-if="!getImageUrl(product)">
+                          <div class="placeholder-svg">{{ 'product-1' | placeholder_svg_tag }}</div>
+                        </template>
                       </a>
                       <template x-if="getHoverImageUrl(product)">
                         <a class="hover-img" :href="product.url">
                           <img :src="getHoverImageUrl(product)" :alt="product.title" loading="lazy">
+                        </a>
+                      </template>
+                      <template x-if="!getHoverImageUrl(product)">
+                        <a class="hover-img" :href="product.url">
+                          <div class="placeholder-svg">{{ 'product-2' | placeholder_svg_tag }}</div>
                         </a>
                       </template>
                     </div>
