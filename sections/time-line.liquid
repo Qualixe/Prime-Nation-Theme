@@ -1,0 +1,116 @@
+{% assign s = section.settings %}
+
+<section class="section timeline-section section-bg color-{{ s.color_scheme }}">
+  <div class="container">
+    <div class="section-heading-wrapper">
+      <h2 class="h2 section-heading" style="font-weight:400">{{ s.heading }}</h2>
+      <p class="section-heading-text">{{ s.heading_text }}</p>
+    </div>
+    <div class="timeline-items">
+      {% for block in section.blocks %}
+        {% assign b = block.settings %}
+        <div class="timeline-item">
+          <div class="timeline-item-left">
+            <div class="timeline-item-dot">
+              <span></span>
+            </div>
+            <h2 class="h2 timeline-item-title">{{ b.timeline_title_left }}</h2>
+          </div>
+          <div class="timeline-item-right">
+            <h2 class="h2 timeline-item-title">{{ b.timeline_title_right }}</h2>
+            <div class="timeline-item-content">
+              <div class="timeline-item-content-text">
+                <p>
+                  {{ b.timeline_text }}
+                </p>
+              </div>
+
+            
+                <div class="timeline-item-content-img-wrap">
+                      {% unless b.timeline_image1 == blank%}
+                  <div class="timeline-item-content-img">
+                    {{ b.timeline_image1 | image_url: width: 1000 | image_tag: alt: 'timeline-image1' }}
+                  </div>
+                   {% endunless %}
+                     {% unless b.timeline_image2 == blank%}
+                  <div class="timeline-item-content-img">
+                    {{ b.timeline_image2 | image_url: width: 1000 | image_tag: alt: 'timeline-image2' }}
+                  </div>
+                  {% endunless %}
+                </div>
+             
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <div class="timeline-line"></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "timeline",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "The <em>Story</em> of jotey"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Every champion has a story. Every story points to grace."
+    },
+    {
+      "type": "header",
+      "content": "color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline",
+      "name": "timeline",
+      "settings": [
+        {
+          "type": "text",
+          "id": "timeline_title_left",
+          "label": "TimeLine Title Left"
+        },
+        {
+          "type": "text",
+          "id": "timeline_title_right",
+          "label": "TimeLine Title Right"
+        },
+        {
+          "type": "richtext",
+          "id": "timeline_text",
+          "label": "TimeLine Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "timeline_image1",
+          "label": "TimeLineImage 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "timeline_image2",
+          "label": "TimeLineImage 2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Time Line"
+    }
+  ]
+}
+{% endschema %}
