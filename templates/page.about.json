@@ -64,10 +64,21 @@
         "image": "shopify://shop_images/prime-nation-cover2.jpg",
         "color_scheme": ""
       }
+    },
+    "image_text_KcPPRT": {
+      "type": "image-text",
+      "name": "Image Text",
+      "settings": {
+        "right": false,
+        "heading": "Who we are?",
+        "text": "",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "main",
-    "page_banner_bdXULV"
+    "page_banner_bdXULV",
+    "image_text_KcPPRT"
   ]
 }
