@@ -122,6 +122,30 @@
         return format.replace(/\{\{\s*amount\s*\}\}/g, value);
       },
       
+      getImageUrl(product) {
+        if (product.featured_image) {
+          // If it's already a full URL, return it
+          if (product.featured_image.startsWith('http')) {
+            return product.featured_image;
+          }
+          // Otherwise, it might be a CDN path
+          return product.featured_image;
+        }
+        // Fallback to featured_media
+        return product.featured_media?.preview_image?.src || '';
+      },
+      
+      getHoverImageUrl(product) {
+        if (product.images && product.images.length > 1) {
+          const img = product.images[1];
+          if (typeof img === 'string') {
+            return img.startsWith('http') ? img : img;
+          }
+          return img?.src || img;
+        }
+        return null;
+      },
+      
       loadProducts() {
         this.products = {{ current_collection.products | json }};
         this.filteredProducts = this.products;
@@ -563,11 +587,11 @@
                   <div class="card-image-wrap">
                     <div class="card-img">
                       <a class="main-img" :href="product.url">
-                        <img :src="product.featured_image" :alt="product.title" loading="lazy">
+                        <img :src="getImageUrl(product)" :alt="product.title" loading="lazy">
                       </a>
-                      <template x-if="product.images && product.images.length > 1">
+                      <template x-if="getHoverImageUrl(product)">
                         <a class="hover-img" :href="product.url">
-                          <img :src="product.images[1]" :alt="product.title" loading="lazy">
+                          <img :src="getHoverImageUrl(product)" :alt="product.title" loading="lazy">
                         </a>
                       </template>
                     </div>
