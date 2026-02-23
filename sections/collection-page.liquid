@@ -94,17 +94,11 @@
       },
       
       getImageUrl(product) {
-        if (product.featured_image && product.featured_image.trim() !== '') {
-          return product.featured_image;
-        }
-        return false; // Return false so || operator works
+        return product.featured_image || false;
       },
       
       getHoverImageUrl(product) {
-        if (product.images && product.images.length > 1 && product.images[1] && product.images[1].trim() !== '') {
-          return product.images[1];
-        }
-        return false; // Return false so || operator works
+        return product.images && product.images.length > 1 ? product.images[1] : false;
       },
       
       loadProducts() {
@@ -123,10 +117,10 @@
             compare_at_price_max: {{ product.compare_at_price_max | default: 0 }},
             compare_at_price_min: {{ product.compare_at_price_min | default: 0 }},
             available: {{ product.available }},
-            featured_image: '{{ product.featured_image | image_url: width: 800 }}',
+            featured_image: {% if product.featured_image %}'{{ product.featured_image | image_url: width: 800 }}'{% else %}''{% endif %},
             images: [
               {% for image in product.images limit: 2 %}
-                '{{ image | image_url: width: 800 }}'{% unless forloop.last %},{% endunless %}
+                {% if image %}'{{ image | image_url: width: 800 }}'{% unless forloop.last %},{% endunless %}{% endif %}
               {% endfor %}
             ],
             variants: {{ product.variants | json }},
