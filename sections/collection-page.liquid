@@ -647,16 +647,14 @@
                           <div class="placeholder-svg">{{ 'product-1' | placeholder_svg_tag }}</div>
                         </template>
                       </a>
-                      <template x-if="getHoverImageUrl(product)">
-                        <a class="hover-img" :href="product.url">
+                      <a class="hover-img" :href="product.url">
+                        <template x-if="getHoverImageUrl(product)">
                           <img :src="getHoverImageUrl(product)" :alt="product.title" loading="lazy">
-                        </a>
-                      </template>
-                      <template x-if="!getHoverImageUrl(product)">
-                        <a class="hover-img" :href="product.url">
+                        </template>
+                        <template x-if="!getHoverImageUrl(product)">
                           <div class="placeholder-svg">{{ 'product-2' | placeholder_svg_tag }}</div>
-                        </a>
-                      </template>
+                        </template>
+                      </a>
                     </div>
                     <template x-if="product.compare_at_price_max > product.price_max">
                       <span class="card-badge" x-text="'save ' + formatMoney(product.compare_at_price_max - product.price_max)"></span>
