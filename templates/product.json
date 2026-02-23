@@ -12,6 +12,10 @@
     "single-product": {
       "type": "single-product",
       "blocks": {
+        "breadcrumb_YHLGgM": {
+          "type": "breadcrumb",
+          "settings": {}
+        },
         "size_chart_AqaRwz": {
           "type": "size_chart",
           "settings": {
@@ -54,13 +58,10 @@
         "gallery_EYThCh": {
           "type": "gallery",
           "settings": {}
-        },
-        "breadcrumb_YHLGgM": {
-          "type": "breadcrumb",
-          "settings": {}
         }
       },
       "block_order": [
+        "breadcrumb_YHLGgM",
         "size_chart_AqaRwz",
         "details_modal_CEN3Dc",
         "slider_modal_AdKKLF",
@@ -69,8 +70,7 @@
         "title_price_KHR7Ab",
         "add_to_cart_NURniK",
         "details_list_pRUUpK",
-        "gallery_EYThCh",
-        "breadcrumb_YHLGgM"
+        "gallery_EYThCh"
       ],
       "settings": {
         "color_scheme": "scheme-1"
