@@ -53,10 +53,19 @@
                   {% render 'product-details-list', product: product %}
                 {% when 'details_modal' %}
                   {% render 'product-details-modal', product: product, current_variant: current_variant %}
-                {% when 'accordion' %}
-                  {% render 'product-accordion', block: block %}
               {% endcase %}
             {% endfor %}
+            
+            {% assign accordion_blocks = section.blocks | where: 'type', 'accordion' %}
+            {% if accordion_blocks.size > 0 %}
+              <div class="product-description-accordion">
+                <div class="product-accordion-items">
+                  {% for block in accordion_blocks %}
+                    {% render 'product-accordion', block: block %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -125,30 +134,18 @@
     },
     {
       "type": "accordion",
-      "name": "Product Accordion",
-      "limit": 1,
+      "name": "Accordion Item",
       "settings": [
         {
           "type": "text",
-          "id": "title_1",
-          "label": "Accordion 1 Title",
-          "default": "Free Delivery and Returns"
+          "id": "title",
+          "label": "Accordion Title",
+          "default": "Accordion Title"
         },
         {
           "type": "html",
-          "id": "content_1",
-          "label": "Accordion 1 Content"
-        },
-        {
-          "type": "text",
-          "id": "title_2",
-          "label": "Accordion 2 Title",
-          "default": "Reviews"
-        },
-        {
-          "type": "html",
-          "id": "content_2",
-          "label": "Accordion 2 Content"
+          "id": "content",
+          "label": "Accordion Content"
         }
       ]
     },
@@ -197,7 +194,16 @@
           "type": "details_modal"
         },
         {
-          "type": "accordion"
+          "type": "accordion",
+          "settings": {
+            "title": "Free Delivery and Returns"
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "Reviews"
+          }
         },
         {
           "type": "slider_modal"
