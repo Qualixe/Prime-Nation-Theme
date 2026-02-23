@@ -1,0 +1,13 @@
+{% comment %}
+  Product Details List Snippet
+  Usage: {% render 'product-details-list', product: product %}
+{% endcomment %}
+
+{% if product.metafields.custom.details %}
+  <ul class="product-details-lists">
+    {% assign details = product.metafields.custom.details | split: '|' %}
+    {% for detail in details %}
+      <li>{{ detail }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

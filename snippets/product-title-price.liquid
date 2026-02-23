@@ -1,0 +1,15 @@
+{% comment %}
+  Product Title & Price Snippet
+  Usage: {% render 'product-title-price', product: product, current_variant: current_variant %}
+{% endcomment %}
+
+<h2 class="product-title">{{ product.title }}</h2>
+{% if product.metafields.custom.subtitle %}
+  <h5 class="product-subtitle">{{ product.metafields.custom.subtitle }}</h5>
+{% endif %}
+<div class="product-price-wrap">
+  <h5 class="latest-price">{{ current_variant.price | money }}</h5>
+  {% if current_variant.compare_at_price > current_variant.price %}
+    <h5 class="previous-price">{{ current_variant.compare_at_price | money }}</h5>
+  {% endif %}
+</div>

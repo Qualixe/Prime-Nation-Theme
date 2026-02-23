@@ -1,0 +1,35 @@
+{% comment %}
+  Product Details Modal Snippet
+  Usage: {% render 'product-details-modal', product: product, current_variant: current_variant %}
+{% endcomment %}
+
+<div class="product-details-modal-main-wrap">
+  <button class="product-details-modal-btn">View Product Details</button>
+  <div class="product-details-modal-wrap">
+    <button class="product-details-modal-window-close-btn"></button>
+    <div class="product-details-modal">
+      <button class="product-details-modal-close-btn">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 15L15 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path d="M15 15L3 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <div class="product-details-modal-content">
+        <div class="product-details-modal-product">
+          <div class="img">
+            {{ product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: product.title }}
+          </div>
+          <div class="content">
+            <p class="title">{{ product.title }}</p>
+            <p class="price">{{ current_variant.price | money }}</p>
+          </div>
+        </div>
+        <div class="product-details-modal-content-items">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

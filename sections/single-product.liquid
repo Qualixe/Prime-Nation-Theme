@@ -1,432 +1,80 @@
 {% assign product = product %}
 {% assign current_variant = product.selected_or_first_available_variant %}
-		<div class="product-breadcrumb">
-			<div class="container">
-				<ul class="breadcrumb">
-					<li><a href="index.html">Home</a> <span class="breadcrumb-icon">
-							<svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
-								<path fill-rule="evenodd" clip-rule="evenodd"
-									d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z"
-									fill="black">
-								</path>
-							</svg>
-						</span>
-					</li>
-					<li><span class="active">Product</span> <span class="breadcrumb-icon"></span></li>
-				</ul>
-			</div>
-		</div>
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'breadcrumb' %}
+      {% render 'product-breadcrumb' %}
+  {% endcase %}
+{% endfor %}
+
 <section class="section product-section color-{{ section.settings.color_scheme }}">
-	<div class="container">
-		<div class="product-page-content-wrap">
-			<div class="product-mobile-content">
-				<h2 class="product-title">{{ product.title }}</h2>
-				{% if product.metafields.custom.subtitle %}
-					<h5 class="product-subtitle">{{ product.metafields.custom.subtitle }}</h5>
-				{% endif %}
-				<div class="product-price-wrap">
-					<h5 class="latest-price">{{ current_variant.price | money }}</h5>
-					{% if current_variant.compare_at_price > current_variant.price %}
-						<h5 class="previous-price">{{ current_variant.compare_at_price | money }}</h5>
-					{% endif %}
-				</div>
-			</div>
-			<div class="product-slider-area">
-				<div class="product-slider-inner">
-					<div class="swiper product-slider">
-						<div class="swiper-wrapper">
-							{% for media in product.media %}
-								<div class="swiper-slide">
-									<div class="product-slider-img">
-										{% if media.media_type == 'image' %}
-											{{ media | image_url: width: 1000 | image_tag: loading: 'lazy', alt: media.alt }}
-										{% elsif media.media_type == 'video' or media.media_type == 'external_video' %}
-											{{ media | media_tag: image_size: '1000x' }}
-										{% endif %}
-									</div>
-								</div>
-							{% endfor %}
-						</div>
-						<div class="swiper-pagination product-slider-pagination"></div>
-						<div class="swiper-button-next"></div>
-						<div class="swiper-button-prev"></div>
-					</div>
-					<div thumbsSlider="" class="swiper product-slider-thumb">
-						<div class="swiper-wrapper">
-							{% for media in product.media %}
-								<div class="swiper-slide">
-									<div class="product-slider-img">
-										{% if media.media_type == 'image' %}
-											{{ media | image_url: width: 200 | image_tag: loading: 'lazy', alt: media.alt }}
-										{% elsif media.media_type == 'video' or media.media_type == 'external_video' %}
-											{{ media.preview_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: media.alt }}
-										{% endif %}
-									</div>
-								</div>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="product-content-area">
-				<div class="product-content-area-inner">
-					<div class="product-content-inner">
-						<div class="product-desktop-content">
-							<h2 class="product-title">{{ product.title }}</h2>
-							{% if product.metafields.custom.subtitle %}
-								<h5 class="product-subtitle">{{ product.metafields.custom.subtitle }}</h5>
-							{% endif %}
-							<div class="product-price-wrap">
-								<h5 class="latest-price">{{ current_variant.price | money }}</h5>
-								{% if current_variant.compare_at_price > current_variant.price %}
-									<h5 class="previous-price">{{ current_variant.compare_at_price | money }}</h5>
-								{% endif %}
-							</div>
-						</div>
-						
-						<form action="/cart/add" method="post" enctype="multipart/form-data">
-							{% for option in product.options_with_values %}
-								{% if option.name == 'Color' or option.name == 'Colour' %}
-									<div class="product-varient color-varient">
-										<div class="product-color-varient-wrap">
-											{% for value in option.values %}
-												{% assign variant_for_value = product.variants | where: option.name, value | first %}
-												<a href="?variant={{ variant_for_value.id }}" class="product-color-varient {% if option.selected_value == value %}active{% endif %}">
-													<div class="product-color-varient-img">
-														{% if variant_for_value.featured_image %}
-															{{ variant_for_value.featured_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: value }}
-														{% else %}
-															{{ product.featured_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: value }}
-														{% endif %}
-													</div>
-												</a>
-											{% endfor %}
-										</div>
-									</div>
-								{% else %}
-									<div class="product-varient">
-										<div class="product-varient-title-wrap">
-											<h6 class="product-varient-title"><strong>{{ option.name | downcase }}:</strong> 
-												{% if option.name == 'Size' %}
-													<button type="button" class="size-sidebar-btn">
-														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-															<path
-																d="M241.1 580.2C222.4 598.9 192 598.9 173.2 580.2L60.1 467.1C41.4 448.4 41.4 418 60.1 399.2L77.1 382.2L150.6 455.7C160 465.1 175.2 465.1 184.5 455.7C193.8 446.3 193.9 431.1 184.5 421.8L111 348.3L144.9 314.4L195.8 365.3C205.2 374.7 220.4 374.7 229.7 365.3C239 355.9 239.1 340.7 229.7 331.4L178.8 280.5L212.7 246.6L286.2 320.1C295.6 329.5 310.8 329.5 320.1 320.1C329.4 310.7 329.5 295.5 320.1 286.2L246.6 212.7L280.5 178.8L331.4 229.7C340.8 239.1 356 239.1 365.3 229.7C374.6 220.3 374.7 205.1 365.3 195.8L314.4 144.9L348.3 111L421.8 184.5C431.2 193.9 446.4 193.9 455.7 184.5C465 175.1 465.1 159.9 455.7 150.6L382.2 77.1L399.2 60.1C417.9 41.4 448.3 41.4 467.1 60.1L580.5 172.9C599.2 191.6 599.2 222 580.5 240.8L241.1 580.2z" />
-														</svg><span>Size guide</span>
-													</button>
-												{% endif %}
-											</h6>
-										</div>
-										<div class="product-varient-field-wrap product-size">
-											{% for value in option.values %}
-												{% assign variant_for_value = product.variants | where: option.name, value | first %}
-												<div class="product-varient-input-field {% unless variant_for_value.available %}disabled{% endunless %}">
-													<input class="product-varient-input" type="radio" id="option_{{ option.name | handleize }}_{{ value | handleize }}" name="options[{{ option.name }}]"
-														value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} {% unless variant_for_value.available %}disabled{% endunless %}>
-													<label class="product-varient-label" for="option_{{ option.name | handleize }}_{{ value | handleize }}">
-														<span class="varient-value">{{ value }}</span>
-													</label>
-												</div>
-											{% endfor %}
-										</div>
-									</div>
-								{% endif %}
-							{% endfor %}
-							
-							<input type="hidden" name="id" value="{{ current_variant.id }}">
-							
-							<div class="product-btn-area">
-								<div class="add-to-card-btn">
-									<button class="btn primary-btn" type="submit" {% unless current_variant.available %}disabled{% endunless %}>
-										<svg width="20" height="20" aria-hidden="true" focusable="false" role="presentation"
-											viewBox="0 0 24 24">
-											<g>
-												<path fill="#fff" d="M19.884,21.897c-0.124,0.124-0.271,0.186-0.439,0.186h-15c-0.169,0-0.315-0.062-0.439-0.186
-	c-0.124-0.124-0.186-0.271-0.186-0.439v-15c0-0.169,0.062-0.315,0.186-0.439c0.124-0.124,0.271-0.186,0.439-0.186h3.75
-	c0-1.028,0.368-1.911,1.104-2.646c0.735-0.735,1.618-1.104,2.646-1.104s1.911,0.368,2.646,1.104
-	c0.735,0.736,1.104,1.618,1.104,2.646h3.75c0.169,0,0.315,0.062,0.439,0.186c0.124,0.124,0.186,0.271,0.186,0.439v15
-	C20.069,21.627,20.008,21.773,19.884,21.897z M18.819,7.083h-3.125v2.5c0,0.169-0.062,0.316-0.186,0.439
-	c-0.124,0.124-0.271,0.186-0.439,0.186s-0.315-0.062-0.439-0.186c-0.124-0.124-0.186-0.27-0.186-0.439v-2.5h-5v2.5
-	c0,0.169-0.062,0.316-0.186,0.439c-0.124,0.124-0.271,0.186-0.439,0.186s-0.315-0.062-0.439-0.186
-	c-0.124-0.124-0.186-0.27-0.186-0.439v-2.5H5.069v13.75h13.75V7.083z M10.177,4.065C9.688,4.554,9.444,5.143,9.444,5.833h5
-	c0-0.69-0.244-1.279-0.732-1.768s-1.077-0.732-1.768-0.732S10.665,3.577,10.177,4.065z"></path>
-											</g>
-										</svg>{% if current_variant.available %}add to bag{% else %}sold out{% endif %}<span></span></button>
-								</div>
-							</div>
-						</form>
-						
-						{% if product.metafields.custom.details %}
-							<ul class="product-details-lists">
-								{% assign details = product.metafields.custom.details | split: '|' %}
-								{% for detail in details %}
-									<li>{{ detail }}</li>
-								{% endfor %}
-							</ul>
-						{% endif %}
-						
-						<div class="product-details-modal-main-wrap">
-							<button class="product-details-modal-btn">View Product Details</button>
-							<div class="product-details-modal-wrap">
-								<button class="product-details-modal-window-close-btn"></button>
-								<div class="product-details-modal">
-									<button class="product-details-modal-close-btn">
-										<svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M3 15L15 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-											<path d="M15 15L3 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round"
-												stroke-linejoin="round"></path>
-										</svg>
-									</button>
-									<div class="product-details-modal-content">
-										<div class="product-details-modal-product">
-											<div class="img">
-												{{ product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: product.title }}
-											</div>
-											<div class="content">
-												<p class="title">{{ product.title }}</p>
-												<p class="price">{{ current_variant.price | money }}</p>
-											</div>
-										</div>
-										<div class="product-details-modal-content-items">
-											{{ product.description }}
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="product-description-accordion">
-							<div class="product-accordion-items">
-								<div class="product-accordion-item">
-									<div class="item-title-wrapper product-accordion-toggle-btn">
-										<h6 class="item-title">Free Delivery and Returns</h6>
-										<span class="icon">
-											<svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
-												<path fill-rule="evenodd" clip-rule="evenodd"
-													d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z"
-													fill="currentColor">
-												</path>
-											</svg>
-										</span>
-									</div>
-									<div class="product-accordion-item-content">
-										<ul>
-											<li>
-												<p><strong>Fabric:</strong> Made from 100% fine cotton, ensuring a
-													soft, breathable feel that
-													keeps you comfortable throughout the day.</p>
-											</li>
-											<li>
-												<p><strong>Yarn-Dyed:</strong> The fabric is
-													<strong>yarn-dyed</strong>, meaning the colors
-													are woven into the fibers rather than printed, ensuring lasting
-													vibrancy and a premium
-													finish.
-												</p>
-											</li>
-											<li>
-												<p><strong>GSM 220:</strong> The <strong>medium-weight
-														fabric</strong> (220 GSM) offers
-													durability while maintaining a comfortable, lightweight feel.
-												</p>
-											</li>
-											<li>
-												<p><strong>Fit:</strong> Designed in a <strong>regular fit</strong>,
-													offering a structured yet
-													relaxed silhouette for all-day wear.</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-accordion-item">
-									<div class="item-title-wrapper product-accordion-toggle-btn">
-										<h6 class="item-title">Reviews (3)</h6>
-										<span class="icon">
-											<svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
-												<path fill-rule="evenodd" clip-rule="evenodd"
-													d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z"
-													fill="currentColor">
-												</path>
-											</svg>
-										</span>
-									</div>
-									<div class="product-accordion-item-content">
-										<ul>
-											<li>
-												<p><strong>Dual-Tone Aesthetic:</strong> A rich brown base
-													complemented by deep black sleeves
-													and accents, adding a bold yet refined contrast.</p>
-											</li>
-											<li>
-												<p><strong>Vertical Panel Detailing:</strong> Sleek, parallel
-													stripes running down the torso
-													enhance the structured look, adding a touch of vintage-inspired
-													sophistication.</p>
-											</li>
-											<li>
-												<p><strong>Classic Polo Collar:</strong> A clean-cut, buttoned
-													neckline that balances casual
-													comfort with formal polish.</p>
-											</li>
-										</ul>
-										<div class="content">
-											<p>Whether you're pairing it with tailored trousers for a polished
-												office look or styling it
-												with joggers for a smart-casual vibe, PD-17 is designed to keep you
-												looking sharp, confident,
-												and effortlessly stylish.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="product-page-content-wrap">
+      <div class="product-mobile-content">
+        {% for block in section.blocks %}
+          {% if block.type == 'title_price' %}
+            {% render 'product-title-price', product: product, current_variant: current_variant %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      {% for block in section.blocks %}
+        {% if block.type == 'gallery' %}
+          {% render 'product-gallery', product: product %}
+        {% endif %}
+      {% endfor %}
+      
+      <div class="product-content-area">
+        <div class="product-content-area-inner">
+          <div class="product-content-inner">
+            <div class="product-desktop-content">
+              {% for block in section.blocks %}
+                {% if block.type == 'title_price' %}
+                  {% render 'product-title-price', product: product, current_variant: current_variant %}
+                {% endif %}
+              {% endfor %}
+            </div>
+            
+            <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'variants' %}
+                    {% render 'product-variants', product: product %}
+                  {% when 'add_to_cart' %}
+                    {% render 'product-add-to-cart', current_variant: current_variant %}
+                {% endcase %}
+              {% endfor %}
+            </form>
+            
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'details_list' %}
+                  {% render 'product-details-list', product: product %}
+                {% when 'details_modal' %}
+                  {% render 'product-details-modal', product: product, current_variant: current_variant %}
+                {% when 'accordion' %}
+                  {% render 'product-accordion', block: block %}
+              {% endcase %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- product-slider-modal start -->
-<div class="product-slider-modal">
-	<button class="product-slider-modal-close">
-		<svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d="M3 15L15 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-			</path>
-			<path d="M15 15L3 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-			</path>
-		</svg>
-	</button>
-	<div class="product-slider-modal-content">
-		<div class="product-slider-modal-items">
-			{% for media in product.media %}
-				<div class="product-slider-modal-item">
-					{% if media.media_type == 'image' %}
-						{{ media | image_url: width: 1500 | image_tag: loading: 'lazy', alt: media.alt }}
-					{% endif %}
-				</div>
-			{% endfor %}
-		</div>
-	</div>
-</div>
-<!-- product-slider-modal end -->
+{% for block in section.blocks %}
+  {% if block.type == 'slider_modal' %}
+    {% render 'product-slider-modal', product: product %}
+  {% endif %}
+{% endfor %}
 
-<!-- size-chart-sidebar start -->
-<div class="size-chart-sidebar">
-	<span class="size-chart-sidebar-close-window-btn"></span>
-	<div class="size-chart-sidebar-inner">
-		<div class="size-chart-sidebar-top">
-			<p class="size-chart-title">size chart:</p>
-			<button class="size-chart-close-btn">
-				<svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M3 15L15 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-					</path>
-					<path d="M15 15L3 3" stroke="#232323" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-					</path>
-				</svg>
-			</button>
-		</div>
-		<div class="size-chart-sidebar-content">
-			{% if section.settings.size_chart != blank %}
-				{{ section.settings.size_chart }}
-			{% else %}
-				<div class="size-chart-items">
-					<div class="size-chart-item">
-						<p class="size-chart-item-title">women's size:</p>
-						<table class="size-chart-item-content">
-							<thead>
-								<tr>
-									<th>au</th>
-									<th>bd</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>27</td>
-									<td>38</td>
-								</tr>
-								<tr>
-									<td>28</td>
-									<td>40</td>
-								</tr>
-								<tr>
-									<td>29</td>
-									<td>42</td>
-								</tr>
-								<tr>
-									<td>30</td>
-									<td>45</td>
-								</tr>
-								<tr>
-									<td>35</td>
-									<td>55</td>
-								</tr>
-								<tr>
-									<td>40</td>
-									<td>50</td>
-								</tr>
-								<tr>
-									<td>50</td>
-									<td>55</td>
-								</tr>
-								<tr>
-									<td>36</td>
-									<td>46</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="size-chart-item">
-						<p class="size-chart-item-title">men's size:</p>
-						<table class="size-chart-item-content">
-							<thead>
-								<tr>
-									<th>au</th>
-									<th>bd</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>27</td>
-									<td>38</td>
-								</tr>
-								<tr>
-									<td>28</td>
-									<td>40</td>
-								</tr>
-								<tr>
-									<td>29</td>
-									<td>42</td>
-								</tr>
-								<tr>
-									<td>30</td>
-									<td>45</td>
-								</tr>
-								<tr>
-									<td>35</td>
-									<td>55</td>
-								</tr>
-								<tr>
-									<td>40</td>
-									<td>50</td>
-								</tr>
-								<tr>
-									<td>50</td>
-									<td>55</td>
-								</tr>
-								<tr>
-									<td>36</td>
-									<td>46</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			{% endif %}
-		</div>
-	</div>
-</div>
-<!-- size-chart-sidebar end -->
+{% for block in section.blocks %}
+  {% if block.type == 'size_chart' %}
+    {% render 'product-size-chart', block: block %}
+  {% endif %}
+{% endfor %}
 
 {% schema %}
 {
@@ -437,17 +85,127 @@
       "id": "color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "breadcrumb",
+      "name": "Breadcrumb",
+      "limit": 1
     },
     {
-      "type": "html",
-      "id": "size_chart",
-      "label": "Size Chart HTML",
-      "info": "Custom size chart content (optional)"
+      "type": "gallery",
+      "name": "Product Gallery",
+      "limit": 1
+    },
+    {
+      "type": "title_price",
+      "name": "Title & Price",
+      "limit": 1
+    },
+    {
+      "type": "variants",
+      "name": "Variant Picker",
+      "limit": 1
+    },
+    {
+      "type": "add_to_cart",
+      "name": "Add to Cart Button",
+      "limit": 1
+    },
+    {
+      "type": "details_list",
+      "name": "Product Details List",
+      "limit": 1
+    },
+    {
+      "type": "details_modal",
+      "name": "Product Details Modal",
+      "limit": 1
+    },
+    {
+      "type": "accordion",
+      "name": "Product Accordion",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Accordion 1 Title",
+          "default": "Free Delivery and Returns"
+        },
+        {
+          "type": "html",
+          "id": "content_1",
+          "label": "Accordion 1 Content"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Accordion 2 Title",
+          "default": "Reviews"
+        },
+        {
+          "type": "html",
+          "id": "content_2",
+          "label": "Accordion 2 Content"
+        }
+      ]
+    },
+    {
+      "type": "slider_modal",
+      "name": "Image Slider Modal",
+      "limit": 1
+    },
+    {
+      "type": "size_chart",
+      "name": "Size Chart Sidebar",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "html",
+          "id": "size_chart",
+          "label": "Size Chart HTML",
+          "info": "Custom size chart content (optional)"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Single Product"
+      "name": "Single Product",
+      "blocks": [
+        {
+          "type": "breadcrumb"
+        },
+        {
+          "type": "gallery"
+        },
+        {
+          "type": "title_price"
+        },
+        {
+          "type": "variants"
+        },
+        {
+          "type": "add_to_cart"
+        },
+        {
+          "type": "details_list"
+        },
+        {
+          "type": "details_modal"
+        },
+        {
+          "type": "accordion"
+        },
+        {
+          "type": "slider_modal"
+        },
+        {
+          "type": "size_chart"
+        }
+      ]
     }
   ]
 }
