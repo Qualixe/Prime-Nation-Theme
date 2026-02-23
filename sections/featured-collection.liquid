@@ -1,25 +1,40 @@
 {% assign s = section.settings %}
 
-<div x-data="{ swiperInstance: null }" x-init="
-  $nextTick(() => {
-    swiperInstance = new Swiper($el.querySelector('.card-slider'), {
-      slidesPerView: 4,
-      spaceBetween: 5,
-      grabCursor: true,
-      loop: false,
-      navigation: {
-        nextEl: '.card-slider-btn-next',
-        prevEl: '.card-slider-btn-prev',
-      },
-      breakpoints: {
-        1: { slidesPerView: 1.7 },
-        576: { slidesPerView: 2.3 },
-        768: { slidesPerView: 3.2 },
-        993: { slidesPerView: 4 },
+<div 
+  x-data="{ 
+    swiperInstance: null,
+    initSwiper() {
+      if (this.swiperInstance) {
+        this.swiperInstance.destroy(true, true);
       }
+      this.$nextTick(() => {
+        this.swiperInstance = new Swiper(this.$el.querySelector('.card-slider'), {
+          slidesPerView: 4,
+          spaceBetween: 5,
+          grabCursor: true,
+          loop: false,
+          navigation: {
+            nextEl: '.card-slider-btn-next',
+            prevEl: '.card-slider-btn-prev',
+          },
+          breakpoints: {
+            1: { slidesPerView: 1.7 },
+            576: { slidesPerView: 2.3 },
+            768: { slidesPerView: 3.2 },
+            993: { slidesPerView: 4 },
+          }
+        });
+      });
+    }
+  }" 
+  x-init="
+    initSwiper();
+    document.addEventListener('shopify:section:load', (e) => {
+      if (e.target.contains($el)) initSwiper();
     });
-  })
-">
+  "
+  @section-reload.window="initSwiper()"
+>
   <section class="section card-slider-section color-{{ section.settings.color_scheme }}">
     <div class="container">
       <div class="section-heading-wrapper">
@@ -47,6 +62,33 @@
     </div>
   </section>
 </div>
+
+<script>
+  // Reinitialize on Shopify editor section events
+  document.addEventListener('shopify:section:load', function(event) {
+    if (event.target.querySelector('[x-data]')) {
+      const swiperEl = event.target.querySelector('.card-slider');
+      if (swiperEl && typeof Swiper !== 'undefined') {
+        new Swiper(swiperEl, {
+          slidesPerView: 4,
+          spaceBetween: 5,
+          grabCursor: true,
+          loop: false,
+          navigation: {
+            nextEl: event.target.querySelector('.card-slider-btn-next'),
+            prevEl: event.target.querySelector('.card-slider-btn-prev'),
+          },
+          breakpoints: {
+            1: { slidesPerView: 1.7 },
+            576: { slidesPerView: 2.3 },
+            768: { slidesPerView: 3.2 },
+            993: { slidesPerView: 4 },
+          }
+        });
+      }
+    }
+  });
+</script>
 
 {% schema %}
 {
