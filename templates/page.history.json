@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "page_banner_bdXULV": {
+      "type": "page-banner",
+      "name": "Page Banner",
+      "settings": {
+        "image": "shopify://shop_images/prime-nation-cover2.jpg",
+        "color_scheme": ""
+      }
+    },
+    "image_text_KcPPRT": {
+      "type": "image-text",
+      "name": "Image Text",
+      "settings": {
+        "image": "shopify://shop_images/prime-nation-img1.jpg",
+        "right": false,
+        "heading": "Prime Nation BD",
+        "text": "<p>Welcome to *Prime Nation BD*, your one-stop destination for stylish, comfortable, and high-quality footwear. Based in Bangladesh, we pride ourselves on offering a wide range of shoes that cater to every style and occasion. Whether you’re looking for sneakers, formal shoes, or casual wear, we have something for everyone.</p><p><br/>At Prime Nation BD, we focus on providing shoes that blend both fashion and comfort. Our mission is to bring you top-quality products, all while maintaining exceptional customer service. We work with trusted brands and ensure every pair of shoes we offer meets the highest standards of craftsmanship.</p>",
+        "color_scheme": ""
+      }
+    },
+    "time_line_RLt7LL": {
+      "type": "time-line",
+      "blocks": {
+        "timeline_xk9L4d": {
+          "type": "timeline",
+          "settings": {
+            "timeline_title_left": "2025",
+            "timeline_title_right": "",
+            "timeline_text": "<p>Expanded online operations with a fully functional e-commerce website, offering nationwide delivery across Bangladesh, multiple digital payment options (bKash, Nagad, Rocket, card), and cash-on-delivery service. Strengthened customer trust by introducing a 7-day return and exchange policy.</p>",
+            "timeline_image1": "shopify://shop_images/prime-nation-img1.jpg",
+            "timeline_image2": "shopify://shop_images/prime-nation-img2.jpg"
+          }
+        },
+        "timeline_tTgkew": {
+          "type": "timeline",
+          "settings": {
+            "timeline_title_left": "2024",
+            "timeline_title_right": "",
+            "timeline_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "timeline_xk9L4d",
+        "timeline_tTgkew"
+      ],
+      "name": "Time Line",
+      "settings": {
+        "heading": "The <em>Story</em> of Prime Nation BD",
+        "heading_text": "Every champion has a story. Every story points to grace.",
+        "color_scheme": ""
+      }
+    },
+    "image_text_fGt48R": {
+      "type": "image-text",
+      "name": "Image Text",
+      "settings": {
+        "image": "shopify://shop_images/prime-nation-img2.jpg",
+        "right": true,
+        "heading": "Why Choose Us?",
+        "text": "<ul><li><strong>Variety:</strong> We offer a broad selection of shoes to suit all tastes, from casual sneakers to formal footwear.</li><li><strong>Quality:</strong> We focus on delivering only the highest quality shoes, ensuring long-lasting wear and comfort.</li><li><strong>Customer Satisfaction:</strong> Our friendly and knowledgeable team is here to provide a seamless shopping experience.</li><li><strong>Affordable Prices:</strong> We believe in offering great value for money, without compromising on quality.</li></ul><p>Visit us today and discover the perfect pair for you! Feel free to reach out or stop by our store for personalized assistance.</p>",
+        "color_scheme": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "page_banner_bdXULV",
+    "image_text_KcPPRT",
+    "time_line_RLt7LL",
+    "image_text_fGt48R"
+  ]
+}
