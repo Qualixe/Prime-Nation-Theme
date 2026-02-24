@@ -1,0 +1,122 @@
+
+
+<section class="section store-section">
+  <div class="container">
+    <div class="section-heading-wrapper">
+      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="store-items">
+      {% for block in section.blocks %}
+        <div class="store-item">
+          <div class="store-item-map">
+            {{ block.settings.map_iframe }}
+          </div>
+          <div class="store-item-content">
+            <h5 class="store-item-title">{{ block.settings.title }}</h5>
+            {% if block.settings.address != blank %}
+              <p class="store-item-text">{{ block.settings.address }}</p>
+            {% endif %}
+            {% if block.settings.phone1 != blank %}
+              <p class="store-item-text">Phone: {{ block.settings.phone1 }}</p>
+            {% endif %}
+            {% if block.settings.phone2 != blank %}
+              <p class="store-item-text">Phone: {{ block.settings.phone2 }}</p>
+            {% endif %}
+            {% if block.settings.email != blank %}
+              <p class="store-item-text">Email: {{ block.settings.email }}</p>
+            {% endif %}
+            {% if block.settings.website != blank %}
+              <p class="store-item-text">{{ block.settings.website }}</p>
+            {% endif %}
+            {% if block.settings.timing != blank %}
+              <p class="store-item-text">{{ block.settings.timing | newline_to_br }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Store Section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Visit Our Store"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "store_item",
+      "name": "Store Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "map_iframe",
+          "label": "Google Map Iframe Embed Code",
+          "default": "<iframe src='https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d2734.8780408382645!2d90.416401!3d23.7172!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjPCsDQzJzAxLjkiTiA5MMKwMjQnNTkuMCJF!5e1!3m2!1sen!2sus!4v1765798717753!5m2!1sen!2sus' width='600' height='450' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Store Title",
+          "default": "VOYAGE Mirpur Display Center"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "Address",
+          "default": "Shah Smrity Market, Dhaka, Bangladesh"
+        },
+        {
+          "type": "text",
+          "id": "phone1",
+          "label": "Phone 1",
+          "default": "01933-992311"
+        },
+        {
+          "type": "text",
+          "id": "phone2",
+          "label": "Phone 2",
+
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email",
+
+        },
+        {
+          "type": "text",
+          "id": "website",
+          "label": "Website",
+
+        },
+        {
+          "type": "textarea",
+          "id": "timing",
+          "label": "Store Timings",
+          "default": "Monday – Thursday (09:00 – 19:00)\nFriday (09:00 – 21:00)\nSaturday – Sunday (09:00 – 17:00)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Store Section",
+      "category": "Store",
+      "blocks": [
+        { "type": "store_item" },
+        { "type": "store_item" },
+        { "type": "store_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
