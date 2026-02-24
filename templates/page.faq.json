@@ -89,12 +89,20 @@
             "question": "How can I place an order?",
             "answer": "<p>You can place an order by:</p><ul><li>Visiting our official website or social media page<br/></li><li>Sending us a direct message<br/></li><li>Contacting our customer support team<br/></li></ul><p>Our team will guide you through the complete process.</p>"
           }
+        },
+        "faq_item_wjqUa7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "<p>We accept:</p><ul><li>Cash on Delivery (COD)<br/></li><li>bKash<br/></li><li>Nagad<br/></li><li>Bank Transfer<br/></li></ul><p>Payment options may vary depending on location and product availability.</p>"
+          }
         }
       },
       "block_order": [
         "faq_item_gVCfk3",
         "faq_item_DckqBg",
-        "faq_item_NgCEJ9"
+        "faq_item_NgCEJ9",
+        "faq_item_wjqUa7"
       ],
       "name": "FAQ Section",
       "settings": {
