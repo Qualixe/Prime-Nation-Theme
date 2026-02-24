@@ -9,6 +9,7 @@
 .shopify-policy__container {
     margin: 50px auto !important;
     max-width: 700px !important;
+    padding-top:50px;
 }
 
 .shopify-policy__body h1 {
