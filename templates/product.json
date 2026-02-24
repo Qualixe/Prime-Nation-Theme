@@ -171,10 +171,50 @@
       "settings": {
         "color_scheme": ""
       }
+    },
+    "collection_tab_grid_jEVHAg": {
+      "type": "collection-tab-grid",
+      "blocks": {
+        "tab_P8WqmG": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Recommended",
+            "collection": "",
+            "products_limit": 8
+          }
+        },
+        "tab_VDAmHF": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Best Sellers",
+            "collection": "",
+            "products_limit": 8
+          }
+        },
+        "tab_fCQ3hf": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "New Arrivals",
+            "collection": "",
+            "products_limit": 8
+          }
+        }
+      },
+      "block_order": [
+        "tab_P8WqmG",
+        "tab_VDAmHF",
+        "tab_fCQ3hf"
+      ],
+      "name": "Collection Tab Grid",
+      "settings": {
+        "heading": "You may also like",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "single-product",
-    "product_details_section_bbUMAx"
+    "product_details_section_bbUMAx",
+    "collection_tab_grid_jEVHAg"
   ]
 }
