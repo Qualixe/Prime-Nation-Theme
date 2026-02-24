@@ -68,8 +68,8 @@
         "mega_menu_yMwN4A": {
           "type": "mega_menu",
           "settings": {
-            "link": "catalog",
-            "menu": "main-menu",
+            "link": "shop",
+            "menu": "mega-menu",
             "image": "shopify://shop_images/megamenu-img1.avif",
             "heading": "EXPLORE LATEST",
             "text": "Featured Collection",
