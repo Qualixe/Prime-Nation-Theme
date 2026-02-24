@@ -24,9 +24,9 @@
         "icon_item_8xeWVf": {
           "type": "icon_item",
           "settings": {
-            "image": "shopify://shop_images/smartphone.png",
+            "image": "shopify://shop_images/store.png",
             "icon": "",
-            "title": "Call Us",
+            "title": "Visit Store",
             "text": "Directly for immediate assistance: 24 hours open. call<strong>: </strong><a href=\"tel:01959000111\" title=\"tel:01959000111\"><strong>01959000111</strong></a>"
           }
         },
@@ -39,11 +39,12 @@
             "text": "Have a quick question? Send us amessage on Mail:<a href=\"mailto:support@toptenmartbd.com\" title=\"mailto:support@toptenmartbd.com\"><strong>support@toptenmartbd.com</strong></a>"
           }
         },
-        "icon_item_mDcHNL": {
+        "icon_item_JAA7K8": {
           "type": "icon_item",
           "settings": {
+            "image": "shopify://shop_images/smartphone.png",
             "icon": "",
-            "title": "whatsapp",
+            "title": "Visit Store",
             "text": "Directly for immediate assistance: 24 hours open. call<strong>: </strong><a href=\"tel:01959000111\" title=\"tel:01959000111\"><strong>01959000111</strong></a>"
           }
         }
@@ -51,7 +52,7 @@
       "block_order": [
         "icon_item_8xeWVf",
         "icon_item_TP3Dqx",
-        "icon_item_mDcHNL"
+        "icon_item_JAA7K8"
       ],
       "name": "Icon Item Section",
       "settings": {
