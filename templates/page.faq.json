@@ -65,10 +65,34 @@
         "title": "FAQ",
         "color_scheme": ""
       }
+    },
+    "faq_Ymphnj": {
+      "type": "Faq",
+      "blocks": {
+        "faq_item_gVCfk3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_gVCfk3"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "title": "FAQ",
+        "subtitle": "Frequently Asked Questions",
+        "button_text": "Shop Now",
+        "button_link": "",
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "main",
-    "page_banner_bdXULV"
+    "page_banner_bdXULV",
+    "faq_Ymphnj"
   ]
 }
