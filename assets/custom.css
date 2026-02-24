@@ -1,3 +1,6 @@
 .card-btn form {
     width: 100%;
 }
+.button.submit-button.size-style.button {
+    border-radius: 0px;
+}
