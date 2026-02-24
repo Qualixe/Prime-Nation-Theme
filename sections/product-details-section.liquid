@@ -20,30 +20,23 @@
       </div>
     {% endif %}
     
-    {% for block in section.blocks %}
-      {% if block.type == 'list' %}
-        <div class="product-details-section-list">
+    {% assign list_heading_blocks = section.blocks | where: 'type', 'list_heading' %}
+    {% assign list_item_blocks = section.blocks | where: 'type', 'list_item' %}
+    
+    {% if list_heading_blocks.size > 0 or list_item_blocks.size > 0 %}
+      <div class="product-details-section-list">
+        {% for block in list_heading_blocks %}
           <p class="product-details-section-list-title">{{ block.settings.title }}</p>
+        {% endfor %}
+        {% if list_item_blocks.size > 0 %}
           <ul>
-            {% if block.settings.item_1 != blank %}
-              <li>{{ block.settings.item_1 }}</li>
-            {% endif %}
-            {% if block.settings.item_2 != blank %}
-              <li>{{ block.settings.item_2 }}</li>
-            {% endif %}
-            {% if block.settings.item_3 != blank %}
-              <li>{{ block.settings.item_3 }}</li>
-            {% endif %}
-            {% if block.settings.item_4 != blank %}
-              <li>{{ block.settings.item_4 }}</li>
-            {% endif %}
-            {% if block.settings.item_5 != blank %}
-              <li>{{ block.settings.item_5 }}</li>
-            {% endif %}
+            {% for block in list_item_blocks %}
+              <li>{{ block.settings.text }}</li>
+            {% endfor %}
           </ul>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -97,8 +90,8 @@
       ]
     },
     {
-      "type": "list",
-      "name": "List Section",
+      "type": "list_heading",
+      "name": "List Heading",
       "limit": 1,
       "settings": [
         {
@@ -106,31 +99,17 @@
           "id": "title",
           "label": "List Title",
           "default": "What's New?"
-        },
+        }
+      ]
+    },
+    {
+      "type": "list_item",
+      "name": "List Item",
+      "settings": [
         {
           "type": "textarea",
-          "id": "item_1",
-          "label": "List Item 1"
-        },
-        {
-          "type": "textarea",
-          "id": "item_2",
-          "label": "List Item 2"
-        },
-        {
-          "type": "textarea",
-          "id": "item_3",
-          "label": "List Item 3"
-        },
-        {
-          "type": "textarea",
-          "id": "item_4",
-          "label": "List Item 4"
-        },
-        {
-          "type": "textarea",
-          "id": "item_5",
-          "label": "List Item 5"
+          "id": "text",
+          "label": "List Item Text"
         }
       ]
     }
@@ -181,9 +160,27 @@
           }
         },
         {
-          "type": "list",
+          "type": "list_heading",
           "settings": {
             "title": "What's New?"
+          }
+        },
+        {
+          "type": "list_item",
+          "settings": {
+            "text": "Our newest iteration of ZoomX foam delivers durability, softness and responsiveness made for trail running."
+          }
+        },
+        {
+          "type": "list_item",
+          "settings": {
+            "text": "The full-length carbon-fibre plate has reduced stiffness compared to the original Ultrafly."
+          }
+        },
+        {
+          "type": "list_item",
+          "settings": {
+            "text": "Vibram® Megagrip outsole offers exceptional traction on the trail with less weight. Strategically placed lugs add grip for uphill and downhill racing."
           }
         }
       ]
