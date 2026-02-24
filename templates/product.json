@@ -134,6 +134,12 @@
           "settings": {
             "text": "Premium stitching for enhanced durability"
           }
+        },
+        "list_item_TF7d6n": {
+          "type": "list_item",
+          "settings": {
+            "text": "Comfortable fit for daily and long-time wear"
+          }
         }
       },
       "block_order": [
@@ -144,7 +150,8 @@
         "icon_item_bfhycJ",
         "icon_item_6z3tm9",
         "list_heading_UBYwK7",
-        "list_item_TU9RkW"
+        "list_item_TU9RkW",
+        "list_item_TF7d6n"
       ],
       "name": "Product Details",
       "settings": {
