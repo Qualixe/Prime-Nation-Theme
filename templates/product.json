@@ -180,14 +180,14 @@
           "settings": {
             "tab_title": "Recommended",
             "collection": "25-discount-on-all-sneakers",
-            "products_limit": 8
+            "products_limit": 4
           }
         },
         "tab_VDAmHF": {
           "type": "tab",
           "settings": {
             "tab_title": "Best Sellers",
-            "collection": "60-discount-on-all-winter-products",
+            "collection": "",
             "products_limit": 8
           }
         },
@@ -195,7 +195,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "New Arrivals",
-            "collection": "new-arrival",
+            "collection": "",
             "products_limit": 8
           }
         }
