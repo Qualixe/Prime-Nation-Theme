@@ -125,7 +125,7 @@
         "title": "Frequently Asked Questions",
         "subtitle": "Find quick answers to the most common questions about Prime Nation BD. From ordering and payments to delivery and returns, we’ve covered everything to make your experience smooth and hassle-free.",
         "button_text": "Shop Now",
-        "button_link": "",
+        "button_link": "shopify://collections/all",
         "color_scheme": ""
       }
     }
