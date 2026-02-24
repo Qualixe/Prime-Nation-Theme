@@ -72,18 +72,34 @@
         "faq_item_gVCfk3": {
           "type": "faq_item",
           "settings": {
-            "question": "",
-            "answer": ""
+            "question": "What is Prime Nation BD?",
+            "answer": "<p><strong>Prime Nation BD</strong> is a trusted platform dedicated to providing high-quality products and reliable services across Bangladesh. We focus on authenticity, affordability, and customer satisfaction.</p>"
+          }
+        },
+        "faq_item_DckqBg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where is Prime Nation BD located?",
+            "answer": "<p>Prime Nation BD operates online across Bangladesh. We deliver nationwide to ensure customers from all districts can access our products and services easily.</p>"
+          }
+        },
+        "faq_item_NgCEJ9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I place an order?",
+            "answer": "<p>You can place an order by:</p><ul><li>Visiting our official website or social media page<br/></li><li>Sending us a direct message<br/></li><li>Contacting our customer support team<br/></li></ul><p>Our team will guide you through the complete process.</p>"
           }
         }
       },
       "block_order": [
-        "faq_item_gVCfk3"
+        "faq_item_gVCfk3",
+        "faq_item_DckqBg",
+        "faq_item_NgCEJ9"
       ],
       "name": "FAQ Section",
       "settings": {
-        "title": "FAQ",
-        "subtitle": "Frequently Asked Questions",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Find quick answers to the most common questions about Prime Nation BD. From ordering and payments to delivery and returns, we’ve covered everything to make your experience smooth and hassle-free.",
         "button_text": "Shop Now",
         "button_link": "",
         "color_scheme": ""
