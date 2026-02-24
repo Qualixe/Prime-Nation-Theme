@@ -77,10 +77,22 @@
     "product_details_section_bbUMAx": {
       "type": "product-details-section",
       "blocks": {
+        "list_item_TU9RkW": {
+          "type": "list_item",
+          "settings": {
+            "text": ""
+          }
+        },
+        "list_heading_UBYwK7": {
+          "type": "list_heading",
+          "settings": {
+            "title": "What's New?"
+          }
+        },
         "heading_K4aUtE": {
           "type": "heading",
           "settings": {
-            "heading": "Lightweight speed, grip and energy return, come hell or high water."
+            "heading": "Step Into Ultimate Comfort and Modern Street Style with Our Premium Quality Sneakers"
           }
         },
         "icon_item_aiHAhg": {
@@ -122,27 +134,17 @@
             "subtitle": "Heel-to-Toe Drop",
             "title": "8.5mm"
           }
-        },
-        "list_T47z6A": {
-          "type": "list",
-          "settings": {
-            "title": "What's New?",
-            "item_1": "",
-            "item_2": "",
-            "item_3": "",
-            "item_4": "",
-            "item_5": ""
-          }
         }
       },
       "block_order": [
+        "list_item_TU9RkW",
+        "list_heading_UBYwK7",
         "heading_K4aUtE",
         "icon_item_aiHAhg",
         "icon_item_CYdA4C",
         "icon_item_hAVAdf",
         "icon_item_bfhycJ",
-        "icon_item_6z3tm9",
-        "list_T47z6A"
+        "icon_item_6z3tm9"
       ],
       "name": "Product Details",
       "settings": {
