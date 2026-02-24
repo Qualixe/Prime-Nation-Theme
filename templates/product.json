@@ -73,9 +73,85 @@
       "settings": {
         "color_scheme": "scheme-1"
       }
+    },
+    "product_details_section_bbUMAx": {
+      "type": "product-details-section",
+      "blocks": {
+        "heading_K4aUtE": {
+          "type": "heading",
+          "settings": {
+            "heading": "Lightweight speed, grip and energy return, come hell or high water."
+          }
+        },
+        "icon_item_aiHAhg": {
+          "type": "icon_item",
+          "settings": {
+            "icon_svg": "",
+            "subtitle": "Engineered for",
+            "title": "Trail running & racing"
+          }
+        },
+        "icon_item_CYdA4C": {
+          "type": "icon_item",
+          "settings": {
+            "icon_svg": "",
+            "subtitle": "Terrain",
+            "title": "Less to Highly Technical"
+          }
+        },
+        "icon_item_hAVAdf": {
+          "type": "icon_item",
+          "settings": {
+            "icon_svg": "",
+            "subtitle": "Cushioning",
+            "title": "Responsive"
+          }
+        },
+        "icon_item_bfhycJ": {
+          "type": "icon_item",
+          "settings": {
+            "icon_svg": "",
+            "subtitle": "Shoe Weight",
+            "title": "Approx. 287g (Men's Size 9)"
+          }
+        },
+        "icon_item_6z3tm9": {
+          "type": "icon_item",
+          "settings": {
+            "icon_svg": "",
+            "subtitle": "Heel-to-Toe Drop",
+            "title": "8.5mm"
+          }
+        },
+        "list_T47z6A": {
+          "type": "list",
+          "settings": {
+            "title": "What's New?",
+            "item_1": "",
+            "item_2": "",
+            "item_3": "",
+            "item_4": "",
+            "item_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_K4aUtE",
+        "icon_item_aiHAhg",
+        "icon_item_CYdA4C",
+        "icon_item_hAVAdf",
+        "icon_item_bfhycJ",
+        "icon_item_6z3tm9",
+        "list_T47z6A"
+      ],
+      "name": "Product Details",
+      "settings": {
+        "color_scheme": ""
+      }
     }
   },
   "order": [
-    "single-product"
+    "single-product",
+    "product_details_section_bbUMAx"
   ]
 }
