@@ -140,6 +140,12 @@
           "settings": {
             "text": "Comfortable fit for daily and long-time wear"
           }
+        },
+        "list_item_ihh4fa": {
+          "type": "list_item",
+          "settings": {
+            "text": "Suitable for casual use, light sports, and travel"
+          }
         }
       },
       "block_order": [
@@ -151,7 +157,8 @@
         "icon_item_6z3tm9",
         "list_heading_UBYwK7",
         "list_item_TU9RkW",
-        "list_item_TF7d6n"
+        "list_item_TF7d6n",
+        "list_item_ihh4fa"
       ],
       "name": "Product Details",
       "settings": {
