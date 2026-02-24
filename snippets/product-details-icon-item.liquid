@@ -1,0 +1,24 @@
+{% comment %}
+  Product Details Icon Item Snippet
+  Usage: {% render 'product-details-icon-item', block: block %}
+{% endcomment %}
+
+<div class="product-details-icon-item">
+  <span class="icon">
+    {% if block.settings.icon_svg != blank %}
+      {{ block.settings.icon_svg }}
+    {% else %}
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 48 48" role="img" width="100%" height="100%"
+        fill="none">
+        <path stroke="currentColor" stroke-width="2"
+          d="M10 40h4m2 0h18c2.21 0 4-1.79 4-4s-1.79-4-4-4H16c-1.66 0-3-1.34-3-3s1.34-3 3-3h8.5c.83 0 1.5-.67 1.5-1.5V22">
+        </path>
+        <path stroke="currentColor" stroke-width="2" d="M3 35L19 7l7 11 4-7 14 24"></path>
+      </svg>
+    {% endif %}
+  </span>
+  <div class="product-details-icon-item-content">
+    <p class="subtitle">{{ block.settings.subtitle }}</p>
+    <p class="title">{{ block.settings.title }}</p>
+  </div>
+</div>
