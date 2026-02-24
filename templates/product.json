@@ -77,18 +77,6 @@
     "product_details_section_bbUMAx": {
       "type": "product-details-section",
       "blocks": {
-        "list_item_TU9RkW": {
-          "type": "list_item",
-          "settings": {
-            "text": ""
-          }
-        },
-        "list_heading_UBYwK7": {
-          "type": "list_heading",
-          "settings": {
-            "title": "What's New?"
-          }
-        },
         "heading_K4aUtE": {
           "type": "heading",
           "settings": {
@@ -134,17 +122,29 @@
             "subtitle": "Heel-to-Toe Drop",
             "title": "8.5mm"
           }
+        },
+        "list_heading_UBYwK7": {
+          "type": "list_heading",
+          "settings": {
+            "title": "What's New?"
+          }
+        },
+        "list_item_TU9RkW": {
+          "type": "list_item",
+          "settings": {
+            "text": "Premium stitching for enhanced durability"
+          }
         }
       },
       "block_order": [
-        "list_item_TU9RkW",
-        "list_heading_UBYwK7",
         "heading_K4aUtE",
         "icon_item_aiHAhg",
         "icon_item_CYdA4C",
         "icon_item_hAVAdf",
         "icon_item_bfhycJ",
-        "icon_item_6z3tm9"
+        "icon_item_6z3tm9",
+        "list_heading_UBYwK7",
+        "list_item_TU9RkW"
       ],
       "name": "Product Details",
       "settings": {
