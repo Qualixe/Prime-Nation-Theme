@@ -97,11 +97,18 @@
             "answer": "<p>We accept:</p><ul><li>Cash on Delivery (COD)<br/></li><li>bKash<br/></li><li>Nagad<br/></li><li>Bank Transfer<br/></li></ul><p>Payment options may vary depending on location and product availability.</p>"
           }
         },
-        "faq_item_TG3iFB": {
+        "faq_item_7LGY6y": {
           "type": "faq_item",
           "settings": {
-            "question": "How long does delivery take?",
-            "answer": "<p>Delivery usually takes:</p><ul><li><strong>Inside Dhaka:</strong> 1–3 working days<br/></li><li><strong>Outside Dhaka:</strong> 2–5 working days<br/></li></ul><p>Delivery times may vary during holidays or peak seasons.</p>"
+            "question": "Are your products authentic?",
+            "answer": "<p>Yes. Prime Nation BD ensures that all products are sourced from trusted suppliers and verified for quality before delivery.</p>"
+          }
+        },
+        "faq_item_fG3egQ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I contact customer support?",
+            "answer": "<p>You can contact us via:</p><ul><li><br/>Facebook/Instagram inbox<br/></li><li><br/>WhatsApp<br/></li><li><br/>Phone call<br/></li><li><br/>Email<br/></li></ul><p>Our support team is ready to assist you during business hours.</p>"
           }
         }
       },
@@ -110,7 +117,8 @@
         "faq_item_DckqBg",
         "faq_item_NgCEJ9",
         "faq_item_wjqUa7",
-        "faq_item_TG3iFB"
+        "faq_item_7LGY6y",
+        "faq_item_fG3egQ"
       ],
       "name": "FAQ Section",
       "settings": {
