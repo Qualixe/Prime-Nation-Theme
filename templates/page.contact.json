@@ -18,6 +18,48 @@
         "color_scheme": ""
       }
     },
+    "icon_item_section_zMBb4E": {
+      "type": "icon-item-section",
+      "blocks": {
+        "icon_item_8xeWVf": {
+          "type": "icon_item",
+          "settings": {
+            "image": "shopify://shop_images/smartphone.png",
+            "icon": "",
+            "title": "Call Us",
+            "text": "Directly for immediate assistance: 24 hours open. call<strong>: </strong><a href=\"tel:01959000111\" title=\"tel:01959000111\"><strong>01959000111</strong></a>"
+          }
+        },
+        "icon_item_TP3Dqx": {
+          "type": "icon_item",
+          "settings": {
+            "image": "shopify://shop_images/gmail.png",
+            "icon": "",
+            "title": "Email us",
+            "text": "Have a quick question? Send us amessage on Mail:<a href=\"mailto:support@toptenmartbd.com\" title=\"mailto:support@toptenmartbd.com\"><strong>support@toptenmartbd.com</strong></a>"
+          }
+        },
+        "icon_item_mDcHNL": {
+          "type": "icon_item",
+          "settings": {
+            "image": "shopify://shop_images/icons8-whatsapp-logo-94.png",
+            "icon": "",
+            "title": "whatsapp",
+            "text": "Directly for immediate assistance: 24 hours open. call<strong>: </strong><a href=\"tel:01959000111\" title=\"tel:01959000111\"><strong>01959000111</strong></a>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_item_8xeWVf",
+        "icon_item_TP3Dqx",
+        "icon_item_mDcHNL"
+      ],
+      "name": "Icon Item Section",
+      "settings": {
+        "contact_icon": true,
+        "color_scheme": ""
+      }
+    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -184,6 +226,7 @@
   },
   "order": [
     "page_banner_L3XYH6",
+    "icon_item_section_zMBb4E",
     "main",
     "form"
   ]
