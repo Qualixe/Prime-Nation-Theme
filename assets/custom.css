@@ -3,4 +3,5 @@
 }
 .button.submit-button.size-style.button {
     border-radius: 0px;
+    text-transform:uppercase;
 }
