@@ -96,13 +96,21 @@
             "question": "What payment methods do you accept?",
             "answer": "<p>We accept:</p><ul><li>Cash on Delivery (COD)<br/></li><li>bKash<br/></li><li>Nagad<br/></li><li>Bank Transfer<br/></li></ul><p>Payment options may vary depending on location and product availability.</p>"
           }
+        },
+        "faq_item_TG3iFB": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Delivery usually takes:</p><ul><li><strong>Inside Dhaka:</strong> 1–3 working days<br/></li><li><strong>Outside Dhaka:</strong> 2–5 working days<br/></li></ul><p>Delivery times may vary during holidays or peak seasons.</p>"
+          }
         }
       },
       "block_order": [
         "faq_item_gVCfk3",
         "faq_item_DckqBg",
         "faq_item_NgCEJ9",
-        "faq_item_wjqUa7"
+        "faq_item_wjqUa7",
+        "faq_item_TG3iFB"
       ],
       "name": "FAQ Section",
       "settings": {
