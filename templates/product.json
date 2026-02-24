@@ -80,7 +80,7 @@
         "heading_K4aUtE": {
           "type": "heading",
           "settings": {
-            "heading": "Lightweight speed, grip and energy return, come hell or high water."
+            "heading": "Step Into Ultimate Comfort and Modern Street Style with Our Premium Quality Sneakers"
           }
         },
         "icon_item_aiHAhg": {
@@ -94,7 +94,7 @@
         "icon_item_CYdA4C": {
           "type": "icon_item",
           "settings": {
-            "icon_svg": "",
+            "icon_svg": "<svg aria-hidden=\"true\" focusable=\"false\" viewbox=\"0 0 48 48\" role=\"img\" width=\"100%\" height=\"100%\" fill=\"none\" data-testid=\"benefits-icon\">\n\t\t\t\t\t\t\t\t<path stroke=\"currentColor\" stroke-width=\"2\" d=\"M43 27L32 15l-8.03 8.03c-.55.55-1.42.59-2.02.09L17 19l-4 4H5v11c0 2.76 2.24 5 5 5h28c2.76 0 5-2.24 5-5v-7z\">\n\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t<path stroke=\"currentColor\" stroke-width=\"2\" d=\"M43 20L32 8l-8.03 8.03c-.55.55-1.42.59-2.02.09L17 12l-4 4H4\"></path>\n\t\t\t\t\t\t\t</svg>",
             "subtitle": "Terrain",
             "title": "Less to Highly Technical"
           }
@@ -102,7 +102,7 @@
         "icon_item_hAVAdf": {
           "type": "icon_item",
           "settings": {
-            "icon_svg": "",
+            "icon_svg": "<svg aria-hidden=\"true\" focusable=\"false\" viewbox=\"0 0 48 48\" role=\"img\" width=\"100%\" height=\"100%\" fill=\"none\" data-testid=\"benefits-icon\">\n\t\t\t\t\t\t\t\t<g stroke=\"currentColor\" stroke-linejoin=\"round\" stroke-width=\"2\">\n\t\t\t\t\t\t\t\t\t<path d=\"M33.45 5l3.57 6.02 3.05 1.26a1.5 1.5 0 01.73 2.13l-2.48 4.38c-.43.76-1.05 1.39-1.8 1.83L19.31 30.84a11.78 11.78 0 01-12.84-.52l-.12-.09c-.85-.6-.79-1.87.11-2.39l3.02-2.39c5.15-4.07 8.82-9.73 10.44-16.09l.64-2.52 4.57 2.67c2.38 1.39 5.43.56 6.79-1.83l1.51-2.66.02-.02z\">\n\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t<path d=\"M6.58 30.26l5.13-1.45c6.36-1.8 11.96-5.65 15.91-10.95l1.67-2.25 7.74-4.59M44 43.49H4m40-15l-26 9\">\n\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t</g>\n\t\t\t\t\t\t\t\t<defs>\n\t\t\t\t\t\t\t\t\t<clippath id=\"clip0_17204_181470\">\n\t\t\t\t\t\t\t\t\t\t<path fill=\"currentColor\" d=\"M0 0h40.33v40.49H0z\" transform=\"translate(4 4)\"></path>\n\t\t\t\t\t\t\t\t\t</clippath>\n\t\t\t\t\t\t\t\t</defs>\n\t\t\t\t\t\t\t</svg>",
             "subtitle": "Cushioning",
             "title": "Responsive"
           }
@@ -110,7 +110,7 @@
         "icon_item_bfhycJ": {
           "type": "icon_item",
           "settings": {
-            "icon_svg": "",
+            "icon_svg": "<svg aria-hidden=\"true\" focusable=\"false\" viewbox=\"0 0 48 48\" role=\"img\" width=\"100%\" height=\"100%\" fill=\"none\" data-testid=\"benefits-icon\">\n\t\t\t\t\t\t\t\t<path stroke=\"currentColor\" stroke-miterlimit=\"10\" stroke-width=\"2\" d=\"M5 43.004l26.69-26.69m-21.25 5.251l13.25-13.25c4.42-4.42 11.58-4.42 16 0s4.42 11.58 0 16l-13.25 13.25c-.28.28-.66.44-1.06.44H10v-15.38c0-.4.16-.78.44-1.06zM18 30.004h16\">\n\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t</svg>",
             "subtitle": "Shoe Weight",
             "title": "Approx. 287g (Men's Size 9)"
           }
@@ -118,20 +118,39 @@
         "icon_item_6z3tm9": {
           "type": "icon_item",
           "settings": {
-            "icon_svg": "",
+            "icon_svg": "<svg aria-hidden=\"true\" focusable=\"false\" viewbox=\"0 0 48 48\" role=\"img\" width=\"100%\" height=\"100%\" fill=\"none\" data-testid=\"benefits-icon\">\n\t\t\t\t\t\t\t\t<path stroke=\"currentColor\" stroke-miterlimit=\"10\" stroke-width=\"2\" d=\"M4 40.397h25.02a5 5 0 004.17-2.24l3.28-4.95c.32-.49.33-1.12.02-1.62L32 24.407v-9.51c0-1.13-1.2-1.85-2.2-1.33l-6.48 3.41a5.01 5.01 0 01-6.85-2.28l-2.78-5.84a1.501 1.501 0 00-2.1-.66l-5.6 3.2m32.01 25h3.5c.83 0 1.5-.67 1.5-1.5v-9c0-.83-.67-1.5-1.5-1.5H38m2 8h2m-2-4.001h2\">\n\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t<path stroke=\"currentColor\" stroke-miterlimit=\"10\" stroke-width=\"2\" d=\"M32 24.396H22l-3.48 2.32a9.951 9.951 0 01-5.55 1.68H4m30 8.001H4\"></path>\n\t\t\t\t\t\t\t</svg>",
             "subtitle": "Heel-to-Toe Drop",
             "title": "8.5mm"
           }
         },
-        "list_T47z6A": {
-          "type": "list",
+        "list_heading_UBYwK7": {
+          "type": "list_heading",
           "settings": {
-            "title": "What's New?",
-            "item_1": "",
-            "item_2": "",
-            "item_3": "",
-            "item_4": "",
-            "item_5": ""
+            "title": "What's New?"
+          }
+        },
+        "list_item_TU9RkW": {
+          "type": "list_item",
+          "settings": {
+            "text": "Premium stitching for enhanced durability"
+          }
+        },
+        "list_item_TF7d6n": {
+          "type": "list_item",
+          "settings": {
+            "text": "Comfortable fit for daily and long-time wear"
+          }
+        },
+        "list_item_ihh4fa": {
+          "type": "list_item",
+          "settings": {
+            "text": "Suitable for casual use, light sports, and travel"
+          }
+        },
+        "list_item_rR97rh": {
+          "type": "list_item",
+          "settings": {
+            "text": "Available in multiple sizes for the perfect fit"
           }
         }
       },
@@ -142,7 +161,11 @@
         "icon_item_hAVAdf",
         "icon_item_bfhycJ",
         "icon_item_6z3tm9",
-        "list_T47z6A"
+        "list_heading_UBYwK7",
+        "list_item_TU9RkW",
+        "list_item_TF7d6n",
+        "list_item_ihh4fa",
+        "list_item_rR97rh"
       ],
       "name": "Product Details",
       "settings": {
