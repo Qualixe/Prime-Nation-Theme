@@ -1,0 +1,104 @@
+<section class="section faq-section color-{{ section.settings.color_scheme }}">
+  <div class="container">
+    <div class="faq-wrapper">
+      <div class="faq-content">
+        <h1 class="faq-content-title">{{ section.settings.title }}</h1>
+        <p class="faq-content-text">
+          {{ section.settings.subtitle }}
+        </p>
+        <a href="{{ section.settings.button_link }}" class="btn primary-btn">
+          {{- section.settings.button_text -}}
+          <span></span
+        ></a>
+      </div>
+      <div class="faq-accordion">
+        <div class="faq-accordion-items">
+          {% for block in section.blocks %}
+            <div class="faq-accordion-item">
+              <div class="item-title-wrapper faq-accordion-toggle-btn">
+                <h6 class="item-title">{{ block.settings.question }}</h6>
+                <span class="icon">
+                  <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                    	d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z"
+                    	fill="currentColor">
+                    </path>
+                  </svg>
+                </span>
+              </div>
+              <div class="faq-accordion-item-content">
+                <div class="content">
+                  <p>
+                    {{ block.settings.answer }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "FAQ"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "id": "question",
+          "type": "text",
+          "label": "Question"
+        },
+        {
+          "id": "answer",
+          "type": "richtext",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section"
+    }
+  ]
+}
+{% endschema %}
