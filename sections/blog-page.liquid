@@ -1,20 +1,21 @@
 {% assign s = section.settings %}
+{% assign current_blog = s.blog | default: blog %}
 
 <section class="section blog-section color-{{ s.color_scheme }}">
   <div class="container">
 
     <div class="section-heading-wrapper">
-      <h2 class="section-heading">{{ s.heading }}</h2>
+      <h2 class="section-heading">{{ s.heading | default: current_blog.title }}</h2>
       <p class="section-heading-text">
         {{ s.sub_heading }}
       </p>
     </div>
 
-    {% if s.blog != blank %}
-      {% paginate s.blog.articles by 6 %}
+    {% if current_blog != blank %}
+      {% paginate current_blog.articles by 6 %}
 
         <div class="blog-items">
-          {% for article in s.blog.articles %}
+          {% for article in current_blog.articles %}
             <div class="blog-item">
               <div class="blog-img">
                 <a href="{{ article.url }}">
@@ -75,9 +76,9 @@
       {% endpaginate %}
     {% endif %}
 
-    {% if s.enable_view_all and s.blog != blank %}
+    {% if s.enable_view_all and current_blog != blank %}
       <div class="section-btn">
-        <a href="{{ s.blog.url }}" class="btn primary-btn">
+        <a href="{{ current_blog.url }}" class="btn primary-btn">
           {{ s.btn_text }}
         </a>
       </div>
@@ -105,11 +106,6 @@
       "id": "sub_heading",
       "label": "Section SubHeading",
       "default": "Discover Stories, Ideas, and Insights That Inspire Curiosity and Creativity"
-    },
-    {
-      "type": "blog",
-      "id": "blog",
-      "label": "Select Blog"
     },
     {
       "type": "text",
