@@ -770,7 +770,7 @@
         top: 0;
         width: 15px;
         height: 15px;
-        background-image: url("../images/navlink-arrow.svg");
+        background-image: url("./navlink-arrow.svg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

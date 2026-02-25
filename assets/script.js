@@ -226,10 +226,10 @@ $(document).ready(function () {
   // **..faq-accordion js end..**
 
   // datepicker js start--
-  $("#date").datepicker({
-    showButtonPanel: true,
-    showOtherMonths: true,
-  });
+  // $("#date").datepicker({
+  //   showButtonPanel: true,
+  //   showOtherMonths: true,
+  // });
   // datepicker js end--
 });
 
@@ -364,9 +364,9 @@ var swiper2 = new Swiper(".product-slider", {
 // product-slider js end---
 
 // progesss-bar js start--
-const progress = document.querySelector(".progress");
-progress.addEventListener("input", function () {
-  const value = this.value;
-  this.style.background = `linear-gradient(to right,rgb(133 168 104) 0%,rgb(133 168 104) ${value}%,rgb(216, 216, 216) ${value}%)`;
-});
+// const progress = document.querySelector(".progress");
+// progress.addEventListener("input", function () {
+//   const value = this.value;
+//   this.style.background = `linear-gradient(to right,rgb(133 168 104) 0%,rgb(133 168 104) ${value}%,rgb(216, 216, 216) ${value}%)`;
+// });
 // progesss-bar js end--

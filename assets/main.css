@@ -1,6 +1,6 @@
 /* common css start */
 /* import fonts-- */
-@font-face {
+/* @font-face {
     font-family: 'Inter';
     src: url('./fonts/Inter_18pt-Light.woff') format('woff');
     font-weight: 300;
@@ -40,7 +40,7 @@
     font-family: 'Inter';
     src: url('./fonts/Inter_18pt-Black.woff') format('woff');
     font-weight: 900;
-}
+} */
 
 /* colors */
 :root {
