@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     try {
                         data = JSON.parse(textContent);
                     } catch (err) {
-                        console.error('Failed to parse response as JSON. Response snippet:', textContent.substring(0, 500));
-                        throw new Error('Server returned HTML instead of JSON. Check console for details.');
+                        // Failed to parse response as JSON
+                        throw new Error('Server returned HTML instead of JSON.');
                     }
 
                     if (!response.ok) {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     updateCartCount();
                 })
                 .catch((err) => {
-                    console.error('Add to cart error:', err);
+                    // Add to cart error
                     alert(err.message || 'Failed to add item to cart.');
                 })
                 .finally(() => {
@@ -69,7 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     el.textContent = cart.item_count;
                 });
             })
-            .catch(err => console.error('Error updating cart count:', err));
+            .catch(err => {
+                // Error updating cart count
+            });
     }
 
     function attachCartListeners() {

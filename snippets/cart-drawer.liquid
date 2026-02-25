@@ -48,7 +48,7 @@
             this.fetchRecommendations();
           }
         } catch (err) {
-          console.error('Error fetching cart:', err);
+          // Error fetching cart
         } finally {
           this.loading = false;
         }
@@ -64,7 +64,7 @@
           const data = await res.json();
           this.recommendations = data.products;
         } catch (err) {
-          console.error('Error fetching recommendations:', err);
+          // Error fetching recommendations
         }
       },
 
@@ -128,7 +128,7 @@
           this.cart = data;
           this.updateGlobalCounts();
         } catch (err) {
-          console.error('Error updating quantity:', err);
+          // Error updating quantity
           alert(err.message || 'Error updating cart');
           this.fetchCart(); // Revert to server state
         } finally {
@@ -159,17 +159,17 @@
           try {
             data = JSON.parse(text);
           } catch (e) {
-            console.error('QuickAdd: Non-JSON response:', text.substring(0, 500));
+            // QuickAdd: Non-JSON response
             return;
           }
 
           if (res.ok) {
             this.fetchCart();
           } else {
-             console.error('QuickAdd Error:', data.description || data.message);
+             // QuickAdd Error
           }
         } catch (err) {
-           console.error('Error in quick add:', err);
+           // Error in quick add
         } finally {
            this.loading = false;
         }

@@ -186,8 +186,8 @@
         "tab_VDAmHF": {
           "type": "tab",
           "settings": {
-            "tab_title": "Best Sellers",
-            "collection": "",
+            "tab_title": "Trending Now",
+            "collection": "trending-now",
             "products_limit": 8
           }
         },
@@ -195,7 +195,7 @@
           "type": "tab",
           "settings": {
             "tab_title": "New Arrivals",
-            "collection": "",
+            "collection": "new-arrival",
             "products_limit": 8
           }
         }

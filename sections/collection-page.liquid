@@ -50,8 +50,7 @@
             window.history.pushState({}, '', url);
           })
           .catch(error => {
-            console.error('Error loading collection:', error);
-            // Fallback to normal navigation
+            // Error loading collection - fallback to normal navigation
             window.location.href = url;
           });
       },
